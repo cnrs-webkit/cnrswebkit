@@ -19,6 +19,7 @@ Voici une idée du travail à réaliser pour mettre en ligne une première versi
   - corriger tous les bugs du kit, y apporter des améliorations compatibles avec le kit d'origine (problématique: chacun à déjà corrigé/modifié le kit à sa façon...)
   - ajouter quelques fonctionnalités
   - proposer la possibilité de mise à jour automatique du thème
+  - proposer un thème enfant basique pour ceux qui veulent modifier/adapter le thème *CNRSwebkit* 
   - ...
 
 
