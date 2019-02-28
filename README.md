@@ -6,6 +6,7 @@ Ce projet a pour objectif de transformer le *kitweb* existant en un vrai thème 
 
 ## Historique du projet
 - 28 fév. 2018 : Création du dépôt par C. Seguinot
+- bientôt: Mise en ligne d'une version de développement du thème *CNRSwebkit* 
 - ?? : il reste beaucoup à faire avant de disposer d'une version utilisable du kit. Soyez patient! 
 
 ## Vers une première version stable
@@ -16,7 +17,7 @@ Voici une idée du travail à réaliser pour mettre en ligne une première versi
   - la partie données (les pages proposées par défaut), avec la possibilité d'installer ou de ne pas installer ces données
 - Pour le thème (code)
   - corriger tous les bugs du kit, y apporter des améliorations compatibles avec le kit d'origine (problématique: chacun à déjà corrigé/modifié le kit à sa façon...)
-  - ajouter quelques fonstionnalités
+  - ajouter quelques fonctionnalités
   - proposer la possibilité de mise à jour automatique du thème
   - ...
 
