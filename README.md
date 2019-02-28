@@ -11,14 +11,14 @@ Ce projet a pour objectif de transformer le *kitweb* existant en un vrai thème 
 ## Vers une première version stable
 Voici une idée du travail à réaliser pour mettre en ligne une première version stable: 
 - Séparer le kit actuel en 3 parties 
- - la partie thème (code) du kit (le cœur du kit) 
- - la partie configuration (le paramétrage indispensable pour faire fonctionner le kit) 
- - la partie données (les pages proposées par défaut), avec la possibilité d'installer ou de ne pas installer ces données
+  - la partie thème (code) du kit (le cœur du kit) 
+  - la partie configuration (le paramétrage indispensable pour faire fonctionner le kit) 
+  - la partie données (les pages proposées par défaut), avec la possibilité d'installer ou de ne pas installer ces données
 - Pour le thème (code)
- - corriger tous les bugs du kit, y apporter des améliorations compatibles avec le kit d'origine (problématique: chacun à déjà corrigé/modifié le kit à sa façon...)
- - ajouter quelques fonstionnalités
- - proposer la possibilité de mise à jour automatique du thème
- - ...
+  - corriger tous les bugs du kit, y apporter des améliorations compatibles avec le kit d'origine (problématique: chacun à déjà corrigé/modifié le kit à sa façon...)
+  - ajouter quelques fonstionnalités
+  - proposer la possibilité de mise à jour automatique du thème
+  - ...
 
 
 ## Contribuer au projet
