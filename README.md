@@ -1,2 +1,5 @@
 # cnrswebkit
-Theme du kit web CNRS
+Theme Wordpress du kit web CNRS. 
+## Objectifs 
+
+## Historique du projet
