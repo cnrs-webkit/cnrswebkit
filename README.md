@@ -1,5 +1,5 @@
 # cnrswebkit
-Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. 
+Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. Le site web officiel du *CNRSwebkit* est https://kit-web.cnrs.fr/
 
 ## Objectifs 
 Ce projet a pour objectif de transformer le *kitweb* existant en un vrai thème Worpdress, instable sur la dernière version de Wordpress, et disposant d'une mise à jour automatisée. 
