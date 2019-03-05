@@ -1,0 +1,702 @@
+# Copyright (C) 2018 the Atos team
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: CNRS Web Kit 1.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/cnrswebkit\n"
+"POT-Creation-Date: 2018-11-27 12:28:15+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: 404.php:16
+msgid "That page can't be found."
+msgstr ""
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. May be try a search?"
+msgstr ""
+
+#: archive.php:49 index.php:50 search.php:37
+msgid "Previous page"
+msgstr ""
+
+#: archive.php:50 index.php:51 search.php:38
+msgid "Next page"
+msgstr ""
+
+#: archive.php:51 image.php:60 index.php:52 search.php:39
+#: template-parts/content-single.php:29 template-parts/content.php:36
+msgid "Page"
+msgstr ""
+
+#. translators: %s: post title
+#: comments.php:31
+msgctxt "comments title"
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr ""
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:35
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:69
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:17
+msgid "Footer Primary Menu"
+msgstr ""
+
+#: footer.php:30
+msgid "Footer Social Links Menu"
+msgstr ""
+
+#: functions.php:122 header.php:52
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:123 header.php:64
+msgid "Secondary Menu"
+msgstr ""
+
+#: functions.php:124 header.php:84
+msgid "Social Links Menu"
+msgstr ""
+
+#: functions.php:193
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:195
+msgid "Add widgets here to appear in your sidebar."
+msgstr ""
+
+#: functions.php:203
+msgid "Content Bottom 1"
+msgstr ""
+
+#: functions.php:205 functions.php:215
+msgid "Appears at the bottom of the content on posts and pages."
+msgstr ""
+
+#: functions.php:213
+msgid "Content Bottom 2"
+msgstr ""
+
+#. translators: If there are characters in your language that are not supported
+#. by Merriweather, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:242
+msgctxt "Merriweather font: on or off"
+msgid "on"
+msgstr ""
+
+#. translators: If there are characters in your language that are not supported
+#. by Montserrat, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:247
+msgctxt "Montserrat font: on or off"
+msgid "on"
+msgstr ""
+
+#. translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:252
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr ""
+
+#: functions.php:322
+msgid "expand child menu"
+msgstr ""
+
+#: functions.php:323
+msgid "collapse child menu"
+msgstr ""
+
+#: header.php:27
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:49
+msgid "Menu"
+msgstr ""
+
+#. translators: this is a Search box placeholder (Search...)
+#: header.php:79 searchform.php:16
+msgid "Search &hellip;"
+msgstr ""
+
+#: homepage.php:35
+msgid "See All news"
+msgstr ""
+
+#: homepage.php:64
+msgid "Download"
+msgstr ""
+
+#: image.php:24
+msgid "Previous Image"
+msgstr ""
+
+#: image.php:25
+msgid "Next Image"
+msgstr ""
+
+#: image.php:56 template-parts/content-single.php:25
+#: template-parts/content.php:32
+msgid "Pages:"
+msgstr ""
+
+#: image.php:73
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: image.php:84 template-parts/content-single.php:45
+#: template-parts/content.php:48
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: image.php:102 single-actualite.php:29 single-emploi.php:29
+#: single-evenement.php:29 single-mediatheque.php:29 single-partenaire.php:29
+#: single-publication.php:29 single.php:29
+msgctxt "Parent post link"
+msgid ""
+"<span class=\"meta-nav\">Published in</span><span class=\"post-title\">"
+"%title</span>"
+msgstr ""
+
+#: inc/back-compat.php:41 inc/back-compat.php:53 inc/back-compat.php:68
+msgid ""
+"CNRS Web Kit requires at least WordPress version 4.4. You are running "
+"version %s. Please upgrade and try again."
+msgstr ""
+
+#: inc/class-atf2-controller.php:64
+msgid "All %s"
+msgstr ""
+
+#: inc/class-atf2-settings.php:27 inc/class-atf2-settings.php:28
+msgid "Taxonomy Filter"
+msgstr ""
+
+#: inc/class-atf2-settings.php:41
+msgid "Admin Taxonomy Filter"
+msgstr ""
+
+#: inc/class-atf2-settings.php:66
+msgid "Select Taxonomies To Filter"
+msgstr ""
+
+#: inc/cnrs-ajax.php:169 inc/cnrs-ajax.php:172 inc/cnrs-ajax.php:244
+#: inc/cnrs-ajax.php:247
+msgid "This contact was not found"
+msgstr ""
+
+#: inc/cnrs-ajax.php:175 inc/cnrs-ajax.php:250
+msgid "This target was not found"
+msgstr ""
+
+#: inc/cnrs-ajax.php:178 inc/cnrs-ajax.php:253
+msgid "You must provide your name"
+msgstr ""
+
+#: inc/cnrs-ajax.php:181 inc/cnrs-ajax.php:256
+msgid "You must provide your fistname"
+msgstr ""
+
+#: inc/cnrs-ajax.php:184 inc/cnrs-ajax.php:259
+msgid "You must provide your email address"
+msgstr ""
+
+#: inc/cnrs-ajax.php:187 inc/cnrs-ajax.php:262
+msgid "You must provide some message"
+msgstr ""
+
+#. translators: 1: Firstname Name of author, 2: Site or blog name
+#: inc/cnrs-ajax.php:201 inc/cnrs-ajax.php:275
+msgid "Nouveau message de %1$s depuis le site %2$s"
+msgstr ""
+
+#: inc/cnrs-ajax.php:224 inc/cnrs-ajax.php:298
+msgid "Your message has been sent"
+msgstr ""
+
+#: inc/cnrs-ajax.php:336
+msgid "Your Email address has been registered"
+msgstr ""
+
+#: inc/cnrs-ajax.php:342
+msgid "Your Email address has already been registered"
+msgstr ""
+
+#: inc/cnrs-ajax.php:349
+msgid "Adresse email incorrecte"
+msgstr ""
+
+#: inc/customizer.php:137
+msgid "Base Color Scheme"
+msgstr ""
+
+#: inc/customizer.php:152
+msgid "Page Background Color"
+msgstr ""
+
+#: inc/customizer.php:167
+msgid "Link Color"
+msgstr ""
+
+#: inc/customizer.php:179
+msgid "Main Text Color"
+msgstr ""
+
+#: inc/customizer.php:191
+msgid "Secondary Text Color"
+msgstr ""
+
+#: inc/customizer.php:260
+msgid "Default"
+msgstr ""
+
+#: inc/customizer.php:270
+msgid "Dark"
+msgstr ""
+
+#: inc/customizer.php:280
+msgid "Gray"
+msgstr ""
+
+#: inc/customizer.php:290
+msgid "Red"
+msgstr ""
+
+#: inc/customizer.php:300
+msgid "Yellow"
+msgstr ""
+
+#: inc/inc-pages-functions.php:352
+msgid "Filter by"
+msgstr ""
+
+#: inc/inc-pages-functions.php:609
+msgid "Catégory"
+msgstr ""
+
+#: inc/inc-pages-functions.php:610
+msgid "All"
+msgstr ""
+
+#: inc/inc-pages-functions.php:846
+msgid "Home"
+msgstr ""
+
+#: inc/inc-pages-functions.php:848
+msgid "Search result"
+msgstr ""
+
+#: inc/template-tags.php:25
+msgctxt "Used before post author name."
+msgid "Author"
+msgstr ""
+
+#: inc/template-tags.php:38
+msgctxt "Used before post format."
+msgid "Format"
+msgstr ""
+
+#: inc/template-tags.php:50
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:79
+msgctxt "Used before publish date."
+msgid "Posted on"
+msgstr ""
+
+#: inc/template-tags.php:95 inc/template-tags.php:103
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ""
+
+#: inc/template-tags.php:98
+msgctxt "Used before category names."
+msgid "Categories"
+msgstr ""
+
+#: inc/template-tags.php:106
+msgctxt "Used before tag names."
+msgid "Tags"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:184 template-parts/content.php:28
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: loops/loop-contact.php:28
+msgid "Contact this person"
+msgstr ""
+
+#: loops/loop-emploi.php:28 template-parts/content-emploi.php:39
+msgid "Download recruitment offer"
+msgstr ""
+
+#: loops/loop-publication.php:32
+msgid "Export this reference"
+msgstr ""
+
+#: loops/loop-publication.php:58 template-parts/home-top.php:21
+msgid "En savoir plus"
+msgstr ""
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr ""
+
+#: searchform.php:14
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:18
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: single-actualite.php:34 single-emploi.php:34 single-evenement.php:34
+#: single-mediatheque.php:34 single-partenaire.php:34 single-publication.php:34
+#: single.php:34
+msgid "Next"
+msgstr ""
+
+#: single-actualite.php:35 single-emploi.php:35 single-evenement.php:35
+#: single-mediatheque.php:35 single-partenaire.php:35 single-publication.php:35
+#: single.php:35
+msgid "Next post:"
+msgstr ""
+
+#: single-actualite.php:37 single-emploi.php:37 single-evenement.php:37
+#: single-mediatheque.php:37 single-partenaire.php:37 single-publication.php:37
+#: single.php:37
+msgid "Previous"
+msgstr ""
+
+#: single-actualite.php:38 single-emploi.php:38 single-evenement.php:38
+#: single-mediatheque.php:38 single-partenaire.php:38 single-publication.php:38
+#: single.php:38
+msgid "Previous post:"
+msgstr ""
+
+#: template-parts/biography.php:28
+msgid "Author:"
+msgstr ""
+
+#: template-parts/biography.php:33
+msgid "View all posts by %s"
+msgstr ""
+
+#: template-parts/bottom-actualite.php:14
+msgid "See parent section"
+msgstr ""
+
+#: template-parts/bottom-emploi.php:15
+msgid "Return to recruitment list"
+msgstr ""
+
+#: template-parts/bottom-emploi.php:19
+msgid "Other recruitment"
+msgstr ""
+
+#: template-parts/bottom-evenement.php:22
+msgid "Return to Events list"
+msgstr ""
+
+#: template-parts/bottom-evenement.php:27
+msgid "Next events"
+msgstr ""
+
+#: template-parts/bottom-partenaire.php:14
+msgid "partners"
+msgstr ""
+
+#: template-parts/bottom-partenaire.php:15
+msgid "Learn more about our partners"
+msgstr ""
+
+#: template-parts/contact_form.php:2 template-parts/emploi_form.php:3
+msgid "Your name"
+msgstr ""
+
+#: template-parts/contact_form.php:3 template-parts/emploi_form.php:4
+msgid "Your firstname"
+msgstr ""
+
+#: template-parts/contact_form.php:4 template-parts/emploi_form.php:5
+msgid "Your email address"
+msgstr ""
+
+#: template-parts/contact_form.php:5 template-parts/emploi_form.php:6
+msgid "Your message"
+msgstr ""
+
+#: template-parts/contact_form.php:6 template-parts/emploi_form.php:7
+msgid "Send"
+msgstr ""
+
+#: template-parts/contact_form.php:7 template-parts/emploi_form.php:8
+msgid "cancel"
+msgstr ""
+
+#: template-parts/content-emploi.php:37
+msgid "Contact"
+msgstr ""
+
+#: template-parts/content-evenement.php:40
+#: template-parts/content-publication.php:38
+msgid "Add to calendar"
+msgstr ""
+
+#: template-parts/content-none.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#: template-parts/content-none.php:19
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:28
+msgid ""
+"It seems we can't find what you're looking for. Perhaps searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:43
+msgid "See others "
+msgstr ""
+
+#: template-parts/content.php:14
+msgid "Featured"
+msgstr ""
+
+#: templates/template agenda.php:32
+msgid "Display more events"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "CNRS Web Kit"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"CNRS Web Kit is a modernized take on an ever-popular WordPress layout — the "
+"horizontal masthead with an optional right sidebar that works perfectly for "
+"blogs and websites. It has custom color options with beautiful default color "
+"schemes, a harmonious fluid grid using a mobile-first approach, and "
+"impeccable polish in every detail. CNRS Web Kit will make your WordPress "
+"look beautiful everywhere."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "the Atos team"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://atos.net/"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Website homepage"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "News list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Events list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Contacts list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Recruitments list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Media list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Publications list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Sections list"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Page without sidebar"
+msgstr ""
+
+#: events_widget.php:27
+msgid "Agenda"
+msgstr ""
+
+#. translators: This widegt default title should be short to stay on one line
+#. when appearing in sidebar widget.
+#: events_widget.php:48
+msgid "Event's List (cnrswebkit)"
+msgstr ""
+
+#: events_widget.php:51
+msgid ""
+"This widget display a list of futur events registered in cnrswebkit theme "
+"calendar, and optionnal past events"
+msgstr ""
+
+#: events_widget.php:72
+msgid "No event scheduled"
+msgstr ""
+
+#: events_widget.php:87
+msgid "Widget title"
+msgstr ""
+
+#: events_widget.php:91
+msgid "Overall maximum number of items to display"
+msgstr ""
+
+#: events_widget.php:95
+msgid "Maximum number of optionnal pas item to display"
+msgstr ""
+
+#: events_widget.php:99
+msgid "Display Widget if empty event list"
+msgstr ""
+
+#: events_widget.php:101 events_widget.php:108 events_widget.php:115
+msgid "Yes"
+msgstr ""
+
+#: events_widget.php:102 events_widget.php:109 events_widget.php:116
+msgid "No"
+msgstr ""
+
+#: events_widget.php:106
+msgid "Optionnally display an empty list message"
+msgstr ""
+
+#: events_widget.php:113
+msgid "Display a link to \"all events\" page"
+msgstr ""
+
+#: events_widget.php:121
+msgid "Date format"
+msgstr ""
+
+#: events_widget.php:128
+msgid "Year format"
+msgstr ""
+
+#: events_widget.php:130
+msgid "4 digit format"
+msgstr ""
+
+#: events_widget.php:131
+msgid "2 digit format"
+msgstr ""
+
+#: events_widget.php:135
+msgid "Month format"
+msgstr ""
+
+#: events_widget.php:137
+msgid "A full textual representation of a month"
+msgstr ""
+
+#: events_widget.php:138
+msgid "3 letters representation of a month"
+msgstr ""
+
+#: events_widget.php:139
+msgid "Numeric representation of a month: 01 02 ...12"
+msgstr ""
+
+#: events_widget.php:140
+msgid "Numeric representation of a month: 1 2 ... 12"
+msgstr ""
+
+#: events_widget.php:144
+msgid "Day format"
+msgstr ""
+
+#: events_widget.php:146
+msgid "Day of the month, 2 digits: 01 ... 31"
+msgstr ""
+
+#: events_widget.php:147
+msgid "3 letters textual representation of a day"
+msgstr ""
+
+#: events_widget.php:148
+msgid "Day of the month, 1 or 2 digits: 1 ... 31"
+msgstr ""
+
+#: events_widget.php:149
+msgid "A full textual representation of the day"
+msgstr ""
+
+#: events_widget.php:153
+msgid "YMD separator (1 char)"
+msgstr ""
+
+#: events_widget.php:158
+msgid "range separator (1 char)"
+msgstr ""
+
+#: events_widget.php:336
+msgid "Browse \"all events\" page"
+msgstr ""
+
+#: templates/template actualite.php:34
+msgid "There is currently no news in the list"
+msgstr ""
+
+#: templates/template emploi.php:33
+msgid "There is currently no recruitment offer published"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "CNRS Web Kit-IRCICA"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Thème CNRSwebkit-IRCICA"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Christophe Seguinot"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.ircica.univ-lille1.fr"
+msgstr ""

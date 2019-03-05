@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 nov. 2017, 14:42:22
+    Author     : jmlarroq
+*/
+.form-table td p {
+    display:inline-block;
+    font-style:italic;
+    font-size:12px;
+}
+.form-table td > *{
+    float:none !important;
+}
+.pods-manage-field .pods-field-option .pods-form-ui-field-type-file ul.pods-files li.pods-file-name {
+    left: 65px;
+    right: 0;
+}
+.pods-manage-field .pods-field-option .pods-form-ui-field-type-file ul.pods-files li.pods-file-name input{
+    width: 90%;
+}
+#menu-posts {
+    display: none;
+}
