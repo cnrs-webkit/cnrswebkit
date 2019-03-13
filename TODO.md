@@ -8,7 +8,8 @@
 - [ ] Rendre le thème upgradable à partir de GitHub
 - [ ] Proposer un thème enfant par défaut
 - [ ] apply Worpdress coding standard
-- [ ] traductions
+- [ ] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
+- [ ] ET ajouter traductions en français
 
 ### Liste des bugs et améliorations à apporter
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum. Certaines items peuvent être redondants car la liste n'a pas été ni structurée ni priorisée. 
@@ -37,7 +38,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 0
 - [ ] Pourquoi l’appel direct à index.php du thème cnrswebkit génère l’erreur Fatale sur get_header() ; (pas le thème WP !!! (résolu autrement)
 - [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
-- [ ] Langue remettre tutes les chaines en français OU anglais, pas les 2 ! 
 - [ ] Injection SQL: voir rapport inc-page-functions.php
 ``` php
 // C. SEGUINOT sanitize for preventing SQL injection !!
