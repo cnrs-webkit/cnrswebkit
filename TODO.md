@@ -12,8 +12,8 @@
 - [ ] ET ajouter traductions en français
 
 ### Liste des bugs et améliorations à apporter
-Cette liste est la concaténation de l'ensemble des observations faites sur le forum. Certaines items peuvent être redondants car la liste n'a pas été ni structurée ni priorisée. 
-Au fur et à mesure des corrections par les développeurs, cette liste sera épurée. 
+Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
+Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](https://github.com/cnrs-webkit/cnrswebkit/blob/develop/CHANGES.md)
 
 - [ ] wp_enqueue_script est appelée de la mauvaise manière. Les scripts et les styles ne peuvent pas être enregistrés ou ajoutés avant le déclenchement des crochets <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code> ou <code>login_enqueue_scripts</code>. Veuillez lire <a href="https://codex.wordpress.org/fr:Débogage_dans_WordPress">Débogage dans WordPress</a> (en) pour plus d’informations. (Ce message a été ajouté à la version 3.3.0.) in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-includes/functions.php on line 4147
 - [ ] Use of undefined constant this - assumed 'this' in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 183
@@ -191,3 +191,5 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * $FilterSelectorParams->selectorLabel = __('Catégorie', 'cnrswebkit');
    * $FilterSelectorParams->selectorEmptyText = __('Toutes', 'cnrswebkit');
 - [ ] par le contenu dynamique entré dans les pods partie admin.  (Toutes ou Tous suivant les cas !! ) et leur traduction aussi. 
+- [ ] __Voir toutes les commentaires ajoutés TODO SEGUINOT qui pourraient subsister et indiquer des corrections à ajouter non répertoriées dans les lignes précédentes....__
+
