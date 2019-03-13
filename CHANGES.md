@@ -1,6 +1,9 @@
 #### [To appear in next release]
- * add : 
- * fix : 
+##### Added fetaure, template, functionalities
+ *  
+ 
+ #### Fixed bugs
+ * 
  
 
 #### Version 0.3 (2018 Nov. 1)
