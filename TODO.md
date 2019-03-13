@@ -32,7 +32,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Return to event list URL ne fonctionne pas si page # /lagenda !!!! 
    * voir http://cnrs_webkit.fr/wp-admin/themes.php?page=pods-settings-reglage_du_theme 
    * Page liste des actualités
-- [ ] 
 - [ ] événements : lien vers « Add to calendar » brisé !!!
 - [ ] /newsletter :Warning: Illegal string offset 'form_1' in /var/www/html/wp-content/plugins/newsletter/subscription/subscription.php on line 1576
 0
@@ -40,8 +39,10 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
 - [ ] Langue remettre tutes les chaines en français OU anglais, pas les 2 ! 
 - [ ] Injection SQL: voir rapport inc-page-functions.php
-   * // C. SEGUINOT sanitize for preventing SQL injection !!
+``` php
+// C. SEGUINOT sanitize for preventing SQL injection !!
    * $_SESSION[$k] = sanitize_title(get_query_var($k));
+```
 - [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
 - [ ] Page agenda ne liste que les événement passés (ajouter un lien sur la page pour tous les événements ? 
 - [ ] Widget event_list à insérer dans le kit
