@@ -8,7 +8,8 @@
  * @since CNRS Web Kit 1.0
  */
 
-/* C. SEGUINOT disable this
+/* C. SEGUINOT disable this to show error on debug mode
+ * ini-set must be set in config.php, not here !! 
 ini_set("display_errors", 0);
 */ 
 

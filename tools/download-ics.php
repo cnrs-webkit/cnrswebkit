@@ -16,5 +16,5 @@ $ics = new ICS(array(
     'summary' => $_POST['summary'],
     'url' => $_POST['url']
         ));
-var_dump($ics); die(); 
+
 echo $ics->to_string();
