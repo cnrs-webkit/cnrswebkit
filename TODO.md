@@ -191,5 +191,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * $FilterSelectorParams->selectorLabel = __('Catégorie', 'cnrswebkit');
    * $FilterSelectorParams->selectorEmptyText = __('Toutes', 'cnrswebkit');
 - [ ] par le contenu dynamique entré dans les pods partie admin.  (Toutes ou Tous suivant les cas !! ) et leur traduction aussi. 
-- [ ] __Voir toutes les commentaires ajoutés TODO SEGUINOT qui pourraient subsister et indiquer des corrections à ajouter non répertoriées dans les lignes précédentes....__
+- [ ] __Voir toutes les commentaires ajoutés TODO SEGUINOT qui pourraient subsister et indiquer des corrections à ajouter non répertoriées dans les lignes précédentes ... __
+- [ ] __Voir toutes les commentaires du thème enfant IRCIA de C. Seguinot qui correspondent à des modifications par rapport au thème original ... __
 
