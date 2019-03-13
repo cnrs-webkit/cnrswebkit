@@ -1,5 +1,5 @@
 #### [To appear in next release]
-##### Added fetaure, template, functionalities
+##### Added feature, template, functionalities
  *  
  
  #### Fixed bugs
