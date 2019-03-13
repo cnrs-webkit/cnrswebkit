@@ -308,7 +308,7 @@ function submit_newsletter_form() {
     if ($email) {
         $custom_params = new CnrswebkitStdListParams();
         $custom_params->where = array(
-            relation => 'AND',
+            'relation' => 'AND',
         );
         $custom_params->where[] = [
             'key' => 'email',

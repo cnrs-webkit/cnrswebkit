@@ -11,6 +11,6 @@
 ?>
 
 <div class="itemPart">
-    <div class="thumbPart"><a href="<?php echo $current_item->value('site_web_du_partenaire'); ?>" target="_blank"><?php echo get_the_post_thumbnail($current_item->value('ID'), thumb); ?></a></div>
+    <div class="thumbPart"><a href="<?php echo $current_item->value('site_web_du_partenaire'); ?>" target="_blank"><?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?></a></div>
 </div>
 

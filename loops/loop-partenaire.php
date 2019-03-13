@@ -11,7 +11,7 @@
 ?>
 
 <article id="post-<?php echo $current_item->value('ID'); ?>" <?php post_class([$current_item->value('post_type')], $current_item->value('ID')); ?>>
-    <div><?php echo get_the_post_thumbnail($current_item->value('ID'), thumb); ?></div>
+    <div><?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?></div>
     <header class="entry-header">
         <h1 class="entry-title"><a href="<?php echo get_permalink($current_item->value('ID')); ?>"><?php echo $current_item->value('post_title'); ?></a></h1>
     </header><!-- .entry-header -->

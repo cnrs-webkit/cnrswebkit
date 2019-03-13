@@ -15,9 +15,9 @@
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
 Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
 
+-[ ]Warning: filesize(): stat failed for /home/seguinot/Documents/www/wp_ircica_v0.3/kitwebWP/wp-content/uploads/2018/02/RA_CNRS2016_complet_BD.pdf in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 841
+0Mo
 - [ ] wp_enqueue_script est appelée de la mauvaise manière. Les scripts et les styles ne peuvent pas être enregistrés ou ajoutés avant le déclenchement des crochets <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code> ou <code>login_enqueue_scripts</code>. Veuillez lire <a href="https://codex.wordpress.org/fr:Débogage_dans_WordPress">Débogage dans WordPress</a> (en) pour plus d’informations. (Ce message a été ajouté à la version 3.3.0.) in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-includes/functions.php on line 4147
-- [ ] Use of undefined constant this - assumed 'this' in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 183
-- [ ] Use of undefined constant thumb - assumed 'thumb' in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/loops/loop-bottompartenaire.php on line 14
 - [ ] image médiathèque/admin   le champ à la une m’apparaît totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!)
 - [ ] image médiathèque :erreur javascript :  remplacer la ligne 
    * `chapo: '<?php echo json_encode($current_item->value('chapo')); ?>',` 
@@ -39,10 +39,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Pourquoi l’appel direct à index.php du thème cnrswebkit génère l’erreur Fatale sur get_header() ; (pas le thème WP !!! (résolu autrement)
 - [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
 - [ ] Injection SQL: voir rapport inc-page-functions.php
-``` php
-// C. SEGUINOT sanitize for preventing SQL injection !!
-   * $_SESSION[$k] = sanitize_title(get_query_var($k));
-```
 - [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
 - [ ] Page agenda ne liste que les événement passés (ajouter un lien sur la page pour tous les événements ? 
 - [ ] Widget event_list à insérer dans le kit
@@ -143,16 +139,11 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
                 WHERE ( ( CAST( `date_de_fin`.`meta_value` AS DATE ) >= '2018-06-07 11:25:57' ) AND ( `t`.`post_type` = "evenement" ) AND ( `polylang_languages`.`object_id` IS NOT NULL ) AND ( `t`.`post_status` IN ( "publish" ) ) )
                 
                 
-                ORDER BY `date_de_debut`.`meta_value` ASC, `t`.`menu_order`, `t`.`post_title`, `t`.`post_date`
-```
+                ORDER BY `date_de_debut`.`meta_value` ASC, `t`.`menu_order`, `t`.`post_title`, `t`.`post_date` 
+``` 
    * Expression #1 of ORDER BY clause is not in SELECT list, references column 'cnrs_webkit.date_de_debut.meta_value' which is not in SELECT list; this is incompatible with DISTINCT
 
-- [ ] pb suite taxonomy modifiées : 
-   * Notice: Undefined index: categorie_actualites in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 211
-   * Notice: Undefined index: categorie_actualites in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 218
-   * Notice: Undefined index: categorie_actualites in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 74
-   * Notice: Undefined index: typologie_actualites in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 84 
-   * revoir tous les get_the_post_thumbnail, second argument faux !!
+
 - [ ] Je viens de mettre à jour WordPress en 4.9.6, mais sans mettre à jour les plugins.
    * Le calendrier reste sur les pages où il était présent, même s’il n’y a aucun événement à afficher.
    * Il n’apparaît pas sur les pages Emplois, Médiathèque, Actualités, L’agenda où il n’est probablement pas prévu de l’afficher. 
@@ -169,7 +160,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * – la solution proposée par https://pods.io/docs/build/using-shortcodes-pods-templates/ ne fonctionne pas non plus.
 - [ ] Le lien « En savoir plus sur les tutelles » apparaît aussi sur le page tutelles !
 - [ ] Le fichier /cnrswebkit/inc/inc-pages-functions.php du kit CNRS contient la ligne « ini_set(« display_errors », 0); » qui désactive l’affichage des erreurs! 
-- [ ] cnrs.civibox.fr  notamment  dans wp-content/themes/cnrswebkit/template-parts/home-top.php
 - [ ] Sidebar, barre latérale  vide : 
    * NON problème de cache !!! widget dans barre latérale non visible ou non fonctionnels ? 
    * Le css libère une colonne à droite

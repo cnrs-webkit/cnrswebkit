@@ -2,7 +2,7 @@
 Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. Le site web officiel du *CNRSwebkit* est https://kit-web.cnrs.fr/
 
 ## Branche Master
-Seule la branche master contient (contiendra) une version installable du kit. Le developpement du thème se fait sur les autres branches, notamment [develop](https://github.com/cnrs-webkit/cnrswebkit/tree/develop) 
+Seule la branche master contient (contiendra) une version installable du kit après [correction](https://github.com/cnrs-webkit/cnrswebkit/blob/develop/CHANGES.md) des [bugs initiaux](https://github.com/cnrs-webkit/cnrswebkit/blob/develop/TODO.md). Le developpement du thème se fait sur les autres branches, notamment [develop](https://github.com/cnrs-webkit/cnrswebkit/tree/develop) 
 ## Objectifs 
 Ce projet a pour objectif de transformer le *kitweb* existant en un vrai thème Worpdress, instable sur la dernière version de Wordpress, et disposant d'une mise à jour automatisée. 
 

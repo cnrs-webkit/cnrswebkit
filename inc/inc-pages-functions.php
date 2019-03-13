@@ -8,11 +8,6 @@
  * @since CNRS Web Kit 1.0
  */
 
-/* C. SEGUINOT disable this to show error on debug mode
- * ini-set must be set in config.php, not here !! 
-ini_set("display_errors", 0);
-*/ 
-
 require get_template_directory() . '/inc/cnrs-ajax.php';
 
 add_action('init', 'cnrs_session_start', 1);
@@ -26,16 +21,14 @@ function admin_css() {
 
     if (is_admin()) {
         wp_enqueue_style('admin_css', get_template_directory_uri() . '/css/admin.css');
-        // C. Seguinot add  wp-color-picker enqueuing 
+        // Add  wp-color-picker enqueuing 
         wp_enqueue_style('wp-color-picker');
-        // C. Seguinot Add admin_script.js dependancy to wp-color-picker
+        // Add admin_script.js dependancy to wp-color-picker
         wp_enqueue_script('custom_admin_script', get_template_directory_uri() . '/js/admin_script.js', array('jquery', 'wp-color-picker'));
     }
 }
 
-
 add_action('wp_enqueue_scripts', 'admin_css', 11);
-
 
 function custom_menu_page_removing() {
     remove_menu_page('menu-comments');
@@ -72,11 +65,7 @@ class CnrswebkitListPageParams {
     function __construct($post_type) {
         $this->selectors = new stdClass();
  
-        /* TODO C. SEGUINOT  hack
-        * 
-        * modification fonctionnelle mais recherche des taxonomies à limiter aux seuls pods: comment? 
-        *
-        */
+        // C. SEGUINOT  prise en compte d'un nombre quelconque de taxonomies dans les filtres
         if (
                 ($post_type == 'actualite' ) || 
                 ($post_type == 'evenement' ) || 
@@ -85,8 +74,9 @@ class CnrswebkitListPageParams {
                 ($post_type == 'contact' ) || 
                 ($post_type == 'publication') ) {
 
-            // TODO modification fonctionnelle mais recherche des taxonomies à limiter aux seuls pods: 
-            // OU aux seuls pods utilisés pour ce pot-type ? comment? 
+            /* TODO Dans cette recherche get_taxonomies() il faudrait se limiter à limiter aux seuls pods:
+             * utilisés par ce post_type ? comment?
+             */ 
             $taxonomies = get_taxonomies(); 
             foreach ( $taxonomies as $taxonomy ) {
                 // Selecteur Catégorie des items
@@ -103,11 +93,8 @@ class CnrswebkitListPageParams {
                }
             } 
         }
-        return $this; // TODO C. SEGUINOT ! return this;
-        
-        /* END TODO C. SEGUINOT  hack
-         *  les case restants sont à présent inutiles et ont été supprimés
-         */
+        return; 
+
     }
 
 }
@@ -129,10 +116,6 @@ class CnrswebkitListParams {
     function __construct($post_type, $custom_params = false) {
         global $cnrs_global_params;
 
-        /* TODO C. SEGUINOT  hack
-        * 
-        * Programmation des pods à optimiser car je ne connais pas les méthodes et propriétés de cette classe
-        */
         switch ($post_type) {
 
         case 'actualite':
@@ -190,10 +173,7 @@ class CnrswebkitListParams {
         }
 
         
-           /* TODO C. SEGUINOT  hack
-            * 
-            * Programmation des pods à optimiser car je ne connais pas les méthodes et propriétés de cette classe
-            */
+        // C. SEGUINOT  prise en compte d'un nombre quelconque de taxonomies dans les filtres
         if (
                 ($post_type == 'actualite' ) || 
                 ($post_type == 'evenement' ) || 
@@ -202,9 +182,9 @@ class CnrswebkitListParams {
                 ($post_type == 'contact' ) || 
                 ($post_type == 'publication') ) {
 
-            // TODO modification fonctionnelle mais recherche des taxonomies à limiter aux seuls pods: 
-            // OU aux seuls pods utilisés pour ce post-type ? comment? 
-
+            /* TODO Dans cette recherche get_taxonomies() il faudrait se limiter à limiter aux seuls pods:
+             * utilisés par ce post_type ? comment?
+             */
             $taxonomies = get_taxonomies(); 
             foreach ( $taxonomies as $taxonomy ) {
                 // Selecteur Catégorie des items
@@ -214,31 +194,27 @@ class CnrswebkitListParams {
                     if ( 1 == $pods->api->pod_data['options'][$built_in_cpt]) {   
                         $selectorName = $post_type .  '_' . $taxonomy;
                         // Filter parameter is passed to $_GET[$taxonomy] query var, then saved in  $_SESSION[$taxonomy] 
- 			if (isset($_SESSION[$taxonomy]) ) { 
-                            	/* then resaved to  $_SESSION[$post_type .  '_' . $taxonomy] to allow 
-                                * one filter per post_type with possible identical taxonomy
-                                */
-				$_SESSION[$selectorName] = $_SESSION[$taxonomy]; 
-				unset ($_SESSION[$taxonomy]); 
-				} else {
-			    	$_SESSION[$selectorName] = '';
-				}
-
+     			        if (isset($_SESSION[$taxonomy]) ) { 
+                    	/* then resaved to  $_SESSION[$post_type .  '_' . $taxonomy] to allow 
+                        * one filter per post_type with possible identical taxonomy
+                        */
+        				$_SESSION[$selectorName] = $_SESSION[$taxonomy]; 
+        				unset ($_SESSION[$taxonomy]); 
+        				} else {
+        			    	$_SESSION[$selectorName] = '';
+        				}
+    
                         if (isset($_SESSION[$selectorName]) AND $_SESSION[$selectorName] != '') {
                             $this->where[] = array(
-                            'key' => $taxonomy . '.term_id',
-                            'value' => array($_SESSION[$selectorName]),
-                            'compare' => 'IN'
-                            );
+                                'key' => $taxonomy . '.term_id',
+                                'value' => array($_SESSION[$selectorName]),
+                                'compare' => 'IN'
+                                );
                         }
                     }
                 }
             }
         }
-
-        /* END TODO C. SEGUINOT  hack
-        * les case suivants sont inutiles et ont été suupprimés
-        */
 
         if ($custom_params) {
             if (property_exists($custom_params, 'where')) {
@@ -259,7 +235,7 @@ class CnrswebkitListParams {
             }
         }
         
-        return $this;
+        return;
     }
 
     private function record_GET_filters() {
@@ -398,14 +374,12 @@ class CnrswebkitPageItemsList {
                             $date_month = get_post_date($current_item->value('date_de_debut'), 'monthyear');
                             $display_month_line = true;
                             $previous_date = true;
-                        } // C. Seguinot replace $date_month par $_SESSION['date_month']
-                          else if (get_post_date($current_item->value('date_de_debut'), 'monthyear') != $_SESSION['date_month'] && get_post_date($current_item->value('date_de_debut'), 'monthyear') != $_SESSION['date_month']) {
+                        } else if (get_post_date($current_item->value('date_de_debut'), 'monthyear') != $_SESSION['date_month'] && get_post_date($current_item->value('date_de_debut'), 'monthyear') != $_SESSION['date_month']) {
                             $date_month = get_post_date($current_item->value('date_de_debut'), 'monthyear');
                             $display_month_line = true;
                         } else {
                             $display_month_line = false;
                         }
-
                         $_SESSION['date_month'] = get_post_date($current_item->value('date_de_debut'), 'monthyear');
                         $custom_params = new CnrswebkitStdListParams();
                         $custom_params->limit = -1;
@@ -536,7 +510,7 @@ class CnrswebkitItemData {
 
     function __construct($sent_pod_data, $sent_wp_data = false) {
         $this->metadata = $sent_pod_data;
-        // récuparation des données du post WordPress
+        // récupération des données du post WordPress
         if (!$sent_wp_data) {
             $this->the_post = get_post($this->metadata->field('id'));
         } else {
@@ -585,10 +559,8 @@ class FilterSelectorParams {
 
 function get_filter_selector($post_type='', $taxonomy='', $selectorName='') {
     
-    /* TODO C. SEGUINOT  hack
-    * 
-    * Programmation des pods à optimiser car je ne connais pas les méthodes et propriétés de cette classe
-    */
+    // TODO See if pods selection/usage  is optimal
+
     global $locale; 
     
     if (!$taxonomy)
@@ -628,6 +600,7 @@ function get_filter_selector($post_type='', $taxonomy='', $selectorName='') {
             $complete_options .= $current_option;
         }
         if ($FilterSelectorParams->selectorLabel) {
+            // This was commented in the original code ! 
             //$complete_selector .= '' . $FilterSelectorParams->selectorLabel . '';
             //$complete_selector .= '<div class="cnrs-selector-label label-' . $FilterSelectorParams->selectorName . ' label-' . $FilterSelectorParams->selectorName . '-' . $selector_id . '">' . $FilterSelectorParams->selectorLabel . '</div>';
         }
@@ -648,9 +621,7 @@ function get_filter_selector($post_type='', $taxonomy='', $selectorName='') {
                     $pods->api->pod_data['options']['label_all_items_'.$locale] : $FilterSelectorParams->selectorEmptyText;
         }
         
-        // TODO END C. SEGUINOT hack
-        
-	$complete_selector .= '<select class="selector-' . $FilterSelectorParams->selectorName . ' selector-' . $FilterSelectorParams->selectorName . '-' . $selector_id . '" name="' . $FilterSelectorParams->selectorName . '-' . $selector_id . '" id="' . $FilterSelectorParams->selectorName . '-' . $selector_id . '">';
+	    $complete_selector .= '<select class="selector-' . $FilterSelectorParams->selectorName . ' selector-' . $FilterSelectorParams->selectorName . '-' . $selector_id . '" name="' . $FilterSelectorParams->selectorName . '-' . $selector_id . '" id="' . $FilterSelectorParams->selectorName . '-' . $selector_id . '">';
         $complete_selector .= '<option selected disabled>' . $FilterSelectorParams->selectorLabel . '</option>';
         $complete_selector .= '<option value="all">' . $FilterSelectorParams->selectorEmptyText . '</option>';
         $complete_selector .= $complete_options;
@@ -811,51 +782,50 @@ function get_file_size_from_url($url) {
     return round(filesize($_SERVER['DOCUMENT_ROOT'] . parse_url($url, PHP_URL_PATH)) / 1048576, 2);
 }
 
-/* C. SEGUINOT 
-* Make cnrs_breadcrumb pluggable to override it in child theme
-*/
-if ( ! function_exists ( 'cnrs_breadcrumb' ) ) {
-function cnrs_breadcrumb() {
-    global $cnrs_global_params;
-    $related_link = '';
-    $pages_links = '';
-    $pages_link = array(); 
-    $original_page_title =''; 
-    $related_page = $cnrs_global_params->field('pageliste_' . get_post_type());
-    if ($related_page != null && $related_page != false) {
-        $related_link = '<span class="breadcrumb" rel="v:child" typeof="v:Breadcrumb"><a href="' . get_permalink($related_page["ID"]) . '" rel="v:url" property="v:title">' . $related_page["post_title"] . '</a></span>';
-    } else if (get_post_type() == 'page') {
-        /* C. SEGUINOT list parents in reverse order */ 
-        $parents = array_reverse(get_post_ancestors(get_the_ID()));
-        $original_page_title = get_the_title(get_the_ID());
-        if (count($parents) > 0) {
-            /* C. SEGUINOT list parents in reverse order TODO &$vp is use here ? is it necessary? */ 
-            foreach ($parents as $kp => &$vp) {
-                $pages_link[] = '<span class="breadcrumb" rel="v:child" typeof="v:Breadcrumb"><a href="' . get_permalink($vp) . '" rel="v:url" property="v:title">' . get_the_title($vp) . '</a></span>';
-            }
-        }
-        /* C. SEGUINOT Add related page in breadcrumbs whenever title differs from related page title */ 
-        if ($original_page_title != get_the_title()) {
-            $pages_link[] = '<span class="breadcrumb" rel="v:child" typeof="v:Breadcrumb"><a href="' . get_permalink(get_the_ID()) . '" rel="v:url" property="v:title">' . $original_page_title . '</a></span>'; 
-        }
-        $pages_links = implode('<i>&gt;</i>', $pages_link);
+// Make cnrs_breadcrumb pluggable for possible override it in child theme
 
-    }
+if ( ! function_exists ( 'cnrs_breadcrumb' ) ) {
+    function cnrs_breadcrumb() {
+        global $cnrs_global_params;
+        $related_link = '';
+        $pages_links = '';
+        $pages_link = array(); 
+        $original_page_title =''; 
+        $related_page = $cnrs_global_params->field('pageliste_' . get_post_type());
+        if ($related_page != null && $related_page != false) {
+            $related_link = '<span class="breadcrumb" rel="v:child" typeof="v:Breadcrumb"><a href="' . get_permalink($related_page["ID"]) . '" rel="v:url" property="v:title">' . $related_page["post_title"] . '</a></span>';
+        } else if (get_post_type() == 'page') {
+            // List parents in reverse order 
+            $parents = array_reverse(get_post_ancestors(get_the_ID()));
+            $original_page_title = get_the_title(get_the_ID());
+            if (count($parents) > 0) {
+                // TODO &$vp is use here ? is it necessary? */ 
+                foreach ($parents as $kp => &$vp) {
+                    $pages_link[] = '<span class="breadcrumb" rel="v:child" typeof="v:Breadcrumb"><a href="' . get_permalink($vp) . '" rel="v:url" property="v:title">' . get_the_title($vp) . '</a></span>';
+                }
+            }
+            // Add  "related page" slug in breadcrumbs whenever title differs from related page title
+            if ($original_page_title != get_the_title()) {
+                $pages_link[] = '<span class="breadcrumb" rel="v:child" typeof="v:Breadcrumb"><a href="' . get_permalink(get_the_ID()) . '" rel="v:url" property="v:title">' . $original_page_title . '</a></span>'; 
+            }
+            $pages_links = implode('<i>&gt;</i>', $pages_link);
     
-    if (!is_home() && !is_front_page()) {
-        $bc_links = [];
-        $bc_links[] = '<a href="' . get_site_url() . '" rel="v:url" property="v:title">' . __('Home', 'cnrswebkit') . '</a>';
-        if (is_search()) {
-            $bc_links[] = '<span class="breadcrumb_last">' . __('Search result', 'cnrswebkit') . '</span>';
-        } else {
-            $bc_links[] = $pages_links;
-            $bc_links[] = $related_link;
-            $bc_links[] = '<span class="breadcrumb_last">' . get_the_title() . '</span>';
         }
         
-        echo '<p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb">' . implode('<i>&gt;</i>', $bc_links) . '</span></span></p>';
+        if (!is_home() && !is_front_page()) {
+            $bc_links = [];
+            $bc_links[] = '<a href="' . get_site_url() . '" rel="v:url" property="v:title">' . __('Home', 'cnrswebkit') . '</a>';
+            if (is_search()) {
+                $bc_links[] = '<span class="breadcrumb_last">' . __('Search result', 'cnrswebkit') . '</span>';
+            } else {
+                $bc_links[] = $pages_links;
+                $bc_links[] = $related_link;
+                $bc_links[] = '<span class="breadcrumb_last">' . get_the_title() . '</span>';
+            }
+            
+            echo '<p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb">' . implode('<i>&gt;</i>', $bc_links) . '</span></span></p>';
+        }
     }
-}
 }
 
 if (function_exists('pods')) {
