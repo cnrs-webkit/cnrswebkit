@@ -55,6 +55,10 @@ get_header();
                     <div class="home-downloads">
                         <?php
                         foreach ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') as $one_dnld) {
+                            // TODO Warning: filesize(): stat failed for /home/seguinot/Documents/www/wp_ircica_v0.3/kitwebWP/wp-content/uploads/2018/02/RA_CNRS2016_complet_BD.pdf
+                            // in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 841
+                            // var_dump($one_dnld);
+                            //  ["guid"]=> string(100) "http://dircomnas1.auteuil.cnrs-dir.fr/kitwebWP/wp-content/uploads/2018/02/RA_CNRS2016_complet_BD.pdf"
                             
                             ?>
                             <div class="itemDL">

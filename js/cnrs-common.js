@@ -11,7 +11,6 @@ function launchMediathequePopin(obj) {
     htmlPopin += "<div class='imgContainer'><img src='" + obj.link + "' alt='" + obj.post_title + "' /></div>";
     htmlPopin += "<div class='detailsContainer'>";
     htmlPopin += "<h1>" + obj.post_title + "</h1>";
-    htmlPopin += obj.share;
     htmlPopin += "<p>" + obj.chapo + "</p>";
     htmlPopin += "<span>© " + obj.credits + "</span>";
     htmlPopin += "</div>";

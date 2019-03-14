@@ -24,8 +24,8 @@ if ($display_type_line) {
         </header><!-- .entry-header -->
         <div class="entry-content">
             <div><?php echo $current_item->value('chapo'); ?></div>
-            <?php if ($current_item->value('fiche_de_poste_pdf')['guid'] != '') { ?>
-                <a href="<?php echo $current_item->value('fiche_de_poste_pdf')['guid']; ?>" target="_blank"><?php _e('Download recruitment offer', 'cnrswebkit') ?></a>
+            <?php if ($current_item->value('fiche_de_poste_pdf')['ID'] != '') { ?>
+                <a href="<?php echo wp_get_attachment_url( $current_item->value('fiche_de_poste_pdf')['ID'] ); ?>" target="_blank"><?php _e('Download recruitment offer', 'cnrswebkit') ?></a>
             <?php } ?>
         </div><!-- .entry-content -->
     </div>

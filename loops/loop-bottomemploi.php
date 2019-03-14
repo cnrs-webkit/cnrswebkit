@@ -11,11 +11,11 @@
 ?>
 <?php
 $job_summary = [];
-/* C SEGUINOT ajout isset */ 
-if (isset($current_item->value('typologie_emploi')['name'])) {
+
+if ( isset($current_item->value('typologie_emploi')['name']) ) {
     $job_summary[] = $current_item->value('typologie_emploi')['name'];
 }
-if ($current_item->value('duree_du_poste') != '') {
+if ( '' !== $current_item->value('duree_du_poste')  ) {
     $job_summary[] = $current_item->value('duree_du_poste');
 }
 ?>

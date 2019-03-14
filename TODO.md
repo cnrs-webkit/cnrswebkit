@@ -10,32 +10,24 @@
 - [ ] apply Worpdress coding standard
 - [ ] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
 - [ ] ET ajouter traductions en français
+- [ ] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement 
+- [ ] Ajouter un ordre aux partenaires aussi 
+
 
 ### Liste des bugs et améliorations à apporter
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
 Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
 
 -[ ]Warning: filesize(): stat failed for /home/seguinot/Documents/www/wp_ircica_v0.3/kitwebWP/wp-content/uploads/2018/02/RA_CNRS2016_complet_BD.pdf in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 841
+  * les fichier à télécharger n'ont pas d'url (guid) enregistré correctement!
 0Mo
-- [ ] wp_enqueue_script est appelée de la mauvaise manière. Les scripts et les styles ne peuvent pas être enregistrés ou ajoutés avant le déclenchement des crochets <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code> ou <code>login_enqueue_scripts</code>. Veuillez lire <a href="https://codex.wordpress.org/fr:Débogage_dans_WordPress">Débogage dans WordPress</a> (en) pour plus d’informations. (Ce message a été ajouté à la version 3.3.0.) in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-includes/functions.php on line 4147
-- [ ] image médiathèque/admin   le champ à la une m’apparaît totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!)
-- [ ] image médiathèque :erreur javascript :  remplacer la ligne 
-   * `chapo: '<?php echo json_encode($current_item->value('chapo')); ?>',` 
-   * de /loop/loop-mediathèque  par 
-   * chapo: `<?php echo json_encode($current_item->value('chapo')); ?>`,
-   * Autre problème sur le popup de l’image de sur mon site de test le shortcode [TheChamp-Sharing] apparaît alors qu’il devrait être remplacé par les liens de partage…. 
+- [ ] image médiathèque/admin le champ à la une m’apparaît totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!)
 - [ ] A la mise à jour de Polylang, les news et événements disparaissent de la page/news /events il faut désactiver et réactiver Polylang !!  
-- [ ] Modèle Page d’accueil  appliqué à la page d’accueil 3 notices + contenu non affiché !!
 - [ ] Taxonomie (pods) les configurer pour apparaître dans un menu webkitcnrs ! Mais plus dans les ajouts de contenus ! 
-- [ ] Breadcrumb: aucun sur pages d’accueil fr et en ??
-- [ ] Newsletter <form method="post" action="https://cnrs.civibox.fr/?na=s" 
 - [ ] Page 404.php n’apparaît pas dans la bonne langue , pourtant locale correcte !!
 - [ ] Return to event list URL ne fonctionne pas si page # /lagenda !!!! 
    * voir http://cnrs_webkit.fr/wp-admin/themes.php?page=pods-settings-reglage_du_theme 
    * Page liste des actualités
-- [ ] événements : lien vers « Add to calendar » brisé !!!
-- [ ] /newsletter :Warning: Illegal string offset 'form_1' in /var/www/html/wp-content/plugins/newsletter/subscription/subscription.php on line 1576
-0
 - [ ] Pourquoi l’appel direct à index.php du thème cnrswebkit génère l’erreur Fatale sur get_header() ; (pas le thème WP !!! (résolu autrement)
 - [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
 - [ ] Injection SQL: voir rapport inc-page-functions.php
@@ -46,13 +38,9 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * Les thèmes suivants sont installés mais incomplets.
    * Nom Description
    * lab-directory 	La feuille de style est absente.
-- [ ] 
-- [ ] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement 
-- [ ] Ajouter un ordre aux partenaires aussi 
 - [ ] Liste des langues #pll_switcher dans le menu principal par défaut mais si aucune langue affiche Liste des langues avec lien mort !! 
 - [ ] Slogan et titre du site :/wp-admin/options-general.php ajouter un message explicatif dans l’admin (du thème ? Ou de WP ? )  
 - [ ] Bug : supprimer site-branding .site-title, .site-description {# clip: rect(1px, 1px, 1px, 1px) de inc/customizer.php sinon l’affichage du slogan ne se fait pas. MAIS revoir la taille du slogan !!  ET AJOUTER affichage conditionnel du slogan/tITTRE
-- [ ] Bug : certaines pages admin utilisent wp-color-picker, mais le thème ne le charge pas ! Corrigé ! 
 - [ ] Proposer pour chaque page un modèle avec ET sans sidebar  
 - [ ] Elargir les pages sans sidebar
    * ces modifications peuvent s’appliquer aux templates situés dans /cnrswebkit/templates correspondant aux pages : actualité emploi agenda et médiathèque.. 
@@ -65,7 +53,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 
 - [ ] Bread crumb : liste les parents dans l’ordre inversé !! (voir modif dans inc/inc-pages-functions.php)
 - [ ] Notice: Use of undefined constant relation - assumed 'relation' in /home/seguinot/Documents/www/CNRS_Web_Kit_V.0_3/wp-content/themes/cnrswebkit/template-parts/bottom-evenement.php on line 4
-- [ ] Chargement des styles admin : voir http://kit-web.cnrs.fr/forums/topic/erreur-admin-chargement-styles/
 - [ ] Fichiers stylesheets/style-lmo.css     
    * color:$black;
    * border-left: 3px solid $mainColor;
@@ -88,7 +75,7 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Actu, Médiathèque, emplois, Agenda (événements)
    * prévoir un texte si la liste est vide ! 
 - [ ] Mise à Jour de Pods : 
-   * une pagination génante/inutile apparaît sur les pages actualités
+   * une pagination génante/inutile apparaît sur les pages actualités AJOUTER  PARAMETRAGE DANS admin!! 
    * solution : surcharger le fichier « /templates/template actualite.php » et y commenter les 2 lignes echo $actualites_data→get_pagination();
    * voir aussi templates/template emploi.php:				echo $actualites_data->get_pagination();
    * templates/template emploi.php:                echo $actualites_data->get_pagination();
@@ -159,7 +146,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * – l’ajout de do_shortcode() sur un champs ne résout pas le problème
    * – la solution proposée par https://pods.io/docs/build/using-shortcodes-pods-templates/ ne fonctionne pas non plus.
 - [ ] Le lien « En savoir plus sur les tutelles » apparaît aussi sur le page tutelles !
-- [ ] Le fichier /cnrswebkit/inc/inc-pages-functions.php du kit CNRS contient la ligne « ini_set(« display_errors », 0); » qui désactive l’affichage des erreurs! 
 - [ ] Sidebar, barre latérale  vide : 
    * NON problème de cache !!! widget dans barre latérale non visible ou non fonctionnels ? 
    * Le css libère une colonne à droite
@@ -177,10 +163,16 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Barre latérale : 
    * colonne réservée mais pas affichée sur : Emploi, Médiathèque, Actualités, Agenda, Publications, 
 - [ ] médias : installer https://wordpress.org/plugins/enhanced-media-library/
-- [ ] il faut remplacer les contenus statiques des filtres (inc/inc-pages-functions.php)
-   * $FilterSelectorParams->selectorLabel = __('Catégorie', 'cnrswebkit');
-   * $FilterSelectorParams->selectorEmptyText = __('Toutes', 'cnrswebkit');
-- [ ] par le contenu dynamique entré dans les pods partie admin.  (Toutes ou Tous suivant les cas !! ) et leur traduction aussi. 
+- [ ] [newsletter ...] ajouter la possibilité de supprimer si plugin pas activé
+
 - [ ] **Voir toutes les commentaires ajoutés TODO SEGUINOT qui pourraient subsister et indiquer des corrections à ajouter non répertoriées dans les lignes précédentes ... **
 - [ ] **Voir toutes les commentaires du thème enfant IRCIA de C. Seguinot qui correspondent à des modifications par rapport au thème original ... **
+
+### Liste des bugs et améliorations à apporter sur theme cnrswebkit-IRCICA
+- [ ] /emploi/at-vero-eos-et-accusamus/ n'affiche pas <div class="rightCol"> 
+- [ ]
+- [ ]
+- [ ]
+- [ ] 
+
 

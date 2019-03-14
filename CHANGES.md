@@ -6,7 +6,10 @@
  * Improve filters: can use as many and any of existing taxonomy (see settings in pods menu)
  * function record_GET_filters() Sanitized for preventing SQL injection !!
  * Make cnrs_breadcrumb pluggable for possible override it in child theme
- 
+ * 
+ * 
+ * 
+ *  
  
 ##### Fixed bugs, errors 
  * Notice: Undefined variable: post_id ../template-parts/home-top.php on line 10
@@ -19,11 +22,37 @@
  * error: $date_month replaced by $_SESSION['date_month'] in /inc/inc-pages-functions.php
  * Trying to get property of non-object in /inc/inc-pages-functions.php :code removed 
  * Error: list parents in reverse order in breadcrumb
- Missing: Add "related page" slug in breadcrumbs whenever title differs from related page title
-                         
+ * Missing: Add "related page" slug in breadcrumbs whenever title differs from related page title
+ * javascript error SyntaxError: '' string literal contains an unescaped line break: put tile inside ``
+ * wp_enqueue_script est appelée de la mauvaise manière...
+ * erreur: Chargement des styles admin, voir http://kit-web.cnrs.fr/forums/topic/erreur-admin-chargement-styles/
+ * Bug : some admin pages use wp-color-picker which is not loaded by the theme
+ * Bug : Newsletter registration form action was "https://cnrs.civibox.fr/?na=s" !! 
+ * Error: remove of "do_shortcode( '[TheChamp-Sharing]' )" since "Super Socializer" plugin is not used nor installed
+ * remove "htmlPopin += obj.share;" since "Super Socializer" plugin is not used nor installed
+ * événements : lien vers « Add to calendar » brisé !!!
+ * [newsletter form="1"] dans le contenu de la page /newsletter génère un warning 
+ * Warning: Illegal string offset 'form_1' sur la page /Newsletter
+ * Undefined index: name in /cnrswebkit/template-parts/content-emploi.php on line 13
+ * URL Télécharger la fiche de l'offre  d'emploi BROKEN 
+ * Notice undefined index name pour "typologie_emploi" ET "duree_du_poste" in content-emploi.php
+ * Notice Undefined index: name in loop-bottomemploi.php
+on line
+14
+ * 
+ * 
+ * 
+ 
  
 
- 
+                        
+##### Improper settings in original thme 
+ * [newsletter form="1"]  devient [newsletter_form form="1"]
+ * 
+ * 
+ * 
+ * 
+  
 ##### removed from theme
  * commented unusefull code in /template-parts/home-top.php
  

@@ -18,7 +18,7 @@ if ($cnrs_global_params->field('newsletter_sur_la_page_daccueil')) {
     <div id="NewsletterRegistration">Tenez-vous au courant de l'actualité
         <span id="NewsletterResult"></span>
         <div>
-            <form method="post" action="https://cnrs.civibox.fr/?na=s" onsubmit="return newsletter_check(this)">
+            <form method="post" action="?na=s" onsubmit="return newsletter_check(this)">
                 <input type="email" placeholder="Adresse E-mail" name="ne" required />
                 <button type="submit">inscription</button>
             </form>

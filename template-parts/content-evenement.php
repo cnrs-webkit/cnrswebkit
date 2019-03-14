@@ -25,7 +25,6 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
     <header class="entry-header">
         <div class="eventDateHeader"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateheader'); ?></div>
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-        <?php echo do_shortcode('[TheChamp-Sharing]'); ?>
     </header><!-- .entry-header -->
     <?php //cnrswebkit_post_thumbnail(); ?>
     <div class="entry-content">

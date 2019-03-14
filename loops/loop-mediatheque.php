@@ -20,12 +20,11 @@
     <script>
         var imagepopin_<?php echo $current_item->value('ID'); ?> = {
             ID: '<?php echo $current_item->value('ID'); ?>',
-            post_title: '<?php echo addslashes($current_item->value('post_title')); ?>',
-            chapo: '<?php echo addslashes($current_item->value('chapo')); ?>',
-            credits: '<?php echo addslashes($current_item->value('credits')); ?>',
+            post_title: `<?php echo addslashes($current_item->value('post_title')); ?>`,
+            chapo: `<?php echo addslashes($current_item->value('chapo')); ?>`,
+            credits: `<?php echo addslashes($current_item->value('credits')); ?>`,
             link: '<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($current_item->value('ID')), 'full', false)[0]; ?>',
-            share: '<?php echo addslashes(do_shortcode( '[TheChamp-Sharing]' )); ?>'
-        }
+         }
     </script>
     <?php
     /*
