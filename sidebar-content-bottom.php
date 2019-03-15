@@ -12,7 +12,7 @@ if (!is_active_sidebar('sidebar-2') && !is_active_sidebar('sidebar-3')) {
 
 // If we get this far, we have widgets. Let's do this.
 global $cnrs_global_params;
-if ($cnrs_global_params->field('newsletter_sur_la_page_daccueil')) {
+if ($cnrs_global_params->field('newsletter_sur_la_page_daccueil') && is_plugin_active('newsletter') ) {
     ?>
     <!-- Start Actus Widget -->
     <div id="NewsletterRegistration">Tenez-vous au courant de l'actualité

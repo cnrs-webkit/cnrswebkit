@@ -16,6 +16,7 @@ add_action('wp_enqueue_scripts', 'cnrsenqueue');
 add_image_size('cnrspublicationloop-size', 200, 9999);
 add_image_size('cnrsloop-size', 400, 9999);
 add_image_size('cnrsmediatheque-size', 1200, 1200, true);
+add_image_size('cnrspost-thumbnail-size', 150, 9999);
 
 function admin_css() {
 

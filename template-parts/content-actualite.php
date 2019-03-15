@@ -14,8 +14,9 @@ $current_item = new CnrswebkitRichData(get_the_ID());
         <?php echo get_post_date($current_item->value('post_date'), 'datesimple'); ?> 
         par <?php the_author(); ?>
     </header><!-- .entry-header -->
-    <?php // cnrswebkit_post_thumbnail(); ?>
+    
     <div class="entry-content">
+        <?php cnrswebkit_post_thumbnail(); ?>
         <div class="article-chapo"><?php echo $current_item->value('chapo'); ?></div>
         <?php
             the_content();

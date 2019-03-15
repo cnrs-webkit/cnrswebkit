@@ -51,7 +51,6 @@ var runAjaxQuery = function (params) {
 };
 
 $(".moreEvents a").click(function (event) {
-    /* $(".moreEvents a").hide(); Unactivated C. SEGUINOT*/
     runAjaxQuery({
         action: 'load_more',
         area: 'evenement',

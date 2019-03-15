@@ -37,21 +37,20 @@
  * URL Télécharger la fiche de l'offre  d'emploi BROKEN 
  * Notice undefined index name pour "typologie_emploi" ET "duree_du_poste" in content-emploi.php
  * Notice Undefined index: name in loop-bottomemploi.php
-on line
-14
- * 
- * 
- * 
+ * Notice: Use of undefined constant relation /bottom-evenement.php 
+ * Notice: Use of undefined constant full - assumed 'full' in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/loops/loop-publication.php on line 13
+ * Vignettes, thumbnail : not displayed (commented in PHP), no css applied (too large, center...) (in most templates)
+ * Vignettes, thumbnail : add_image_size('cnrspost-thumbnail-size', 200, 9999);  (in most templates)
+ * Vignettes, thumbnail : moved before header, floated right.   (in most templates)
+ * Empty post_content = '0' on 18 post !!
+ * Secondary menu not displayed if primary menu don't exist
+ * Newsletter subscription removed when newsletter plugin not used (not activated)
+ * error cnrs-ajax.js: le lien "Afficher plus d'évènements" est masqué après le premier clic
+ 
  
  
 
-                        
-##### Improper settings in original thme 
- * [newsletter form="1"]  devient [newsletter_form form="1"]
- * 
- * 
- * 
- * 
+                       
   
 ##### removed from theme
  * commented unusefull code in /template-parts/home-top.php

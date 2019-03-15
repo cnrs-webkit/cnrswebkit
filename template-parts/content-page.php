@@ -9,11 +9,11 @@
 $current_item = new CnrswebkitRichData(get_the_ID());
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <?php cnrswebkit_post_thumbnail(); ?>
     <header class="entry-header">
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header><!-- .entry-header -->
     <?php echo text_to_html($current_item->value('chapo'), 'p'); ?>
-    <?php /* C SEGUINOT add post feature image */ cnrswebkit_post_thumbnail(); ?>
     <div class="entry-content">
         <?php
         the_content();

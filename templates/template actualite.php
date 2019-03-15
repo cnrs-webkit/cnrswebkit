@@ -29,9 +29,15 @@ get_header();
                 <div class="loop-contents loop-contents-actualite">
                     <?php
                     echo $actualites_data->get_html_item_list();
-                    ?>
-                    <article class="type-actualite newsletterActus"><strong>S’abonner à la newsletter du labo</strong><span>Recevez chaque semaine les dernières actualités du laboratoire par email.</span><button type="button">je m'inscris</button></article>
-                    <article id="actualite-social-links" class="widget"><h1>Suivez-nous</h1></article>
+                    
+                    if (is_plugin_active('newsletter') ) {
+                        /*
+                         TODO Ces 2 liens sont brisés !!
+                         <article class="type-actualite newsletterActus"><strong>S’abonner à la newsletter du labo</strong><span>Recevez chaque semaine les dernières actualités du laboratoire par email.</span><button type="button">je m'inscris</button></article>
+                         <article id="actualite-social-links" class="widget"><h1>Suivez-nous</h1></article>
+                         */
+                    } ?>
+
                 </div>
                 <?php
                 echo $actualites_data->get_pagination();

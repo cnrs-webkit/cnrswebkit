@@ -9,11 +9,11 @@
 $current_item = new CnrswebkitRichData(get_the_ID());
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('page-rubrique'); ?>>
+    <?php cnrswebkit_post_thumbnail(); ?>
     <header class="entry-header">
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header><!-- .entry-header -->
     <?php /* C. Seguinot affichage conditionnel*/ if ($current_item->value('chapo')) {echo text_to_html($current_item->value('chapo'), 'p');} ?>
-    <?php cnrswebkit_post_thumbnail(); ?>
     <div class="entry-content">
         <?php
         the_content();

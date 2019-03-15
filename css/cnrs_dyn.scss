@@ -1457,6 +1457,7 @@ body.page-template-template-rubrique{
             overflow:hidden;
             height:400px;
             position: relative;
+            float: right; 
             @include fullWidth;
             padding:0;
             @media screen and (max-width: 910px) {padding:0; width:auto;}

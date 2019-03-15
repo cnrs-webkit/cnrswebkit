@@ -25,7 +25,6 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
         <div class="eventDateHeader"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateheader'); ?></div>
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header><!-- .entry-header -->
-    <?php //cnrswebkit_post_thumbnail(); ?>
     <div class="entry-content">
         <div class="leftCol">
             <div class="article-chapo"><?php echo $current_item->value('chapo'); ?></div>
@@ -37,7 +36,7 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
             <div class="eventDateRight"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateeventsingle'); ?></div>
             <div class="addCalendar"><?php echo $ics_form; ?><a href="#" id="ics-vbutton"><?php _e('Add to calendar', 'cnrswebkit') ?></a></div>
             <div class="eventLocation"><?php echo text_to_html($current_item->value('adresse_de_levenement')); ?></div>
-            <?php cnrswebkit_post_thumbnail(); ?>
+            <?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?>
         </div>
         <?php /*
         if ($current_item->value('partenaires')) {

@@ -10,7 +10,7 @@
  */
 ?>
 <article id="post-<?php echo $current_item->value('ID'); ?>" <?php post_class([$current_item->value('post_type')], $current_item->value('ID')); ?>>
-    <div><?php echo get_the_post_thumbnail($current_item->value('ID'), full); ?></div>
+    <div><?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?></div>
     <div>
         <header class="entry-header">
             <div class="authorsPub"><?php echo $current_item->value('auteur'); ?></div>

@@ -81,7 +81,7 @@ get_header();
                 ?>
             </div><!-- .entry-content -->
         </article><!-- #post-## -->
-    zzz</main><!-- .site-main -->
+    </main><!-- .site-main -->
     <?php get_sidebar('content-bottom'); ?>
 </div><!-- .content-area -->
 <?php get_sidebar(); ?>

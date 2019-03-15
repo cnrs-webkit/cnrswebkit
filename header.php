@@ -45,7 +45,7 @@
                                 <p class="site-description"><?php echo $description; ?></p>
                             <?php endif; ?>
                         </div><!-- .site-branding -->
-                        <?php if (has_nav_menu('primary') || has_nav_menu('social')) : ?>
+                        <?php if (has_nav_menu('primary') || has_nav_menu('secondary') || has_nav_menu('social')) : ?>
                             <button id="menu-toggle" class="menu-toggle"><?php _e('Menu', 'cnrswebkit'); ?></button>
                             <div id="site-header-menu" class="site-header-menu">
                                 <?php if (has_nav_menu('primary')) : ?>
