@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template Name: CNRS WebKit archive page
+ * 
  * The template for displaying archive pages
  *
  * Used to display archive-type pages if nothing more specific matches a query.
@@ -15,6 +17,9 @@
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit archive page', 'cnrswebkit');
 
 get_header(); ?>
 

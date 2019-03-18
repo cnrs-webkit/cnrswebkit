@@ -1,15 +1,22 @@
 <?php
 /**
- * The template for displaying list of Publications
+ * Template Name: CNRS WebKit list of publication
+ * Template Post Type: post, page
+ *
+ * The template for displaying a list of publication
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: Publications list
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit list of publication', 'cnrswebkit');
+
 get_header();
-//require_once( get_template_directory() . '/inc/ajax.php' ); 
+// TODO next line commented in V0.3! Is ajax useful?? 
+// require_once( get_template_directory() . '/inc/ajax.php' );  
 ?>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -26,7 +33,11 @@ get_header();
                 $publication_data = new CnrswebkitPageItemsList('publication');
                 echo $publication_data->get_html_filters();
                 echo $publication_data->get_pagination();
-                echo $publication_data->get_html_item_list();
+                if ($publication_data->has_items() ) {
+                    echo $publication_data->get_html_item_list();
+                } else {
+                    echo '<br/><p>'. __('There is currently no publication in this list', 'cnrswebkit') . '</p>';
+                }
                 echo $publication_data->get_pagination();
                 display_bottom_partenaires();
                 ?>

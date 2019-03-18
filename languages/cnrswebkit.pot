@@ -678,7 +678,7 @@ msgid "Browse \"all events\" page"
 msgstr ""
 
 #: templates/template actualite.php:34
-msgid "There is currently no news in the list"
+msgid "There is currently no news in the present list"
 msgstr ""
 
 #: templates/template emploi.php:33

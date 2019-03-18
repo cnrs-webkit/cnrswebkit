@@ -339,6 +339,7 @@ class CnrswebkitPageItemsList {
         if (!$template) {
             $template = $this->post_type;
         }
+        $custom_script = ''; 
         // Retour HTML
         switch ($this->post_type) {
             case 'actualite':
@@ -387,10 +388,17 @@ class CnrswebkitPageItemsList {
                         $evenement_data = new CnrswebkitPageItemsList('evenement', $custom_params);
                         $total_items = $evenement_data->total_items();
                         if ($total_items <= ($cnrs_global_params->field('nombre_devenements_page_agenda'))) {
-                            $custom_script = "<script>$('.moreEvents a').show();var hideLoadMore = true;</script>";
+                            $custom_script = "$('.moreEvents a').show();var hideLoadMore = true;";
                         } else {
-                            $custom_script = "<script>var hideLoadMore = false;</script>";
+                            $custom_script = "var hideLoadMore = false;";
                         }
+                        $custom_script .="(function ($) {
+                            if (hideLoadMore) {
+                                $('.moreEvents').hide();
+                            } else {
+                                $('.moreEvents').show();
+                            }
+                        })(jQuery);";
                         break;
                     case 'mediatheque':
                         break;
@@ -425,11 +433,17 @@ class CnrswebkitPageItemsList {
                         $contact_data = new CnrswebkitPageItemsList('contact', $custom_params);
                         $total_items = $contact_data->total_items();
                         if ($total_items <= ($cnrs_global_params->field('nombre_decontacts_page_contact'))) {
-                            $custom_script = "<script>$('.moreContacts a').show();var hideLoadMore = true;</script>";
+                            $custom_script = "$('.moreContacts a').show();var hideLoadMore = true;";
                         } else {
-                            $custom_script = "<script>$('.moreContacts a').show();var hideLoadMore = false;</script>";
+                            $custom_script = "$('.moreContacts a').show();var hideLoadMore = false;";
                         }
-                        break;
+                        $custom_script .="(function ($) {
+                            if (hideLoadMore) {
+                                $('.moreContacts').hide();
+                            } else {
+                                $('.moreContacts').show();
+                            }
+                        })(jQuery);";break;
                     case 'partenaire':
                         break;
                     case 'publication':
@@ -437,6 +451,9 @@ class CnrswebkitPageItemsList {
                 }
                 include(locate_template('loops/loop-' . $template . '.php'));
                 $iteration_number++;
+            }
+            if ( $custom_script ) {
+                echo '<script>'. $custom_script. '</script>';
             }
             switch ($this->post_type) {
                 case 'actualite':

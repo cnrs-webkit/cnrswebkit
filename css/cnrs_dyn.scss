@@ -888,7 +888,7 @@ body.page-template-homepage{
 
 
 /* Page Actualités */
-body.page-template-templateactualite, body.page-template-homepage{
+body.page-template-templateactualite, body.page-template-templateactualiteno-sidebar, body.page-template-homepage{
     .entry-header{margin-right:0;}
     .entry-content{
         @media screen and (max-width: 910px) {margin-right:7.6923%;}

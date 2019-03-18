@@ -1,15 +1,22 @@
 <?php
 /**
- * The template for displaying list of Médiathèque
+ * Template Name: CNRS WebKit list of media
+ * Template Post Type: post, page
+ *
+ * The template for displaying a list of media
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: Media list
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit list of media', 'cnrswebkit');
+
 get_header();
-//require_once( get_template_directory() . '/inc/ajax.php' ); 
+// TODO next line commented in V0.3! Is ajax useful?? 
+// require_once( get_template_directory() . '/inc/ajax.php' );  
 ?>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">

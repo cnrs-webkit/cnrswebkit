@@ -10,7 +10,6 @@
  */
 ?>
 <?php
-echo $custom_script;
 if ($display_month_line) {
     ?>
     <div class="agendaMonth"><?php echo $date_month; ?></div>

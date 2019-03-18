@@ -1,15 +1,21 @@
 <?php
 /**
+ * Template Name: CNRS WebKit homepage
+ * 
  * The template for displaying the Homepage
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: Website homepage
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit homepage', 'cnrswebkit');
+
 get_header();
-//require_once( get_template_directory() . '/inc/ajax.php' ); 
+// TODO next line commented in V0.3! Is ajax useful?? 
+// require_once( get_template_directory() . '/inc/ajax.php' );  
 ?> 
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">

@@ -1,11 +1,17 @@
 <?php
 /**
+ * Template Name: CNRS WebKit event page
+ * Template Post Type: evenement
+ * 
  * The template for displaying all single posts and attachments
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit event page', 'cnrswebkit');
 
 get_header(); ?>
 

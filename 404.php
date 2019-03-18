@@ -1,11 +1,17 @@
 <?php
 /**
+ * Template Name: CNRS WebKit error page
+ * 
  * The template for displaying 404 pages (not found)
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit error page', 'cnrswebkit');
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">

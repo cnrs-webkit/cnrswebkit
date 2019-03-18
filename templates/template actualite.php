@@ -1,15 +1,22 @@
 <?php
 /**
- * The template for displaying list of Actualités
+ * Template Name: CNRS WebKit list of news
+ * Template Post Type: post, page
+ *
+ * The template for displaying a list of  news
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: News list
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit list of news', 'cnrswebkit');
+
 get_header();
-//require_once( get_template_directory() . '/inc/ajax.php' ); 
+// TODO next line commented in V0.3! Is ajax useful?? 
+// require_once( get_template_directory() . '/inc/ajax.php' ); 
 ?> 
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -28,7 +35,11 @@ get_header();
                 ?>
                 <div class="loop-contents loop-contents-actualite">
                     <?php
-                    echo $actualites_data->get_html_item_list();
+                    if ($actualites_data->has_items() ) {
+                        echo $actualites_data->get_html_item_list();
+                    } else {
+                        echo '<br/><p>'. __('There is currently no news in the present list', 'cnrswebkit') . '</p>';
+                    }
                     
                     if (is_plugin_active('newsletter') ) {
                         /*
@@ -48,4 +59,5 @@ get_header();
     </main><!-- .site-main -->
     <?php get_sidebar('content-bottom'); ?>
 </div><!-- .content-area -->
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -1,15 +1,22 @@
 <?php
 /**
- * The template for displaying list of Contacts
+ * Template Name: CNRS WebKit list of contact
+ * Template Post Type: post, page
+ *
+ * The template for displaying a list of contact
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: Contacts list
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit list of contact', 'cnrswebkit');
+
 get_header();
-//require_once( get_template_directory() . '/inc/ajax.php' ); 
+// TODO next line commented in V0.3! Is ajax useful?? 
+// require_once( get_template_directory() . '/inc/ajax.php' );  
 ?> 
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -29,17 +36,14 @@ get_header();
                 ?>
                 <div id="contact_ajax_container" class="loop-contents loop-contents-contact">
                     <?php
-                    echo $contact_data->get_html_item_list();
+                    if ($contact_data->has_items() ) {
+                        echo $contact_data->get_html_item_list();
+                    } else {
+                        echo '<br/><p>'. __('There is currently no person in the present list', 'cnrswebkit') . '</p>';
+                    }
                     ?>
                 </div>
                 <div class="moreContacts"><a page="1" target="#contact_ajax_container">Afficher plus de contacts</a></div>
-                <script>
-                    (function ($) {
-                        if (hideLoadMore) {
-                            $('.moreContacts').hide();
-                        }
-                    })(jQuery);
-                </script>
                 <?php
 //                echo $contact_data->get_pagination();
                 display_bottom_partenaires();

@@ -9,7 +9,8 @@
 ?>
 <?php
 $current_item = new CnrswebkitRichData(get_the_ID());
-$ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/tools/download-ics.php" class="ics-form">
+
+$ics_form = '<form method="post" action="' . get_template_directory_uri() . '/tools/download-ics.php" class="ics-form">
   <input type="hidden" name="date_start" value="' . mysql2date('D, d M Y H:i:s +' . str_pad(get_option('gmt_offset'), 2, '0', STR_PAD_LEFT) . '00', $current_item->value('date_de_debut'), false) . '">
   <input type="hidden" name="date_end" value="' . mysql2date('D, d M Y H:i:s +' . str_pad(get_option('gmt_offset'), 2, '0', STR_PAD_LEFT) . '00', $current_item->value('date_de_fin'), false) . '">
   <input type="hidden" name="location" value="' . addslashes($current_item->value('adresse_de_levenement')) . '">
@@ -17,13 +18,12 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
   <input type="hidden" name="summary" value="' . addslashes(get_the_title()) . '">
   <input type="hidden" name="url" value="' . get_the_permalink() . '">
   <input type="hidden" name="filename" value="' . get_post_field('post_name', get_post()) . '">
-  <!--<input type="submit" value="Ajouter au calendrier" class="ics-button" id="ics_button">-->
-</form>';
-// TODO C. Seguinot non working submit button disabled 
+</form>
+<a href="#" id="ics-vbutton">' . __('Add to calendar', 'cnrswebkit') . '</a>';
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
-        <div class="eventDateHeader"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateheader'); ?></div>
+        <!--<div class="eventDateHeader"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateheader'); ?></div>-->
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header><!-- .entry-header -->
     <div class="entry-content">
@@ -35,7 +35,7 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
         </div>
         <div class="rightCol">
             <div class="eventDateRight"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateeventsingle'); ?></div>
-            <div class="addCalendar"><?php echo $ics_form; ?><a href="#" id="ics-vbutton"><?php _e('Add to calendar', 'cnrswebkit') ?></a></div>
+            <div class="addCalendar"><?php echo $ics_form; ?></div>
             <div class="eventLocation">
                 <?php
                 if (filter_var($current_item->value('lien_vers_la_carte'), FILTER_VALIDATE_URL)) {
@@ -50,6 +50,7 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
             <?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?>
         </div>
         <?php /*
+        TODO partenaires de l'événement ??
         if ($current_item->value('partenaires')) {
             $custom_params = new CnrswebkitStdListParams();
             $custom_params->where = $current_item->get_where_metadata($current_item->value('partenaires'));

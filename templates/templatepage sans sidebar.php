@@ -1,13 +1,19 @@
 <?php
 /**
+ * Template Name: CNRS WebKit default single-page
+ * Template Post Type: pagepost, page
+ *
  * The template for displaying list of Actualités
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: Page without sidebar
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit default single-page', 'cnrswebkit');
+
 get_header(); ?>
 
 <div id="primary" class="content-area no-sidebar">

@@ -1,5 +1,8 @@
 <?php
 /**
+ * Template Name: CNRS WebKit default page
+ * Template Post Type: page
+ * 
  * The main template file
  *
  * This is the most generic template file in a WordPress theme
@@ -14,9 +17,8 @@
  * @since CNRS Web Kit 1.0
  */
 
-// C. SEGUINOT don't allow to call the file directly
-if ( !defined( 'ABSPATH' ) ) exit;
-
+// Translators: Template Name translation.
+__('CNRS WebKit default page', 'cnrswebkit');
 
 get_header(); ?>
 
@@ -61,6 +63,5 @@ get_header(); ?>
 
 		</main><!-- .site-main -->
 	</div><!-- .content-area -->
-
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

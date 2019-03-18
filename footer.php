@@ -18,8 +18,8 @@
         <nav class="main-navigation" role="navigation" aria-label="<?php esc_attr_e('Footer Primary Menu', 'cnrswebkit'); ?>">
             <?php
             wp_nav_menu(array(
-                'menu_id' => 'menu-menu-principal',  // C. SEGUINOT 
-                'container_class' => 'menu-menu-principal-container',  // C. SEGUINOT 
+                'menu_id' => 'menu-menu-principal', 
+                'container_class' => 'menu-menu-principal-container',
                 'theme_location' => 'primary',
                 'menu_class' => 'primary-menu',
             ));

@@ -10,7 +10,6 @@
  */
 ?>
 <?php
-echo $custom_script;
 if ($display_lettre_line) {
     ?>
     <div class="lettrecontact"><?php echo $lettre_contact; ?></div>

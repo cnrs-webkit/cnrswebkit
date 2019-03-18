@@ -1,13 +1,19 @@
 <?php
 /**
- * The template for displaying list of Rubriques
+ * Template Name: CNRS WebKit sections list
+ * Template Post Type: post, page
+ *
+ * The template for displaying a sections list
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Template Name: Sections list
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit sections list', 'cnrswebkit');
+
 get_header(); ?>
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">

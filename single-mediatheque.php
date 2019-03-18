@@ -1,11 +1,17 @@
 <?php
 /**
+ * Template Name: CNRS WebKit media page
+ * Template Post Type: mediatheque
+ * 
  * The template for displaying all single posts and attachments
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit media page', 'cnrswebkit');
 
 get_header(); ?>
 

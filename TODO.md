@@ -18,11 +18,13 @@
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
 Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
 
+- [ ] PB: css sur page les actualites sans sidebar !!
 - [ ] test http://local_wp_ircica.fr/ : Site de démo du Kit Web du CNRS affiché en double
 - [ ] test http://cnrs_webkit.fr/fr : pb de border sur les partenaires et tutelles
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] utilité du template content-publication ?? avec !!! "eventDateRight "addCalendar" et "eventLocation" !!!
-- [ ] 
+- [ ] faut-il ajouter if ( !defined( 'ABSPATH' ) ) exit; aux fichier template, aux autres fichiers PHP ??
+
 - [ ] 
 - [ ] 
 - [ ] 

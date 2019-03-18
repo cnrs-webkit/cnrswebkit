@@ -46,6 +46,21 @@
  * Secondary menu not displayed if primary menu don't exist
  * Newsletter subscription removed when newsletter plugin not used (not activated)
  * error cnrs-ajax.js: le lien "Afficher plus d'évènements" est masqué après le premier clic
+ * content-evenement stylesheet not loaded (wrong uri) 
+ * content-evenement replace non working submit button on event form (add to calendar)
+ * content-evenement removed eventDateHeader above title
+ * Add CSRF protection to search form (searchform.php)
+ * Add "no item"  message to list templates when list is empty
+   * template publication.php, template contact.php, template actualite.php, 
+   * template-rubrique.php, template mediatheque.php, template agenda.php:,
+ * $custom_script duplicated on events and contacts pages 
+ * "display more" events publication and news are now hidden for empty list
+ * Add missing "template name"
+ * Add translation for all "template name"
+ * Add missing <?php get_sidebar(''); ?> in some tremplates
+ * Add 'menu_id' and 'container_class' to  'menu-menu-principal-container',
+ *
+ *
  
  
  

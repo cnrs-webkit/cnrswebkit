@@ -1,11 +1,17 @@
 <?php
 /**
+ * Template Name: CNRS WebKit publication page
+ * Template Post Type: publication
+ * 
  * The template for displaying all single posts and attachments
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
+// Translators: Template Name translation.
+__('CNRS WebKit news', 'cnrswebkit');
 
 get_header(); ?>
 
