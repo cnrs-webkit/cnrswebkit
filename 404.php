@@ -1,8 +1,6 @@
 <?php
 /**
- * Template Name: CNRS WebKit error page
- * 
- * The template for displaying 404 pages (not found)
+ * The default template for displaying 404 pages (not found)
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit

@@ -1,17 +1,11 @@
 <?php
 /**
- * Template Name: CNRS WebKit image attachments
- * Template Post Type: attachment
- * 
- * The template for displaying image attachments
+ * The default template for displaying image attachments
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
-
-// Translators: Template Name translation.
-__('CNRS WebKit image attachments', 'cnrswebkit');
 
 get_header(); ?>
 

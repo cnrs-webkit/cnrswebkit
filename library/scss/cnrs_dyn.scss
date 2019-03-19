@@ -1,6 +1,6 @@
 /* dynamic-area-start */
-$mainColor:#ae2573;
-//$mainColor:#ae2573;
+$mainColor:#ea514a;
+//$mainColor:#ea514a;
 /* dynamic-area-end */
 
 $light_grey:#b2b2b2;
@@ -888,7 +888,7 @@ body.page-template-homepage{
 
 
 /* Page Actualités */
-body.page-template-templateactualite, body.page-template-homepage{
+body.page-template-templateactualite, body.page-template-templateactualiteno-sidebar, body.page-template-homepage{
     .entry-header{margin-right:0;}
     .entry-content{
         @media screen and (max-width: 910px) {margin-right:7.6923%;}

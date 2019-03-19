@@ -1,17 +1,11 @@
 <?php
 /**
- * Template Name: CNRS WebKit default single-page
- * Template Post Type: page
- *
- * The template for displaying all single posts and attachments
+ * The default template for displaying all single posts and attachments
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
-
-// Translators: Template Name translation.
-__('CNRS WebKit default single-page', 'cnrswebkit');
 
 get_header(); ?>
 

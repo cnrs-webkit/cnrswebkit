@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying search results pages
+ * The default template for displaying search results
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit

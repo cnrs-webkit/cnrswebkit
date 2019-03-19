@@ -373,6 +373,19 @@ function cnrswebkit_body_classes($classes) {
 add_filter('body_class', 'cnrswebkit_body_classes');
 
 /**
+ * Adds no-sidebar to the array of body classes.
+ *
+ * @since CNRS Web Kit 1.0
+ *
+ * @param array $classes Classes for the body element.
+ * @return array of modified body classes.
+ */
+function add_no_sidebar_class( $classes ) {
+    $classes[] = 'no-sidebar';
+    return $classes;
+}
+
+/**
  * Converts a HEX value to RGB.
  *
  * @since CNRS Web Kit 1.0

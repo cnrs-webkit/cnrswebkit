@@ -25,9 +25,9 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] utilité du template content-publication ?? avec !!! "eventDateRight "addCalendar" et "eventLocation" !!!
 - [ ] faut-il ajouter if ( !defined( 'ABSPATH' ) ) exit; aux fichier template, aux autres fichiers PHP ??
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] revoir tous les echo print printf _e( __( _x(
+- [ ] revoir tous les liens href
+- [ ] theme upgrade: traiter les pods lire pod existant, récuperer json json decode puis modif, ajout puis save 
 - [ ]  
 
 - [ ] Warning: filesize(): stat failed for /home/seguinot/Documents/www/wp_ircica_v0.3/kitwebWP/wp-content/uploads/2018/02/RA_CNRS2016_complet_BD.pdf in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 841
@@ -161,9 +161,12 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 
 ### Liste des bugs et améliorations à apporter sur theme cnrswebkit-IRCICA
 - [ ] /emploi/at-vero-eos-et-accusamus/ n'affiche pas <div class="rightCol"> 
-- [ ]
-- [ ]
-- [ ]
-- [ ] 
+- [ ] style_dyn.css unused / Empty !!
+- [ ] les modèles template single-xxx.php sont affichés en double dans admin (defaut + template name !!!
+- [ ] TODOTODO Modifier fonctionnement template en définissant dabs l'admin si sidebar ou pas par template single et list) 
+- [ ] // Notice: Undefined index: value in /home/seguinot/Documents/www/CNRS_Web_Kit_github/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 810
+    $term = $pieces['fields']['couleur_principale']['value'];
+    
+    
 
 

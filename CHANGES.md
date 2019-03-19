@@ -55,12 +55,11 @@
    * template-rubrique.php, template mediatheque.php, template agenda.php:,
  * $custom_script duplicated on events and contacts pages 
  * "display more" events publication and news are now hidden for empty list
- * Add missing "template name"
- * Add translation for all "template name"
- * Add missing <?php get_sidebar(''); ?> in some tremplates
+ * all custom post type now have templates with or without sidebar  
+ * Add missing "template name" and translation for all "template name"
+ * Add missing <?php get_sidebar(''); ?> in some default tremplates
  * Add 'menu_id' and 'container_class' to  'menu-menu-principal-container',
- *
- *
+ * Style sheet : remove 2 unsused  files /css/cnrs_dyn.scss /library/cnrs_dyn_.scss 
  
  
  

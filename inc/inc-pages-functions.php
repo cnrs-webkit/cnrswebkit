@@ -44,6 +44,7 @@ function cnrs_session_start() {
 }
 
 function cnrsenqueue() {
+    // TODO style_dyn unuseful since enmpty !!
     wp_enqueue_style('cnrswbkit-dyn', get_template_directory_uri() . '/css/style_dyn.css', array(), '1.0');
     wp_enqueue_style('icomoon', get_template_directory_uri() . '/css/icomoon.css', array(), '1.0');
     wp_enqueue_style('cnrswebkit-fonts', cnrswebkit_fonts_url(), array(), null);
@@ -58,6 +59,28 @@ function cnrswebkit_session_start() {
         @session_start();
     }
 }
+
+function cnrswebkit_upgrade () {
+    
+    // Pods reglage_du_theme upgrade 
+    $pod = pods('reglage_du_theme');
+    
+    // Add the new item now and get the new ID
+    $new_pod_id = $pod->add( 
+        array(
+            'name' => 'New book name',
+            'label' => 'xxxx',
+            'description' => 'Awesome book, read worthy!', 
+            'default' => '0',
+            'type' => 'boolean',
+        )
+    );
+   /*
+    echo "<br> liste_actualites_with_sidebar=";var_dump($pod->fields( 'liste_actualites_with_sidebar' ));
+    echo "<br> new_pod_id=";var_dump($new_pod_id);die('STOP');
+    */ 
+}
+// add_action('after_switch_theme', 'cnrswebkit_upgrade');
 
 class CnrswebkitListPageParams {
 
@@ -787,6 +810,7 @@ function update_evenement($pieces, $is_new_item) {
 add_action('pods_api_post_save_pod_item_reglage_du_theme', 'update_site_params', 10, 3);
 
 function update_site_params($pieces, $is_new_item, $id) {
+    // Notice: Undefined index: value in /home/seguinot/Documents/www/CNRS_Web_Kit_github/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 810
     $term = $pieces['fields']['couleur_principale']['value'];
     if (empty($term)) {
         $term = '#ea514a';
@@ -848,6 +872,7 @@ if ( ! function_exists ( 'cnrs_breadcrumb' ) ) {
 
 if (function_exists('pods')) {
     $cnrs_global_params = pods('reglage_du_theme');
+    // var_dump($cnrs_global_params); die();
 }
 
 if (!$cnrs_global_params->field('commentaires_actifs')) {

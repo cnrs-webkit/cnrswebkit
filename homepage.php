@@ -1,17 +1,12 @@
 <?php
 /**
- * Template Name: CNRS WebKit homepage
- * 
- * The template for displaying the Homepage
+ * The default template for displaying the Homepage
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
  */
-
-// Translators: Template Name translation.
-__('CNRS WebKit homepage', 'cnrswebkit');
 
 get_header();
 // TODO next line commented in V0.3! Is ajax useful?? 

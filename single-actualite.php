@@ -1,18 +1,18 @@
 <?php
 /**
- * Template Name: CNRS WebKit news page
- * Template Post Type: actualite
- *
- * The template for displaying all single posts and attachments
+ * The default template for displaying all single posts and attachments
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
 
-// Translators: Template Name translation.
-__('CNRS WebKit news page', 'cnrswebkit');
-
+global $cnrs_global_params;
+$sidebar = $cnrs_global_params->field('liste_actualites_with_sidebar');
+var_dump($sidebar);
+if (! $sidebar){
+    add_filter( 'body_class', 'add_no_sidebar_class' );
+}
 get_header(); ?>
 
 <div id="primary" class="content-area">
@@ -55,5 +55,9 @@ get_header(); ?>
 	<?php get_sidebar( 'content-bottom' ); ?>
 
 </div><!-- .content-area -->
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php 
+if ($sidebar){
+    get_sidebar();
+}
+
+get_footer(); 
