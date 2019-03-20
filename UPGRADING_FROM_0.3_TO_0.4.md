@@ -1,8 +1,8 @@
  ### paramétrage à modifier
 Cette liste indique les modifications de paramétrage à apporter pour ceux qui avaient installé la version 0.3 du kit et souhaitent évoluer vers la version supérieure. 
 
- * Ajout de pods
-  *  
+ * Ajout de pods pour le réglage du thème
+  *  les nouveaux paramètres seront automatiquement ajoutés, il faut cependant effectuer un enregistrement des paramètres du thème
  * Modifier le contenu de la page newsletter (shortcode erroné)
    * [newsletter form="1"]  devient [newsletter_form form="1"] 
  * Traduction des chapô à activer
@@ -20,4 +20,7 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
    * on peut désactiver/modifier les vignettes en surchargeant la function cnrswebkit_post_thumbnail
    * on peut ajuster leur taille avec du CSS personalisé
   * Ajout des sidebar sur les pages pour lesquelles l'emplacement était déjà reservé (peu d'impact a priori) 
-  * Possibilité d'activer ou pas les sidebar par CPT
+  * Possibilité d'activer ou pas les sidebar pour les listes, les éléments simples (événements, contact, emploi, actualités, publication...)
+    * Il faut ajuster le paramétrage dans le réglage du thème  
+    
+    

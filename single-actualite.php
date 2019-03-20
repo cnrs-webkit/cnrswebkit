@@ -8,7 +8,7 @@
  */
 
 global $cnrs_global_params;
-$sidebar = $cnrs_global_params->field('liste_actualites_with_sidebar');
+$sidebar = $cnrs_global_params->field('actualite_with_sidebar');
 var_dump($sidebar);
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
@@ -56,7 +56,7 @@ get_header(); ?>
 
 </div><!-- .content-area -->
 <?php 
-if ($sidebar){
+if ( $sidebar ){
     get_sidebar();
 }
 

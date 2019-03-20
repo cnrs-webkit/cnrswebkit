@@ -14,6 +14,13 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of media', 'cnrswebkit');
 
+global $cnrs_global_params;
+$sidebar = $cnrs_global_params->field('liste_medias_with_sidebar');
+
+if (! $sidebar){
+    add_filter( 'body_class', 'add_no_sidebar_class' );
+}
+
 get_header();
 // TODO next line commented in V0.3! Is ajax useful?? 
 // require_once( get_template_directory() . '/inc/ajax.php' );  
@@ -51,5 +58,10 @@ get_header();
 <!-- start popin -->
 <div id="popinOverlay"><div id="popinContainer"></div></div>
 <!-- end popin -->
-<?php get_sidebar(); ?>  
-<?php get_footer();
+<?php 
+if ( $sidebar ){
+    get_sidebar();
+}
+
+get_footer(); 
+

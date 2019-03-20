@@ -6,7 +6,7 @@
  * Improve filters: can use as many and any of existing taxonomy (see settings in pods menu)
  * function record_GET_filters() Sanitized for preventing SQL injection !!
  * Make cnrs_breadcrumb pluggable for possible override it in child theme
- * 
+ * All template with or whitout sidebar  (parameter in template settings)
  * 
  * 
  *  
@@ -62,7 +62,7 @@
  * Style sheet : remove 2 unsused  files /css/cnrs_dyn.scss /library/cnrs_dyn_.scss 
  * New : Prepare theme for versioning, upgrade
  * New : Upgrade will automatically add new settings (pods: réglage du thème)
- * New : 
+ * New : All template with or whitout sidebar  (parameter in template settings)
  
  
  

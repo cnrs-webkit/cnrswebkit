@@ -14,6 +14,13 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of job offer', 'cnrswebkit');
 
+global $cnrs_global_params;
+$sidebar = $cnrs_global_params->field('liste_emplois_with_sidebar');
+
+if (! $sidebar){
+    add_filter( 'body_class', 'add_no_sidebar_class' );
+}
+
 get_header();
 // TODO next line commented in V0.3! Is ajax useful?? 
 // require_once( get_template_directory() . '/inc/ajax.php' );  
@@ -47,5 +54,11 @@ get_header();
     </main><!-- .site-main -->
     <?php get_sidebar('content-bottom'); ?>
 </div><!-- .content-area -->
-<?php get_sidebar(); ?>  
-<?php get_footer(); ?>
+<?php 
+if ( $sidebar ){
+    get_sidebar();
+}
+
+get_footer(); 
+
+

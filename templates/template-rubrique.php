@@ -14,6 +14,13 @@
 // Translators: Template Name translation.
 __('CNRS WebKit sections list', 'cnrswebkit');
 
+global $cnrs_global_params;
+$sidebar = $cnrs_global_params->field('liste_rubriques_with_sidebar');
+
+if (! $sidebar){
+    add_filter( 'body_class', 'add_no_sidebar_class' );
+}
+
 get_header(); ?>
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
@@ -32,5 +39,10 @@ get_header(); ?>
 	</main><!-- .site-main -->
 	<?php get_sidebar( 'content-bottom' ); ?>
 </div><!-- .content-area -->
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php 
+if ( $sidebar ){
+    get_sidebar();
+}
+
+get_footer(); 
+

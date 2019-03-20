@@ -7,6 +7,13 @@
  * @since CNRS Web Kit 1.0
  */
 
+global $cnrs_global_params;
+$sidebar = $cnrs_global_params->field('page_with_sidebar');
+
+if (! $sidebar){
+    add_filter( 'body_class', 'add_no_sidebar_class' );
+}
+
 get_header(); ?>
 
 	<section id="primary" class="content-area">
@@ -49,5 +56,9 @@ get_header(); ?>
 		</main><!-- .site-main -->
 	</section><!-- .content-area -->
 
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php 
+if ( $sidebar ){
+    get_sidebar();
+}
+
+get_footer(); 
