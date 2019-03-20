@@ -67,6 +67,10 @@ remove_action("wp_head", "wp_generator");
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
+ // Constante de Version.
+define( 'CNRS_WEBKIT_VERSION', '0.4' );
+
 /**
  * CNRS Web Kit only works in WordPress 4.4 or later.
  */

@@ -18,7 +18,8 @@
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
 Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
 
-- [ ] PB: css sur page les actualites sans sidebar !!
+- [ ] Disable CPT programmatically (filter pods_wp_post_types) 
+PB: css sur page les actualites sans sidebar !!
 - [ ] test http://local_wp_ircica.fr/ : Site de démo du Kit Web du CNRS affiché en double
 - [ ] test http://cnrs_webkit.fr/fr : pb de border sur les partenaires et tutelles
 - [ ] ? désactiver les vignettes sur format mobile ?
@@ -28,7 +29,9 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] revoir tous les echo print printf _e( __( _x(
 - [ ] revoir tous les liens href
 - [ ] theme upgrade: traiter les pods lire pod existant, récuperer json json decode puis modif, ajout puis save 
-- [ ]  
+- [ ] put code in classes ANS separate admin from frontend 
+- [ ]   * GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
+
 
 - [ ] Warning: filesize(): stat failed for /home/seguinot/Documents/www/wp_ircica_v0.3/kitwebWP/wp-content/uploads/2018/02/RA_CNRS2016_complet_BD.pdf in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 841
   * les fichier à télécharger n'ont pas d'url (guid) enregistré correctement!
@@ -162,8 +165,7 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 ### Liste des bugs et améliorations à apporter sur theme cnrswebkit-IRCICA
 - [ ] /emploi/at-vero-eos-et-accusamus/ n'affiche pas <div class="rightCol"> 
 - [ ] style_dyn.css unused / Empty !!
-- [ ] les modèles template single-xxx.php sont affichés en double dans admin (defaut + template name !!!
-- [ ] TODOTODO Modifier fonctionnement template en définissant dabs l'admin si sidebar ou pas par template single et list) 
+- [ ] TODOTODO Modifier fonctionnement template en définissant dans l'admin si sidebar ou pas par template single et list) 
 - [ ] // Notice: Undefined index: value in /home/seguinot/Documents/www/CNRS_Web_Kit_github/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 810
     $term = $pieces['fields']['couleur_principale']['value'];
     

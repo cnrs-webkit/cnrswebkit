@@ -60,6 +60,9 @@
  * Add missing <?php get_sidebar(''); ?> in some default tremplates
  * Add 'menu_id' and 'container_class' to  'menu-menu-principal-container',
  * Style sheet : remove 2 unsused  files /css/cnrs_dyn.scss /library/cnrs_dyn_.scss 
+ * New : Prepare theme for versioning, upgrade
+ * New : Upgrade will automatically add new settings (pods: réglage du thème)
+ * New : 
  
  
  

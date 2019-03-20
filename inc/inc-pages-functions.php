@@ -60,27 +60,99 @@ function cnrswebkit_session_start() {
     }
 }
 
-function cnrswebkit_upgrade () {
+/**
+ * CNRS Webkit theme update function runned after the Wordpress theme update
+ *
+ * This should be run each time the theme is updated (manually or not), after the WordPress process of theme updating
+ * So this code runs the new (updated) plugin CODE
+ * This code is hooked on 'admin_init' to consider the manual upgrade case (updated theme folder copy instead of built in update do not fire 'upgrader_process_complete')
+ * So it is not executed if admin is not launched (manual upgrade with no admin browsing)
+ */
+function cnrswebkit_detect_need_update() {
+    // Do not echo anything in this function, this breaks wordpress!
+    $previous_version = get_option( 'CNRS_WEBKIT_VERSION', -1 ); // no version saved in first version (ATOS).
     
-    // Pods reglage_du_theme upgrade 
-    $pod = pods('reglage_du_theme');
+    // TODO Case install import all pods and return
+    /*
+     * import pods structure (config) and pods default values ??
+     */
     
-    // Add the new item now and get the new ID
-    $new_pod_id = $pod->add( 
-        array(
-            'name' => 'New book name',
-            'label' => 'xxxx',
-            'description' => 'Awesome book, read worthy!', 
-            'default' => '0',
-            'type' => 'boolean',
-        )
-    );
-   /*
-    echo "<br> liste_actualites_with_sidebar=";var_dump($pod->fields( 'liste_actualites_with_sidebar' ));
-    echo "<br> new_pod_id=";var_dump($new_pod_id);die('STOP');
-    */ 
+    if ( version_compare( CNRS_WEBKIT_VERSION, $previous_version, '==' ) ) {
+        // Identical version: no upgrade needed !
+        return;
+    } elseif ( version_compare( CNRS_WEBKIT_VERSION, $previous_version, '>=' ) ) {
+        // New version, upgrade needed.
+        cnrswebkit_upgrade( $previous_version, CNRS_WEBKIT_VERSION );
+        
+    } else {
+        // Older version !! not possible excepted in case of manual downgrade !
+        return;
+    }
 }
-// add_action('after_switch_theme', 'cnrswebkit_upgrade');
+
+add_action( 'admin_init', 'cnrswebkit_detect_need_update' );
+
+
+function cnrswebkit_upgrade ($previous_version, $new_version) {
+    
+    global $wp_filesystem;
+    // Initialize the WP filesystem
+    if (empty($wp_filesystem)) {
+        require_once (ABSPATH . '/wp-admin/includes/file.php');
+        WP_Filesystem();
+    }
+    
+    // Read the default pods json and convert to pods array 
+    /* 
+     * 
+    $cnrs_webkit_default_pods = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/cnrswebkit_default_pods.json' ) );
+    if (!$cnrs_webkit_default_pods) {
+        // TODO Add error messages!! 
+        return;
+    }
+     */    
+    // Case Upgrade Update current pods
+    $pods_api = pods_api();
+   
+    // Load default settings "reglage_du_theme"
+    $default_reglage_du_theme = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/default_reglage_du_theme.json' ) );
+    
+    // Load current settings "reglage_du_theme"
+    $reglage_du_theme = pods('reglage_du_theme');
+    
+    // Add non existing fields in settings "reglage_du_theme"
+    $message = '';
+    
+    foreach ($default_reglage_du_theme->pods as $pod_id => $pod_array) {
+        if ('reglage_du_theme' === $pod_array->name) {
+            foreach ($pod_array->fields as $field_slug => $field) {
+                if (! isset($reglage_du_theme->fields[$field_slug] ) ){
+                    unset ($field->id);
+                    $field->pod = $pod_array->name;
+                    $temp = $pods_api->save_field($field);
+                    $message .= "<br/>&nbsp;&nbsp;&nbsp; - added field : $field->label [$field_slug]";
+                }
+            }
+            if ($message) {
+                $messages = array();
+                $messages[] = array('message' => "CNRS Webkit : Suite à la mise a jour ($previous_version ->$new_version) Veuillez paramétrer (dans l\'administration des Pods) les champs ajoutés suivants: ".$message,
+                    'notice-level' => 'notice-info' );
+                // Inform the admin that new settings are available 
+                cnrsWebkitAdminNotices::addNotices( $messages  );
+            }
+        }
+    }
+
+    //TODO remove option on uninstall 
+    update_option('CNRS_WEBKIT_VERSION', CNRS_WEBKIT_VERSION);
+    
+}
+
+function cnrswebkit_unregister_some_post_type() {
+        unregister_post_type( 'contact' );
+    }
+
+add_action('init','cnrswebkit_unregister_some_post_type');
 
 class CnrswebkitListPageParams {
 
@@ -940,3 +1012,40 @@ if (!$cnrs_global_params->field('commentaires_actifs')) {
 
     add_action('init', 'df_disable_comments_admin_bar');
 }
+
+add_action('admin_notices', [new cnrsWebkitAdminNotices(), 'displayAdminNotice']);
+/**
+ * Class used to display notice message in admin
+ * @author seguinot
+ *
+ */
+class cnrsWebkitAdminNotices
+{
+    const NOTICE_FIELD = 'cnrsWebkit_admin_notices';
+    
+    public function displayAdminNotice()
+    {
+        $notices = get_option(self::NOTICE_FIELD);
+        
+        if ( empty( $notices ) ) {
+            return;
+        }
+        foreach ($notices as $notice) {
+            $message     = isset($notice['message']) ? $notice['message'] : false;
+            $noticeLevel = ! empty($notice['notice-level']) ? $notice['notice-level'] : 'notice-error';
+            
+            if ($message) {
+                echo "<div class='notice {$noticeLevel} is-dismissible'><p>{$message}</p></div>";
+            }
+        }
+        delete_option(self::NOTICE_FIELD);
+    }
+    
+    public static function addNotices( $notices ) {
+        if ( $notices ) {
+            update_option(self::NOTICE_FIELD, $notices);
+        }
+        
+    }
+}
+
