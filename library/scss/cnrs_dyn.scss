@@ -1,6 +1,6 @@
 /* dynamic-area-start */
-$mainColor:#ea514a;
-//$mainColor:#ea514a;
+$mainColor:#ae2573;
+//$mainColor:#ae2573;
 /* dynamic-area-end */
 
 $light_grey:#b2b2b2;
@@ -217,7 +217,7 @@ body{
             font-size: 20px;
             font-weight: 400;
             line-height: 30px;
-            width: 65%;
+            width: auto;
             @media screen and (max-width: 910px) {width:100%;}
         }
     }
@@ -1356,7 +1356,7 @@ body.single-evenement:not(.search-results), body.single-emploi:not(.search-resul
                         }
                     }
                 }
-                .addCalendar a, .ficheOffre a, .eventLocation a{
+                .contactMail a, .addCalendar a, .ficheOffre a, .eventLocation a{
                     color:$mainColor;
                     font-family: 'Roboto', sans-serif;
                     text-transform: none;
@@ -1388,13 +1388,7 @@ body.single-evenement:not(.search-results), body.single-emploi:not(.search-resul
                 .ficheOffre a:before{
                     content:"\e902 ";
                 }
-                .contactMail{
-                    a{
-                        color:$black;
-                        box-shadow: none;
-                        &:hover{color:$mainColor;}
-                    }
-                }
+                
                 .adresseOffre{
                     padding-bottom:30px;
                     border-bottom:1px solid $lighter_grey;

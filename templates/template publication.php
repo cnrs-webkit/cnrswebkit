@@ -14,7 +14,6 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of publication', 'cnrswebkit');
 
-global $cnrs_global_params;
 $sidebar = $cnrs_global_params->field('liste_publications_with_sidebar');
 
 if (! $sidebar){
@@ -43,7 +42,11 @@ get_header();
                 if ($publication_data->has_items() ) {
                     echo $publication_data->get_html_item_list();
                 } else {
-                    echo '<br/><p>'. __('There is currently no publication in this list', 'cnrswebkit') . '</p>';
+                    if ($cnrs_webkit_list_filtered) {
+                        echo '<br/><p>'. __('There is no publication in this filtered list', 'cnrswebkit') . '</p>';
+                    } else {
+                        echo '<br/><p>'. __('There is currently no publication in this list', 'cnrswebkit') . '</p>';
+                    }
                 }
                 echo $publication_data->get_pagination();
                 display_bottom_partenaires();

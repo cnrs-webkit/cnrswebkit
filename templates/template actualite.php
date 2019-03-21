@@ -14,13 +14,11 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of news', 'cnrswebkit');
 
-global $cnrs_global_params;
 $sidebar = $cnrs_global_params->field('liste_actualites_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
 }
-
 
 get_header();
 // TODO next line commented in V0.3! Is ajax useful?? 
@@ -46,7 +44,12 @@ get_header();
                     if ($actualites_data->has_items() ) {
                         echo $actualites_data->get_html_item_list();
                     } else {
-                        echo '<br/><p>'. __('There is currently no news in the present list', 'cnrswebkit') . '</p>';
+                        if ($cnrs_webkit_list_filtered) {
+                            echo '<br/><p>'. __('There is no news in the present filtered list', 'cnrswebkit') . '</p>';
+                            
+                        } else {
+                            echo '<br/><p>'. __('There is currently no news in the present list', 'cnrswebkit') . '</p>';
+                        }
                     }
                     
                     if (is_plugin_active('newsletter') ) {

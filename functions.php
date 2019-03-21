@@ -69,7 +69,7 @@ remove_action("wp_head", "wp_generator");
  */
 
  // Constante de Version.
-define( 'CNRS_WEBKIT_VERSION', '0.4' );
+define( 'CNRS_WEBKIT_VERSION', '0.4.1' );
 
 /**
  * CNRS Web Kit only works in WordPress 4.4 or later.
@@ -77,6 +77,15 @@ define( 'CNRS_WEBKIT_VERSION', '0.4' );
 if (version_compare($GLOBALS['wp_version'], '4.4-alpha', '<')) {
     require get_template_directory() . '/inc/back-compat.php';
 }
+// TODO add dependancy (wp-scss, pods, ? ? )
+
+/*
+ * load the event's list widget and news_widget
+ */
+require dirname( __FILE__ ) . '/inc/events_widget.php';
+require dirname( __FILE__ ) . '/inc/news_widget.php';
+
+
 
 if (!function_exists('cnrswebkit_setup')) :
 

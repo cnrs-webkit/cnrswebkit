@@ -14,7 +14,6 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of job offer', 'cnrswebkit');
 
-global $cnrs_global_params;
 $sidebar = $cnrs_global_params->field('liste_emplois_with_sidebar');
 
 if (! $sidebar){
@@ -44,7 +43,11 @@ get_header();
 				if ($actualites_data->has_items() ) {
 				    echo $actualites_data->get_html_item_list();
 				} else {
-				    echo '<br/><p>'. __('There is currently no recruitment offer published', 'cnrswebkit') . '</p>';
+				    if ($cnrs_webkit_list_filtered) {
+				        echo '<br/><p>'. __('There is no recruitment offer in this filtered list', 'cnrswebkit') . '</p>';
+				    } else {
+				        echo '<br/><p>'. __('There is currently no recruitment offer published', 'cnrswebkit') . '</p>';
+				    }
 				}
 				echo $actualites_data->get_pagination();
                 display_bottom_partenaires();

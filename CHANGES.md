@@ -1,12 +1,14 @@
 #### [To appear in next release]
 
 ##### Added feature, template, functionalities
+ * New : le kit propose à présent un widget actualité (News's list) affichant les dernières actualités 
+ * New : le kit propose à présent un widget événements (event's list) affichant les dernièrs évéements 
  * Add missing wp-color-picker enqueuing in /inc/inc-pages-functions.php
  * Add missing admin_script.js dependancy to wp-color-picker in /inc/inc-pages-functions.php
  * Improve filters: can use as many and any of existing taxonomy (see settings in pods menu)
  * function record_GET_filters() Sanitized for preventing SQL injection !!
  * Make cnrs_breadcrumb pluggable for possible override it in child theme
- * All template with or whitout sidebar  (parameter in template settings)
+ * All template with or whitout sidebar  (parameter in template settings + additionnal templates)
  * 
  * 
  *  
@@ -63,6 +65,11 @@
  * New : Prepare theme for versioning, upgrade
  * New : Upgrade will automatically add new settings (pods: réglage du thème)
  * New : All template with or whitout sidebar  (parameter in template settings)
+ * Pages emploi () l’email du contact est à présent au formar des autres Uliens
+ * Notice: Undefined variable: liste_evenement_url in template-parts/bottom-emploi.php on line 15
+ * Warning: filesize()sur téléchargement: erreur due à guid des documents incorrects (modifiés dans base de données)
+ 
+ 
  
  
  

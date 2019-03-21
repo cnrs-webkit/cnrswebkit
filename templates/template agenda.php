@@ -14,7 +14,6 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of events', 'cnrswebkit');
 
-global $cnrs_global_params;
 $sidebar = $cnrs_global_params->field('liste_evenements_with_sidebar');
 
 if (! $sidebar){
@@ -48,8 +47,12 @@ get_header();
                     <div class="moreEvents"><a page="1" target="#evenement_ajax_container">Afficher plus d'évènements</a></div>
                     <?php
                 } else {
-                    echo '<br/><p>'. __('There is currently no event in the present list', 'cnrswebkit') . '</p>';
-                }
+                    if ($cnrs_webkit_list_filtered) {
+                        echo '<br/><p>'. __('There is no event in the present filtered list', 'cnrswebkit') . '</p>'; 
+                    } else {
+                        echo '<br/><p>'. __('There is currently no event in the present list', 'cnrswebkit') . '</p>';
+                    }
+                 }
                 display_bottom_partenaires();
                 ?>
             </div><!-- .entry-content -->

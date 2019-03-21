@@ -1,4 +1,8 @@
- ### paramétrage à modifier
+### IMPéRATIF avant de comencer
+ * aller dans l'administration à "apparence / réglage du thème", paraméter les nouveaux champs (sidebar) comme désiré et enregistrer 
+ * N.B. il faut au moins enregistrer les paramètres par défauts, sinon toutes les sidebar sont désactivées!
+ 
+### paramétrage à modifier
 Cette liste indique les modifications de paramétrage à apporter pour ceux qui avaient installé la version 0.3 du kit et souhaitent évoluer vers la version supérieure. 
 
  * Ajout de pods pour le réglage du thème
@@ -13,14 +17,16 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
    * désactiver le plugin "newsletter" pour les supprimer si vous ne souhaitez pas utiliser le plugin "newsletter"
  * 
  
- ### éléments pouvant impacter le visuel du site
+### éléments pouvant impacter le visuel du site
  Ce paragraphe indique toutes les modifications pouvant avaoir un impact visuel sur le site. Veuillez consulter cette liste et ajuster le CSS ou le paramétrage pour rétablir le fonctionnement que vous désirez. 
  
  * Mise en place des vignettes (auparavant désactivées), flottantes, avant le header sur la plupart des templates (template-parts/content-xxxx.php)
    * on peut désactiver/modifier les vignettes en surchargeant la function cnrswebkit_post_thumbnail
    * on peut ajuster leur taille avec du CSS personalisé
-  * Ajout des sidebar sur les pages pour lesquelles l'emplacement était déjà reservé (peu d'impact a priori) 
-  * Possibilité d'activer ou pas les sidebar pour les listes, les éléments simples (événements, contact, emploi, actualités, publication...)
-    * Il faut ajuster le paramétrage dans le réglage du thème  
+ * Ajout des sidebar sur les pages pour lesquelles l'emplacement était déjà reservé (peu d'impact a priori) 
+ * Possibilité d'activer ou pas les sidebar pour les listes, les éléments simples (événements, contact, emploi, actualités, publication...)
+   * Il faut ajuster le paramétrage dans le réglage du thème  
     
-    
+### si vous utilisez un thème enfant
+ * Vous pouvez supprimer du thème enfant les templates proposés sur le forum du CNRS pour activer /désactiver les sidebar. Ils deviennent inutiles    
+ * 

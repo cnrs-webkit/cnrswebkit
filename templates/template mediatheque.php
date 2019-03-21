@@ -14,7 +14,6 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of media', 'cnrswebkit');
 
-global $cnrs_global_params;
 $sidebar = $cnrs_global_params->field('liste_medias_with_sidebar');
 
 if (! $sidebar){
@@ -43,7 +42,15 @@ get_header();
                 ?>
                 <div class="mediasContainer">
                     <?php
-                    echo $mediatheque_data->get_html_item_list();
+                    if ($mediatheque_data->has_items() ) {
+                        echo $mediatheque_data->get_html_item_list();
+                    } else {
+                        if ($cnrs_webkit_list_filtered) {
+                            echo '<br/><p>'. __('There is no recruitment offer in this filtered list', 'cnrswebkit') . '</p>';
+                        } else {
+                            echo '<br/><p>'. __('There is currently no recruitment offer published', 'cnrswebkit') . '</p>';
+                        }
+                    }
                     ?>
                 </div>
                 <?php

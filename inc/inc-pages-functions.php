@@ -152,7 +152,7 @@ function cnrswebkit_unregister_some_post_type() {
         unregister_post_type( 'contact' );
     }
 
-add_action('init','cnrswebkit_unregister_some_post_type');
+// TODO add_action('init','cnrswebkit_unregister_some_post_type');
 
 class CnrswebkitListPageParams {
 
@@ -211,7 +211,8 @@ class CnrswebkitListParams {
 
     function __construct($post_type, $custom_params = false) {
         global $cnrs_global_params;
-
+        global $cnrs_webkit_list_filtered; 
+        $cnrs_webkit_list_filtered= false; 
         switch ($post_type) {
 
         case 'actualite':
@@ -301,6 +302,7 @@ class CnrswebkitListParams {
         				}
     
                         if (isset($_SESSION[$selectorName]) AND $_SESSION[$selectorName] != '') {
+                            $cnrs_webkit_list_filtered = true;
                             $this->where[] = array(
                                 'key' => $taxonomy . '.term_id',
                                 'value' => array($_SESSION[$selectorName]),
@@ -413,6 +415,7 @@ class CnrswebkitPageItemsList {
     }
 
     public function get_html_filters($area = false) {
+        global $cnrs_webkit_list_filtered; 
         if (count($this->post_list_params->selectors) > 0) {
             $filters = [];
             foreach ($this->post_list_params->selectors as $k => &$v) {
@@ -427,6 +430,7 @@ class CnrswebkitPageItemsList {
                 return '';
             }
         }
+        $cnrs_webkit_list_filtered = false; 
         return '';
     }
 
@@ -882,7 +886,6 @@ function update_evenement($pieces, $is_new_item) {
 add_action('pods_api_post_save_pod_item_reglage_du_theme', 'update_site_params', 10, 3);
 
 function update_site_params($pieces, $is_new_item, $id) {
-    // Notice: Undefined index: value in /home/seguinot/Documents/www/CNRS_Web_Kit_github/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 810
     $term = $pieces['fields']['couleur_principale']['value'];
     if (empty($term)) {
         $term = '#ea514a';

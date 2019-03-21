@@ -9,11 +9,14 @@ $custom_params->where = [
 $custom_params->orederby = 'ID DESC';
 $custom_params->limit = 2;
 $emploi_data = new CnrswebkitPageItemsList('emploi', $custom_params);
-// C. Seguinot remove autres emplois harcoded URL
+
 $liste_emploi_url= get_permalink($cnrs_global_params->field('pageliste_emploi')['ID']);
+
 if ($liste_emploi_url) {
-	$liste_emploi_url = '</h1><a href="'. $liste_evenement_url . '">' . __('Return to recruitment list', 'cnrswebkit') . '</a>';
-}if ($emploi_data->has_items()) {
+    $liste_emploi_url = '</h1><a href="'. $liste_emploi_url . '">' . __('Return to recruitment list', 'cnrswebkit') . '</a>';
+}
+
+if ($emploi_data->has_items()) {
     ?>
     <div class="nextEvents">
         <header><h1><?php _e('Other recruitment', 'cnrswebkit') ?></h1><?php echo ($liste_emploi_url? $liste_emploi_url: '')?></a></header>
