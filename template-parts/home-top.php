@@ -1,8 +1,7 @@
 <?php
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Template used to display labs partners on homepage, after content and before news
+ * this template is not used in footer
  */
 ?>
 
@@ -12,13 +11,15 @@
         <div class="umi"><?php echo $cnrs_global_params->field('code_du_laboratoire'); ?></div>
         <h3><?php echo get_bloginfo('name'); ?></h3>
         <p><?php echo $cnrs_global_params->field('presentation_du_site'); ?></p>
+        <!-- TODO lien codé en dur!  --> 
+        <div class="bottomLabo"><a href="/le-laboratoire/"><?php _e('En savoir plus', 'cnrswebkit') ?></a></div>
         <div class="bottomLabo">
             <div>
                 <?php
                 display_labo_partenaires($cnrs_global_params);
                 ?>
             </div>
-            <a href="/le-laboratoire/"><?php _e('En savoir plus', 'cnrswebkit') ?></a>
+            
         </div>
     </div>
 </div>

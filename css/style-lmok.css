@@ -145,7 +145,6 @@ body.page-template-templateactualite .entry-content .loop-contents-actualite art
     margin-top: 30px!important        
 }
     .entry-header,
-    .post-thumbnail,
     .entry-content,
     .entry-summary,
     .entry-footer,
@@ -181,10 +180,7 @@ body.page-template-templateactualite .entry-content .loop-contents-actualite art
     body.page-template-homepage .entry-content .loop-contents-actualite article.type-actualite:hover {
         background-color:initial;
     }
-    body.page-template-homepage .entry-content .loop-contents-actualite article.type-actualite:hover  header a,
-    body.page-template-homepage .entry-content .loop-contents-actualite article.type-actualite:hover .entry-content {        
-       color:#fc4146;
-    }
+
     article.publication .knowMorePub{
         margin-top:30px;
     }                            
@@ -406,9 +402,6 @@ body.page-template-templateactualite .entry-content .loop-contents-actualite art
     body.page-template-template-rubrique article > p {
         padding: 0 7.6%;
     }  
-    body.page-template-template-rubrique article .post-thumbnail {
-        height: 65vw!important;    
-    }
     .mediasContainer article {
         margin-left:0!important;
         margin-right:0!important;

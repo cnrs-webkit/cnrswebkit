@@ -23,9 +23,6 @@ $current_item = new CnrswebkitRichData(get_the_ID());
         the_content();
         ?>
         <div class="bottom-notes"><?php echo text_to_html($current_item->value('notes_de_bas_de_page'), 'p'); ?></div>
-        <?php
-        display_bottom_partenaires();
-        ?>
     </div><!-- .entry-content -->
     <footer class="entry-footer">
         <?php cnrswebkit_entry_meta(); ?>

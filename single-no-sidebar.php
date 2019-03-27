@@ -1,17 +1,16 @@
 <?php
 /**
- * The default template for displaying all single posts and attachments
+ * Template Name: CNRS WebKit single posts and attachments without sidebar
+ * Template Post Type: post, page
+ *
+ * The default template for displaying all single posts and attachments without sidebar
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
 
-global $cnrs_global_params;
-$sidebar = $cnrs_global_params->field('actualite_with_sidebar');
-if (! $sidebar){
-    add_filter( 'body_class', 'add_no_sidebar_class' );
-}
+add_filter( 'body_class', 'add_no_sidebar_class' );
 get_header(); ?>
 
 <div id="primary" class="content-area">
@@ -21,7 +20,7 @@ get_header(); ?>
 		while ( have_posts() ) : the_post();
 
 			// Include the single post content template.
-			get_template_part( 'template-parts/content', 'actualite' );
+			get_template_part( 'template-parts/content', 'single' );
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) {
@@ -55,8 +54,5 @@ get_header(); ?>
 
 </div><!-- .content-area -->
 <?php 
-if ( $sidebar ){
-    get_sidebar();
-}
 
 get_footer(); 

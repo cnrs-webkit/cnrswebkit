@@ -21,6 +21,7 @@ add_image_size('cnrspost-thumbnail-size', 150, 9999);
 function admin_css() {
 
     if (is_admin()) {
+        // get_template_directory_uri() : URI of the current parent theme.
         wp_enqueue_style('admin_css', get_template_directory_uri() . '/css/admin.css');
         // Add  wp-color-picker enqueuing 
         wp_enqueue_style('wp-color-picker');
@@ -44,10 +45,25 @@ function cnrs_session_start() {
 }
 
 function cnrsenqueue() {
-    // TODO style_dyn unuseful since enmpty !!
-    wp_enqueue_style('cnrswbkit-dyn', get_template_directory_uri() . '/css/style_dyn.css', array(), '1.0');
+    // cnrsenqueue() is run when using parent or child theme
+    
+    // always load parent style.css if active child theme Note: style.css is loaded before cnrs_dyn.css
+    wp_enqueue_style('cnrswebkit-parent-styles', get_template_directory_uri() .'/style.css', false);
+    
+    if (is_child_theme()) {
+        // Load child theme style.css
+        $deps = array('cnrswebkit-parent-styles');
+        wp_enqueue_style('cnrswebkit-child-styles', get_stylesheet_uri(), $deps);
+    }
+   
+   
+    // get_template_directory_uri() : URI of the current parent theme.
     wp_enqueue_style('icomoon', get_template_directory_uri() . '/css/icomoon.css', array(), '1.0');
     wp_enqueue_style('cnrswebkit-fonts', cnrswebkit_fonts_url(), array(), null);
+    
+    // enqueue cnrs_dyn-style in case it is not enqueud by wp-scss (wp-scss not installed or not activated)
+    wp_enqueue_style('cnrs_dyn-style', get_template_directory_uri() . '/library/css/cnrs_dyn.css', array(), '1.0');
+    
     wp_enqueue_script('cnrswebkit-init', get_template_directory_uri() . '/js/cnrs-init.js', array('jquery'), '1.0' . '-' . time(), true);
     wp_enqueue_script('cnrswebkit-masonrypkgd', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array('jquery', 'cnrswebkit-init'), '3.3.2' . '-' . time(), true);
     wp_enqueue_script('cnrswebkit-common', get_template_directory_uri() . '/js/cnrs-common.js', array('jquery', 'cnrswebkit-init', 'cnrswebkit-masonrypkgd'), '1.0' . '-' . time(), true);
@@ -161,7 +177,7 @@ class CnrswebkitListPageParams {
     function __construct($post_type) {
         $this->selectors = new stdClass();
  
-        // C. SEGUINOT  prise en compte d'un nombre quelconque de taxonomies dans les filtres
+        // Prise en compte d'un nombre quelconque de taxonomies dans les filtres
         if (
                 ($post_type == 'actualite' ) || 
                 ($post_type == 'evenement' ) || 
@@ -234,7 +250,6 @@ class CnrswebkitListParams {
                 'compare' => '>='
             );
             $this->orderby = 'date_de_debut ASC';
-            // $this->distinct = false; /* added by C. SEGUINOT */
             break;
 
         case 'mediatheque':
@@ -264,13 +279,13 @@ class CnrswebkitListParams {
             $this->where = array();
             break;
         case 'partenaire':
-            $this->limit = 5;
+            // $this->limit = 5;
             $this->where = array();
             break;
         }
 
         
-        // C. SEGUINOT  prise en compte d'un nombre quelconque de taxonomies dans les filtres
+        // Prise en compte d'un nombre quelconque de taxonomies dans les filtres
         if (
                 ($post_type == 'actualite' ) || 
                 ($post_type == 'evenement' ) || 
@@ -340,7 +355,7 @@ class CnrswebkitListParams {
         foreach ($_GET as $k => &$v) {
             if (isset($_GET[$k])) {
                 if ($v != 'all') {
-                    // C. SEGUINOT sanitize for preventing SQL injection !!
+                    // Sanitize for preventing SQL injection !!
                     $_SESSION[$k] = sanitize_title(get_query_var($k));
                 } else {
                     unset($_SESSION[$k]);
@@ -364,8 +379,8 @@ class CnrswebkitPageItemsList {
         $this->custom_params = $custom_params;
         $this->post_type_params = new CnrswebkitListParams($this->post_type, $custom_params);
         $this->post_list_params = new CnrswebkitListPageParams($this->post_type);
-	$this->pods_data = pods($this->post_type, $this->post_type_params);
-        $this->init_list();
+	    $this->pods_data = pods($this->post_type, $this->post_type_params);
+	    $this->init_list();
     }
 
     private function init_list() {
@@ -433,8 +448,9 @@ class CnrswebkitPageItemsList {
         $cnrs_webkit_list_filtered = false; 
         return '';
     }
-
-    public function get_html_item_list($template = false) {
+    // $logo_width default logo_wisdth en % 
+    
+    public function get_html_item_list($template = false, $logo_width = '25') {
         if (!$template) {
             $template = $this->post_type;
         }
@@ -841,6 +857,11 @@ function display_bottom_evenements() {
     include(locate_template('template-parts/bottom-evenement.php'));
 }
 
+
+function display_header_partenaires() {
+    include(locate_template('template-parts/header-partenaire.php'));
+}
+
 function text_to_html($text, $tag = false) {
     if ($tag) {
         return '<' . $tag . '>' . str_replace("\r", "", str_replace("\n", '</' . $tag . '><' . $tag . '>', $text)) . '</' . $tag . '>';
@@ -886,12 +907,23 @@ function update_evenement($pieces, $is_new_item) {
 add_action('pods_api_post_save_pod_item_reglage_du_theme', 'update_site_params', 10, 3);
 
 function update_site_params($pieces, $is_new_item, $id) {
+    $content = file_get_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss');
+    
     $term = $pieces['fields']['couleur_principale']['value'];
     if (empty($term)) {
         $term = '#ea514a';
     }
-    $content = file_get_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss');
+
     $content = preg_replace('/\$mainColor:#[A-Za-z0-9]{6};/', '$mainColor:' . $term . ';', $content);
+    
+    $term = $pieces['fields']['text_justify']['value'];
+    if (empty($term)) {
+        $term = 'left';
+    }
+    var_dump($term); 
+
+    $content = preg_replace('/\$text_justify:[A-Za-z-]{4,15};/', '$text_justify:' . $term . ';', $content);
+    
     file_put_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss', $content);
 }
 
@@ -947,7 +979,6 @@ if ( ! function_exists ( 'cnrs_breadcrumb' ) ) {
 
 if (function_exists('pods')) {
     $cnrs_global_params = pods('reglage_du_theme');
-    // var_dump($cnrs_global_params); die();
 }
 
 if (!$cnrs_global_params->field('commentaires_actifs')) {

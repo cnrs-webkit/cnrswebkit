@@ -13,7 +13,7 @@ $current_item = new CnrswebkitRichData(get_the_ID());
     <header class="entry-header">
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header><!-- .entry-header -->
-    <?php /* C. Seguinot affichage conditionnel*/ if ($current_item->value('chapo')) {echo text_to_html($current_item->value('chapo'), 'p');} ?>
+    <?php if ($current_item->value('chapo')) {echo text_to_html($current_item->value('chapo'), 'p');} ?>
     <div class="entry-content">
         <?php
         the_content();
@@ -41,6 +41,5 @@ $current_item = new CnrswebkitRichData(get_the_ID());
             include(locate_template('loops/loop-rubrique.php'));
         }
         ?>
-        <?php display_bottom_partenaires(); ?>
     </div><!-- .entry-content -->
 </article><!-- #post-## -->

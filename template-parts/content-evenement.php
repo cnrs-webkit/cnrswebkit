@@ -6,8 +6,9 @@
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
-?>
-<?php
+
+global $event_with_partners;
+
 $current_item = new CnrswebkitRichData(get_the_ID());
 
 $ics_form = '<form method="post" action="' . get_template_directory_uri() . '/tools/download-ics.php" class="ics-form">
@@ -49,24 +50,24 @@ $ics_form = '<form method="post" action="' . get_template_directory_uri() . '/to
             </div>
             <?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?>
         </div>
-        <?php /*
-        TODO partenaires de l'événement ??
+        <?php 
         if ($current_item->value('partenaires')) {
+            $event_with_partners = true;
             $custom_params = new CnrswebkitStdListParams();
             $custom_params->where = $current_item->get_where_metadata($current_item->value('partenaires'));
-            $partenaire_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
+            $partenaires_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
             ?>
             <div class="tutellesContainer">
                 <div class="partTitle"><?php _e("Partenaires de l'évènement", 'cnrswebkit') ?></div>
                 <div class="partContainer">
-                    <?php echo $partenaire_data->get_html_item_list('bottompartenaire'); ?>
+                    <?php echo $partenaires_data->get_html_item_list('bottompartenaire'); ?>
                 </div>
             </div>
             <?php
-        } */
+        }
+        display_bottom_evenements(); 
+
         ?>
-        <?php display_bottom_evenements(); ?>
-        <?php display_bottom_partenaires(); ?>
     </div><!-- .entry-content -->
     <footer class="entry-footer">
         <?php cnrswebkit_entry_meta(); ?>

@@ -1,4 +1,5 @@
 <?php
+// TODO why not use $cnrs_global_params instead of pods ???
 if ($pods->field('partenaires_du_laboratoire')) {
     $partenaires = [];
     foreach ($pods->field('partenaires_du_laboratoire') as $partenaire) {
@@ -10,13 +11,13 @@ if ($pods->field('partenaires_du_laboratoire')) {
         'value' => $partenaires,
         'compare' => 'IN'
     ];
-    $partenaire_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
-    if ($partenaire_data->has_items()) {
+    $partenaires_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
+    if ($partenaires_data->has_items()) {
         ?>
         <div class="tutellesHomeContainer">
             <div class="partContainer">
                 <?php
-                echo $partenaire_data->get_html_item_list('labopartenaire');
+                echo $partenaires_data->get_html_item_list('labopartenaire');
                 ?>
             </div>
         </div>

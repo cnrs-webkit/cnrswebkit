@@ -42,19 +42,18 @@ $ics_form = '<form method="post" action="' . get_stylesheet_directory_uri() . '/
         if ($current_item->value('partenaires')) {
             $custom_params = new CnrswebkitStdListParams();
             $custom_params->where = $current_item->get_where_metadata($current_item->value('partenaires'));
-            $partenaire_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
+            $partenaires_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
             ?>
             <div class="tutellesContainer">
                 <div class="partTitle"><?php _e("Partenaires de l'évènement", 'cnrswebkit') ?></div>
                 <div class="partContainer">
-                    <?php echo $partenaire_data->get_html_item_list('bottompartenaire'); ?>
+                    <?php echo $partenaires_data->get_html_item_list('bottompartenaire'); ?>
                 </div>
             </div>
             <?php
         } */
         ?>
-        <?php display_bottom_evenements(); ?>
-        <?php display_bottom_partenaires(); ?>
+        <?php /*TODO  no bottom events here?? */ display_bottom_evenements(); ?>
     </div><!-- .entry-content -->
     <footer class="entry-footer">
         <?php cnrswebkit_entry_meta(); ?>

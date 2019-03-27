@@ -1,48 +1,5 @@
 <?php
 /**
-* C. SEGUINOT TRIED TO activate shortcodes!!
-* Allow Pods Templates to use shortcodes
-*
-* NOTE: Will only work if the constant PODS_SHORTCODE_ALLOW_SUB_SHORTCODES is defined and set to
-  true, which by default it IS NOT.
-*/
-add_filter( 'pods_shortcode', function( $tags )  {
-  $tags[ 'shortcodes' ] = true;
-  
-  return $tags;
-  
-});
-
-// define the upgrader_pre_download callback to stop upgrade of a git project
-
-// apply_filters( 'upgrader_pre_download', bool $reply, string $package, WP_Upgrader $this )
-function filter_upgrader_pre_download( $false, $package, $instance ) { 
-    // var_dump($package);die();
-    return $false; 
-}; 
-             
-// add the filter 
-add_filter( 'upgrader_pre_download', 'filter_upgrader_pre_download', 10, 3 ); 
-    
-    
-// C.SEGUINOT TEMPORAIRE!!! Acunetix Vulnerable Javascript library 
-// This will replace core jQuery version and instead load version 3.1.1 from Google's server.
-function replace_core_jquery_version() {
-	wp_deregister_script( 'jquery' );
-	// Change the URL if you want to load a local copy of jQuery from your own server.
-	wp_register_script( 'jquery', "https://code.jquery.com/jquery-3.1.1.min.js", array(), '3.1.1' );
-}
-add_action( 'wp_enqueue_scripts', 'replace_core_jquery_version' );
-	
-// Disable use XML-RPC
-add_filter( 'xmlrpc_enabled', '__return_false' );
-
-
-// C. Seguinot: Pensez à masquer la version de votre WordPress, car elle donne des informations aux hackers
-remove_action("wp_head", "wp_generator");
-	
-
-/**
  * CNRS Web Kit functions and definitions
  *
  * Set up the theme and provides some helper functions, which are used in the
@@ -85,7 +42,63 @@ if (version_compare($GLOBALS['wp_version'], '4.4-alpha', '<')) {
 require dirname( __FILE__ ) . '/inc/events_widget.php';
 require dirname( __FILE__ ) . '/inc/news_widget.php';
 
+/**
+ * C. SEGUINOT TRIED TO activate shortcodes!!
+ * Allow Pods Templates to use shortcodes
+ *
+ * NOTE: Will only work if the constant PODS_SHORTCODE_ALLOW_SUB_SHORTCODES is defined and set to
+ true, which by default it IS NOT.
+ */
+add_filter( 'pods_shortcode', function( $tags )  {
+    $tags[ 'shortcodes' ] = true;
+    
+    return $tags;
+    
+});
+    
+// define the upgrader_pre_download callback to stop upgrade of a local git project/folder
 
+// apply_filters( 'upgrader_pre_download', bool $reply, string $package, WP_Upgrader $this )
+function filter_upgrader_pre_download( $false, $package, $instance ) {
+    // var_dump($package);die();
+    return $false;
+};
+
+// add the filter
+add_filter( 'upgrader_pre_download', 'filter_upgrader_pre_download', 10, 3 );
+
+// Sitemap: ajout de div autour des items, ajout de css pour sitemap sur 2 colonnes
+function wsp_items_add_div($return) {
+    return '<div class="wsp-item">'."\n" .$return . '</div>'."\n";
+}
+add_filter( 'wsp_pages_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_posts_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_categories_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_tags_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_archives_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_authors_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_cpts_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_taxonomies_return', 'wsp_items_add_div', 10, 1 );
+add_filter( 'wsp_taxonomies_return', 'wsp_items_add_div', 10, 1 );
+// C.SEGUINOT TEMPORAIRE!!! Acunetix Vulnerable Javascript library
+// This will replace core jQuery version and instead load version 3.1.1 from Google's server.
+function replace_core_jquery_version() {
+    wp_deregister_script( 'jquery' );
+    // Change the URL if you want to load a local copy of jQuery from your own server.
+    wp_register_script( 'jquery', "https://code.jquery.com/jquery-3.1.1.min.js", array(), '3.1.1' );
+}
+
+add_action( 'wp_enqueue_scripts', 'replace_core_jquery_version' );
+
+// Disable use XML-RPC
+add_filter( 'xmlrpc_enabled', '__return_false' );
+
+
+// Pensez à masquer la version de votre WordPress, car elle donne des informations aux hackers
+remove_action("wp_head", "wp_generator");
+    
+    
+    
 
 if (!function_exists('cnrswebkit_setup')) :
 
@@ -108,7 +121,7 @@ if (!function_exists('cnrswebkit_setup')) :
          * to change 'cnrswebkit' to the name of your theme in all the template files
          */
     
-	   // C. Seguinot Add text domain support will load language file named as /languages/cnrswebkit-fr_FR.mo
+	   // Add text domain support will load language file named as /languages/cnrswebkit-fr_FR.mo
 	   $locale = apply_filters( 'theme_locale', get_locale(), 'cnrswebkit' );
 	   $path = get_template_directory() . '/languages/cnrswebkit-' .$locale . '.mo'; 
 	   $temp= load_textdomain('cnrswebkit', $path);
@@ -190,6 +203,29 @@ if (!function_exists('cnrswebkit_setup')) :
 
 endif; // cnrswebkit_setup
 add_action('after_setup_theme', 'cnrswebkit_setup');
+
+if (!function_exists('cnrswebkit_credits')) :
+
+    /**
+     *
+     * Create your own cnrswebkit_credits() function to override in a child theme.
+     *
+     * @since CNRS Web Kit 1.0
+     */
+    function cnrswebkit_credits() {
+        ?>
+        <div class="cnrs-bottom-line">
+            <div><a href="/credits-mentions-legales/">Crédits & mentions légales</a></div>
+            <div><a href="/plan-du-site/">Plan du site</a></div>
+            <div><a href="/accessibilite/">Accessibilité</a></div>
+            <div><a href="/feed" target="_blank">RSS</a></div>
+            <div><a href="http://kit-web.cnrs.fr/" target="_blank">Conçu à partir du Kit Labos du CNRS</a></div>
+        </div>
+        <?php 
+    }
+endif; // cnrswebkit_credits
+
+add_action( 'cnrswebkit_credits', 'cnrswebkit_credits', 10, 0 );
 
 /**
  * Sets the content width in pixels, based on the theme's design and stylesheet.
@@ -509,7 +545,7 @@ remove_action('wp_head', 'wp_generator');
 require get_template_directory() . '/inc/inc-pages-functions.php';
 
 
-// C. Seguinot Admin Taxonomy Filter (based on Plugin https://wordpress.org/plugins/admin-taxonomy-filter/)
+// Admin Taxonomy Filter (based on Plugin https://wordpress.org/plugins/admin-taxonomy-filter/)
 if ( is_admin() ) {
 	require_once dirname( __FILE__ ) . '/inc/class-atf2-controller.php';
 	require_once dirname( __FILE__ ) . '/inc/class-atf2-settings.php';

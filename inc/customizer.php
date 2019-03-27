@@ -71,32 +71,10 @@ if ( ! function_exists( 'cnrswebkit_header_style' ) ) :
  * @see cnrswebkit_custom_header_and_background().
  */
 function cnrswebkit_header_style() {
-	// If the header text option is untouched, let's bail.
-	/* TODO C. SEGUINOT cnrs webkit does not support display_header_text so if unusefull!!
-	 * display_header_text est un paramètre non utilisé !!
-	 * $display_header_text = bloginfo('display_header_text');
-	 * de plus il faudrait avoir if ( ! display_header_text() ) { !!!
-	 */
-	if ( display_header_text() ) {
+
+    if ( display_header_text() ) {
 		return;
 	}
-
-	// If the header text has been hidden.
-	// TODO C. SEGUINOT Remove .site-branding,
-	// TODO C. SEGUINOT Move to a css file!!
-	?>
-	<style type="text/css" id="cnrswebkit-header-css">
-		.site-branding {
-			margin: 0 auto 0 0;
-		}
-
-		.site-branding .site-title,
-		.site-description {
-			clip: rect(1px, 1px, 1px, 1px;
-			position: absolute; 
-		}
-	</style>
-	<?php
 }
 endif; // cnrswebkit_header_style
 

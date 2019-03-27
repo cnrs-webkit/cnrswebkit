@@ -1,5 +1,5 @@
 <?php
-global $cnrs_global_params; // C. Seguinot added
+global $cnrs_global_params; 
 $custom_params = new CnrswebkitStdListParams();
 $custom_params->where = [
     'key' => 'ID',

@@ -11,8 +11,6 @@
  */
 
 get_header();
-// TODO next line commented in V0.3! Is ajax useful?? 
-// require_once( get_template_directory() . '/inc/ajax.php' );  
 ?> 
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -53,11 +51,13 @@ get_header();
                 if ($cnrs_global_params->field('telechargements_sur_la_page_daccueil')) {
                     ?> 
                     <div class="so-widget-sow-editor so-widget-sow-editor-base">
+                        <!-- TODO translate --> 
                         <h3 class="widget-title titleDL">Téléchargements</h3>
                     </div>
                     <div class="home-downloads">
                         <?php
-                        foreach ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') as $one_dnld) {
+                        if ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') ) {
+                            foreach ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') as $one_dnld) {
                             ?>
                             <div class="itemDL">
                                 <span class="icon-folder"></span>
@@ -66,16 +66,20 @@ get_header();
                                 <a href="<?php echo $one_dnld['guid']; ?>"><?php _e('Download', 'cnrswebkit') ?></a>
                             </div>
                             <?php
+                            }
                         }
                         ?>
                     </div>
                     <?php
                 }
 
-                // Affichage de l'agenda
-                if ($cnrs_global_params->field('partenaires_sur_la_page_daccueil')) {
-                    display_bottom_partenaires();
+                // Affichage des labo partenaires
+                /* TODO Not here 
+                 * if ($cnrs_global_params->field('partenaires_sur_la_page_daccueil')) {
+                   display_bottom_partenaires();
+                   
                 }
+                */
                 ?>
             </div><!-- .entry-content -->
         </article><!-- #post-## -->

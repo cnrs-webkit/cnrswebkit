@@ -40,7 +40,6 @@ if ( '' !== $current_item->value('duree_du_poste')  ) {
         <?php 
         the_content(); 
         display_bottom_emplois();
-        display_bottom_partenaires();
         ?>
     </div><!-- .entry-content -->
     <footer class="entry-footer">

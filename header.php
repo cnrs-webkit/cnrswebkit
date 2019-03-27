@@ -28,22 +28,25 @@
                 <header id="masthead" class="site-header" role="banner">
                     <div class="site-header-main">
                         <div class="site-branding">
-                            <?php // TODO Active cnrswebkit_the_custom_logo() AND Disable assets/img/kitweb.png  
-				// cnrswebkit_the_custom_logo(); ?>
-                            <a href="/" class="custom-logo-link" rel="home" itemprop="url"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/kitweb.png" class="custom-logo" itemprop="logo"></a>
-
-                            <?php if (is_front_page() && is_home()) : ?>
-                                <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
-                            <?php else : ?>
-                                <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
-                            <?php
+                            <?php 
+                            cnrswebkit_the_custom_logo();
+                            $titre = bloginfo('name');
+                            if ($titre) : 
+	                            if (is_front_page() && is_home()) : ?>
+	                                <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php echo $titre; ?></a></h1>
+	                            <?php else : ?>
+	                                <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php echo $titre; ?></a></p>
+	                            <?php
+	                            endif;
                             endif;
                             $description = get_bloginfo('description', 'display');
                             if ($description || is_customize_preview()) :
                                 ?>
-                                <?php echo $description; ?>
                                 <p class="site-description"><?php echo $description; ?></p>
                             <?php endif; ?>
+                        	<!-- Mini logos partenaires -->
+                        	<?php display_header_partenaires(); ?>
+                        	<!-- Fin Mini logos partenaires -->
                         </div><!-- .site-branding -->
                         <?php if (has_nav_menu('primary') || has_nav_menu('secondary') || has_nav_menu('social')) : ?>
                             <button id="menu-toggle" class="menu-toggle"><?php _e('Menu', 'cnrswebkit'); ?></button>
@@ -52,8 +55,8 @@
                                     <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e('Primary Menu', 'cnrswebkit'); ?>">
                                         <?php
                                         wp_nav_menu(array(
-                                            'menu_id' => 'menu-menu-principal',  // C. SEGUINOT 
-                                            'container_class' => 'menu-menu-principal-container',  // C. SEGUINOT 
+                                            'menu_id' => 'menu-menu-principal',  
+                                            'container_class' => 'menu-menu-principal-container',  
                                             'theme_location' => 'primary',
                                             'menu_class' => 'primary-menu',
                                         ));
@@ -64,8 +67,8 @@
                                     <nav id="secondary-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e('Secondary Menu', 'cnrswebkit'); ?>">
                                         <?php
                                         wp_nav_menu(array(                                        
-                                            'menu_id' => 'menu-menu-secondaire',  // C. SEGUINOT 
-                                            'container_class' => 'menu-menu-secondaire-container',  // C. SEGUINOT 
+                                            'menu_id' => 'menu-menu-secondaire',  
+                                            'container_class' => 'menu-menu-secondaire-container', 
                                             'theme_location' => 'secondary',
                                             'menu_class' => 'secondary-menu',
                                         ));
@@ -74,7 +77,7 @@
                                 <?php endif; ?>
                                 <div id="searchContainer">
                                     <form role="search" method="get" class="search-form" action="<?php echo get_site_url(); ?>">
-                                        <?php /* C. Seguinot add CSRF protection to search fomr TODO test nonce!*/ wp_nonce_field('search','_wpnonce'); ?>
+                                        <?php wp_nonce_field('search','_wpnonce'); ?>
                                         <input type="checkbox" id="checkSearch" />
                                         <input type="text" id="searchInput" placeholder="<?php _e( 'Search &hellip;', 'cnrswebkit' );?>" class="search-field" name="s" />
                                         <label for="checkSearch" id="searchIconContainer"><span class="icon-search"></span></label>

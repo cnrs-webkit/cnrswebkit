@@ -26,7 +26,6 @@ $current_item = new CnrswebkitRichData(get_the_ID());
         <?php
             }
             display_bottom_actualites();
-            display_bottom_partenaires();
         ?>
     </div><!-- .entry-content -->
     <footer class="entry-footer">

@@ -22,8 +22,7 @@ if (! $sidebar){
 
 
 get_header();
-// TODO next line commented in V0.3! Is ajax useful?? 
-// require_once( get_template_directory() . '/inc/ajax.php' );  
+
 ?>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -53,7 +52,6 @@ get_header();
                         echo '<br/><p>'. __('There is currently no event in the present list', 'cnrswebkit') . '</p>';
                     }
                  }
-                display_bottom_partenaires();
                 ?>
             </div><!-- .entry-content -->
         </article><!-- #post-## -->

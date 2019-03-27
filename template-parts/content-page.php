@@ -50,6 +50,5 @@ $current_item = new CnrswebkitRichData(get_the_ID());
             <?php
         }
         ?>
-        <?php display_bottom_partenaires(); ?>
     </div><!-- .entry-content -->
 </article><!-- #post-## -->

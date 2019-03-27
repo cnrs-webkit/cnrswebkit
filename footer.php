@@ -50,14 +50,16 @@
          */
         do_action('cnrswebkit_credits');
         ?>
-        <div class="cnrs-bottom-line">
-            <div><a href="/credits-mentions-legales/">Crédits & mentions légales</a></div>
-            <div><a href="/plan-du-site/">Plan du site</a></div>
-            <div><a href="/accessibilite/">Accessibilité</a></div>
-            <div><a href="/feed" target="_blank">RSS</a></div>
-            <div><a href="http://kit-web.cnrs.fr/" target="_blank">Conçu à partir du Kit Labos du CNRS</a></div>
-        </div>
+
     </div><!-- .site-info -->
+    <?php 
+    if ( !isset($current_item) || 
+        (isset($current_item) && ! $current_item->value('partenaires'))
+        ) {
+        // Disable display laboratory partners when page is event and the event has partners
+        display_bottom_partenaires(); 
+    } 
+    ?>
 </footer><!-- .site-footer -->
 </div><!-- .site-inner -->
 </div><!-- .site -->

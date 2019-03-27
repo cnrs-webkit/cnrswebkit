@@ -1,5 +1,7 @@
 #### [To appear in next release]
 
+#### Version 0.4.x
+
 ##### Added feature, template, functionalities
  * New : le kit propose à présent un widget actualité (News's list) affichant les dernières actualités 
  * New : le kit propose à présent un widget événements (event's list) affichant les dernièrs évéements 
@@ -9,8 +11,10 @@
  * function record_GET_filters() Sanitized for preventing SQL injection !!
  * Make cnrs_breadcrumb pluggable for possible override it in child theme
  * All template with or whitout sidebar  (parameter in template settings + additionnal templates)
- * 
- * 
+ * Partenaires du laboratoire : déplacé dans le footer pour s'adapter aux page avec/sans sidebar
+ * New : Tutelles du laboratoire à renseigner dans le réglage du thème (en plus des partenaires du labo)
+ * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
+ * new : text-align can be set (left or justify) in template settings  
  *  
  
 ##### Fixed bugs, errors 
@@ -68,10 +72,42 @@
  * Pages emploi () l’email du contact est à présent au formar des autres Uliens
  * Notice: Undefined variable: liste_evenement_url in template-parts/bottom-emploi.php on line 15
  * Warning: filesize()sur téléchargement: erreur due à guid des documents incorrects (modifiés dans base de données)
+ * Ajout du réglale page tutelles et partenaires
+ * Lien "en savoir plus sur nos tutelles" /partenaires était codé en dur
+ * Lien "en savoir plus sur nos tutelles" supprimé de la page tutelles
+ * section partenaires de l'événement était commentée,
+ * section partenaires du laboratoire affichait tous les partenaires  (pas ceux de la sélection dans réglage du thème) !! 
+  * le message "partenaires" au desus des logos est remplacé par le libellé du pods, ou sa traduction dans les pods
+ * suppression affichage des partenaires du labo SI l'événement a aussi des partenaires. (si 2 listes cela prête à confusion)
+ * déplacement du lien 'En savoir plus' avant les logo partenaires sur la page d'accueil (homepage.php)
+ * removed unused comment // require_once( get_template_directory() . '/inc/ajax.php' ); 
+ * removed undefined theme parameter : $display_header_text = bloginfo('display_header_text')
+ * le thème utilise à présent le logo défini dans l'admin (auparavant : /assets/img/kitweb.png !!
+ * removed unnecessary style in cnrswebkit_header_style (site-branding .site-title, .site-description) 
+ * ajout de l'affichage conditionnel du slogan get_bloginfo('description', 'display');
+
+ * Masquage de la version de  WordPress, car elle donne des informations aux hackers  (conseil Acunetix)  
+ * Nombre de partenaires du laboratoire n'est plus limité à 5!  
+ * NEW : fonction cnrswebkit_credits() créée, surchargeable dans le thème enfantpour afficher la ligne crédits... dans le bas de footer
+ * New : Tutelles du laboratoire à renseigner dans le réglage du thème (en plus des partenaires du labo)
+ * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
+
+ * new : text-align can be set (left or justify) in template settings
+ * new : parent style.css is loaded even when a child theme is used  
+ * Add missing templates: page whitout sidebar,  page with sidebar
+ * Affichage conditionnel du titre et du slogan du laboratoire seulement s'ils existent
+ * Page actualité: lien ne respectant pas la couleur définie dans le thème
+ * Sitemap: ajout de div autour des items (filter) , ajout de css pour sitemap sur 2 colonnes
  
+                  
  
- 
- 
+
+##### CSS changes  
+ * page rubriques (par exemple /le-laboratoire/
+  * "vignette" ajustée (taille dépassait l'écran), 
+ * CSS : cleaning and removing unused style : post-thumbnail 
+ * ajout id et classes au menu principal 'menu_id' => 'menu-menu-principal','container_class' => 'menu-menu-principal-container' pour styler en css
+ * ajout id et classes au menu secondaire 'menu_id' => 'menu-menu-secondaire', 'container_class' => 'menu-menu-secondaire-container',   
  
 
                        

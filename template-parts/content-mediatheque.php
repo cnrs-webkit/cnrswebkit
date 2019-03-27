@@ -21,7 +21,6 @@ $current_item = new CnrswebkitRichData(get_the_ID());
         <div class="article-chapo"><?php echo $current_item->value('chapo'); ?></div>
         <?php
         the_content();
-        display_bottom_partenaires();
         ?>
     </div><!-- .entry-content -->
     <footer class="entry-footer">

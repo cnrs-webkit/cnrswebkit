@@ -1,8 +1,8 @@
 <?php
-global $cnrs_global_params; // C. Seguinot added
+global $cnrs_global_params; 
 $custom_params = new CnrswebkitStdListParams();
 $custom_params->where = [
-    'relation' => 'AND', // C. Seguinot relation -> 'relation'
+    'relation' => 'AND',
     [
         'key' => 'date_de_debut',
         'value' => strftime('%Y-%m-%d %H:%M:%S'),
@@ -16,7 +16,6 @@ $custom_params->where = [
 ];
 $custom_params->limit = 2;
 $evenement_data = new CnrswebkitPageItemsList('evenement', $custom_params);
-// C. Seguinot remove aganda harcoded URL
 $liste_evenement_url= get_permalink($cnrs_global_params->field('pageliste_evenement')['ID']);
 if ($liste_evenement_url) {
 	$liste_evenement_url = '</h1><a href="'. $liste_evenement_url . '">' . __('Return to Events list', 'cnrswebkit') . '</a>';
