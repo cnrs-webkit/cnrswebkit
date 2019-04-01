@@ -8,6 +8,7 @@ $custom_params->where = [
 $custom_params->orederby = 'ID DESC';
 $custom_params->limit = 3;
 $actualite_data = new CnrswebkitPageItemsList('actualite', $custom_params);
+
 if ($actualite_data->has_items()) {
     ?>
     <div class="toRead">

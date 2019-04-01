@@ -16,7 +16,8 @@
         <div class="bottomLabo">
             <div>
                 <?php
-                display_labo_partenaires($cnrs_global_params);
+                // TODO supprimer cette div (bottomLabo") dans les prochaines version  si non réactivé
+                // display_labo_partenaires($cnrs_global_params);
                 ?>
             </div>
             

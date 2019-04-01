@@ -141,6 +141,7 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
     
     foreach ($default_reglage_du_theme->pods as $pod_id => $pod_array) {
         if ('reglage_du_theme' === $pod_array->name) {
+            // First add new field 
             foreach ($pod_array->fields as $field_slug => $field) {
                 if (! isset($reglage_du_theme->fields[$field_slug] ) ){
                     unset ($field->id);
@@ -149,6 +150,7 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
                     $message .= "<br/>&nbsp;&nbsp;&nbsp; - added field : $field->label [$field_slug]";
                 }
             }
+            // Add a message for administrator
             if ($message) {
                 $messages = array();
                 $messages[] = array('message' => "CNRS Webkit : Suite à la mise a jour ($previous_version ->$new_version) Veuillez paramétrer (dans l\'administration des Pods) les champs ajoutés suivants: ".$message,
@@ -163,12 +165,6 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
     update_option('CNRS_WEBKIT_VERSION', CNRS_WEBKIT_VERSION);
     
 }
-
-function cnrswebkit_unregister_some_post_type() {
-        unregister_post_type( 'contact' );
-    }
-
-// TODO add_action('init','cnrswebkit_unregister_some_post_type');
 
 class CnrswebkitListPageParams {
 
@@ -849,6 +845,7 @@ function display_bottom_partenaires() {
     include(locate_template('template-parts/bottom-partenaire.php'));
 }
 
+// TODO supprimer fonction et template dans les prochaines version  si non réactivé 
 function display_labo_partenaires($pods) {
     include(locate_template('template-parts/labo-partenaire.php'));
 }
@@ -920,8 +917,7 @@ function update_site_params($pieces, $is_new_item, $id) {
     if (empty($term)) {
         $term = 'left';
     }
-    var_dump($term); 
-
+    
     $content = preg_replace('/\$text_justify:[A-Za-z-]{4,15};/', '$text_justify:' . $term . ';', $content);
     
     file_put_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss', $content);
@@ -977,9 +973,7 @@ if ( ! function_exists ( 'cnrs_breadcrumb' ) ) {
     }
 }
 
-if (function_exists('pods')) {
-    $cnrs_global_params = pods('reglage_du_theme');
-}
+$cnrs_global_params = pods('reglage_du_theme');
 
 if (!$cnrs_global_params->field('commentaires_actifs')) {
 
@@ -1047,7 +1041,7 @@ if (!$cnrs_global_params->field('commentaires_actifs')) {
     add_action('init', 'df_disable_comments_admin_bar');
 }
 
-add_action('admin_notices', [new cnrsWebkitAdminNotices(), 'displayAdminNotice']);
+add_action('admin_notices', array('cnrsWebkitAdminNotices', 'displayAdminNotice'));
 /**
  * Class used to display notice message in admin
  * @author seguinot
@@ -1057,7 +1051,7 @@ class cnrsWebkitAdminNotices
 {
     const NOTICE_FIELD = 'cnrsWebkit_admin_notices';
     
-    public function displayAdminNotice()
+    public static function displayAdminNotice()
     {
         $notices = get_option(self::NOTICE_FIELD);
         

@@ -12,7 +12,7 @@
 
 
 <div class="itemPart">
-    <div class="headerThumbPart"><a href="<?php echo $current_item->value('site_web_du_partenaire'); ?>" target="_blank"><?php /* C. Seguinot 'thumb' */ echo get_the_post_thumbnail($current_item->value('ID'), 'post-thumbnail'); ?></a> </div>
+    <div class="headerThumbPart"><a href="<?php echo $current_item->value('site_web_du_partenaire'); ?>" target="_blank"><?php echo get_the_post_thumbnail($current_item->value('ID'), 'post-thumbnail'); ?></a> </div>
     
 </div>
 

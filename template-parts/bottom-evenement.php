@@ -4,7 +4,7 @@ $custom_params = new CnrswebkitStdListParams();
 $custom_params->where = [
     'relation' => 'AND',
     [
-        'key' => 'date_de_debut',
+        'key' => 'date_de_fin',
         'value' => strftime('%Y-%m-%d %H:%M:%S'),
         'compare' => '>='
     ],
@@ -20,6 +20,7 @@ $liste_evenement_url= get_permalink($cnrs_global_params->field('pageliste_evenem
 if ($liste_evenement_url) {
 	$liste_evenement_url = '</h1><a href="'. $liste_evenement_url . '">' . __('Return to Events list', 'cnrswebkit') . '</a>';
 }
+
 if ($evenement_data->has_items()) {
     ?>
     <div class="nextEvents">

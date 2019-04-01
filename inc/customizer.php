@@ -75,9 +75,22 @@ function cnrswebkit_header_style() {
     if ( display_header_text() ) {
 		return;
 	}
+	// If the header text has been hidden.
+	?>
+	<style type="text/css" id="cnrswebkit-header-css">
+		.site-branding {
+			margin: 0 auto 0 0;
+		}
+
+		.site-branding .site-title,
+		.site-branding .site-description {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute;
+		}
+	</style>
+	<?php
 }
 endif; // cnrswebkit_header_style
-
 /**
  * Adds postMessage support for site title and description for the Customizer.
  *

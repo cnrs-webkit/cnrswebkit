@@ -83,8 +83,8 @@
  * removed unused comment // require_once( get_template_directory() . '/inc/ajax.php' ); 
  * removed undefined theme parameter : $display_header_text = bloginfo('display_header_text')
  * le thème utilise à présent le logo défini dans l'admin (auparavant : /assets/img/kitweb.png !!
- * removed unnecessary style in cnrswebkit_header_style (site-branding .site-title, .site-description) 
- * ajout de l'affichage conditionnel du slogan get_bloginfo('description', 'display');
+ * ajout de l'affichage conditionnel du slogan et/ou du titre s'ils sont vide(s)
+ * Bouton "afficher le titre et le slogan du site" réactivé
 
  * Masquage de la version de  WordPress, car elle donne des informations aux hackers  (conseil Acunetix)  
  * Nombre de partenaires du laboratoire n'est plus limité à 5!  
@@ -98,8 +98,12 @@
  * Affichage conditionnel du titre et du slogan du laboratoire seulement s'ils existent
  * Page actualité: lien ne respectant pas la couleur définie dans le thème
  * Sitemap: ajout de div autour des items (filter) , ajout de css pour sitemap sur 2 colonnes
- 
-                  
+ * new : pods fields used in "theme settings" can be automatically reordered by the plugin (new CNRS Webkit menu)
+ * Actualite: change wrong fonts ('Lora')
+ * add parameter to hide author (ou config Wordpress ?? )
+ * Evénements sur la page d'accueil affiche à présent tous les événements dont date_de_fin>=aujourd'hui)  
+- [ ] "partenaire sur page d'accueil" déplacés dans le footer comme pour les autres pages (sinon situé au dessus des actualités et des événements!! 
+* devient inutile.            
  
 
 ##### CSS changes  

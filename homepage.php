@@ -73,13 +73,6 @@ get_header();
                     <?php
                 }
 
-                // Affichage des labo partenaires
-                /* TODO Not here 
-                 * if ($cnrs_global_params->field('partenaires_sur_la_page_daccueil')) {
-                   display_bottom_partenaires();
-                   
-                }
-                */
                 ?>
             </div><!-- .entry-content -->
         </article><!-- #post-## -->

@@ -22,7 +22,7 @@
         <link rel='stylesheet' id='style-lmo'  href='<?php echo get_template_directory_uri() . '/css/style-lmo.css'; ?>' type='text/css' media='all' />        
     </head>
     <body <?php body_class(); ?>>
-        <div id="page" class="site">
+       <div id="page" class="site">
             <div class="site-inner">
                 <a class="skip-link screen-reader-text" href="#content"><?php _e('Skip to content', 'cnrswebkit'); ?></a>
                 <header id="masthead" class="site-header" role="banner">
@@ -30,7 +30,7 @@
                         <div class="site-branding">
                             <?php 
                             cnrswebkit_the_custom_logo();
-                            $titre = bloginfo('name');
+                            $titre = get_bloginfo( 'name', 'display' );
                             if ($titre) : 
 	                            if (is_front_page() && is_home()) : ?>
 	                                <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php echo $titre; ?></a></h1>

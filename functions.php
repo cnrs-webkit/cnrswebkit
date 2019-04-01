@@ -28,13 +28,33 @@
  // Constante de Version.
 define( 'CNRS_WEBKIT_VERSION', '0.4.1' );
 
+// .../wp-content/plugins/lab-directory
+define( 'CNRS_WEBKIT_DIR', dirname( __FILE__ ) );
+define( 'CNRS_WEBKIT_URL', plugins_url('', __FILE__ ) );
+
 /**
  * CNRS Web Kit only works in WordPress 4.4 or later.
  */
 if (version_compare($GLOBALS['wp_version'], '4.4-alpha', '<')) {
+    // TODO Add messages for /inc/back-compat.php';
     require get_template_directory() . '/inc/back-compat.php';
 }
+
+// TODO ?? is_plugin_active('pods')  toujours false ici (pas chargé)
+if (! function_exists('pods')) {
+    // TODO Add messages for /inc/back-compat.php';
+    require get_template_directory() . '/inc/back-compat.php';
+
+}
+
+
 // TODO add dependancy (wp-scss, pods, ? ? )
+/*
+ * 
+if ( ! is_plugin_active('pods') ) {    
+    require get_template_directory() . '/inc/back-compat.php';
+}
+ */
 
 /*
  * load the event's list widget and news_widget
@@ -43,7 +63,7 @@ require dirname( __FILE__ ) . '/inc/events_widget.php';
 require dirname( __FILE__ ) . '/inc/news_widget.php';
 
 /**
- * C. SEGUINOT TRIED TO activate shortcodes!!
+ * TODO TRIED TO activate shortcodes!!
  * Allow Pods Templates to use shortcodes
  *
  * NOTE: Will only work if the constant PODS_SHORTCODE_ALLOW_SUB_SHORTCODES is defined and set to
@@ -60,7 +80,7 @@ add_filter( 'pods_shortcode', function( $tags )  {
 
 // apply_filters( 'upgrader_pre_download', bool $reply, string $package, WP_Upgrader $this )
 function filter_upgrader_pre_download( $false, $package, $instance ) {
-    // var_dump($package);die();
+    // TODOTODO  CODE ?? var_dump($package);die();
     return $false;
 };
 
@@ -80,7 +100,19 @@ add_filter( 'wsp_authors_return', 'wsp_items_add_div', 10, 1 );
 add_filter( 'wsp_cpts_return', 'wsp_items_add_div', 10, 1 );
 add_filter( 'wsp_taxonomies_return', 'wsp_items_add_div', 10, 1 );
 add_filter( 'wsp_taxonomies_return', 'wsp_items_add_div', 10, 1 );
-// C.SEGUINOT TEMPORAIRE!!! Acunetix Vulnerable Javascript library
+
+
+/*
+function cnrswebkit_unregister_some_post_type() {
+    die('stop');
+    // unregister_post_type( 'contact' );
+}
+
+// Pods use default priority 10, higher must be used here
+// TODO add_action('init','cnrswebkit_unregister_some_post_type', 20, 0);
+*/
+
+// TODO TEMPORAIRE!!! Acunetix Vulnerable Javascript library
 // This will replace core jQuery version and instead load version 3.1.1 from Google's server.
 function replace_core_jquery_version() {
     wp_deregister_script( 'jquery' );
@@ -96,9 +128,12 @@ add_filter( 'xmlrpc_enabled', '__return_false' );
 
 // Pensez à masquer la version de votre WordPress, car elle donne des informations aux hackers
 remove_action("wp_head", "wp_generator");
-    
-    
-    
+ 
+/* =========================== */
+if ( is_admin() ) {
+    require_once ( dirname( __FILE__ ) . '/admin/classes/post-install.php' );
+    cnrs_webkit_post_install::init();
+}
 
 if (!function_exists('cnrswebkit_setup')) :
 

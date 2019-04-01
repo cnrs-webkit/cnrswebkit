@@ -1,4 +1,6 @@
 <?php
+// TODO supprimer ce template dans les prochaines version  si non réactivé
+
 // TODO why not use $cnrs_global_params instead of pods ???
 if ($pods->field('partenaires_du_laboratoire')) {
     $partenaires = [];
