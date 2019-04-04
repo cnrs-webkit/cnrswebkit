@@ -14,13 +14,14 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of news', 'cnrswebkit');
 
-$sidebar = $cnrs_global_params->field('liste_actualites_with_sidebar');
+$sidebar = "1" === $cnrs_global_params->field('liste_actualites_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
 }
 
 get_header();
+
 ?> 
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -69,7 +70,7 @@ get_header();
 </div><!-- .content-area -->
 
 <?php 
-if ( $sidebar ){
+if ( $sidebar ){ 
     get_sidebar();
 }
 

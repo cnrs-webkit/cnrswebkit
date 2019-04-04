@@ -13,7 +13,9 @@
 // Translators: Template Name translation.
 __('CNRS WebKit partner without sidebar', 'cnrswebkit');
 
-get_header(); ?>
+add_filter( 'body_class', 'add_no_sidebar_class' );
+get_header();
+?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">

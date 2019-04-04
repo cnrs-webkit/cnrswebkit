@@ -14,13 +14,15 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of publication', 'cnrswebkit');
 
-$sidebar = $cnrs_global_params->field('liste_publications_with_sidebar');
+
+$sidebar = "1" === $cnrs_global_params->field('liste_publications_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
 }
 
 get_header();
+
 ?>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">

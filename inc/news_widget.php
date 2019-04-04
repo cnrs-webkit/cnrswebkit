@@ -130,7 +130,8 @@ class cnrswebkit_news_widget extends WP_Widget {
 	
 	public static function get_widget_output(&$params){
 
-		global $wpdb;
+	    global $cnrs_global_params;
+	    global $wpdb;
 	
 		$news = array();							
 
@@ -153,10 +154,10 @@ class cnrswebkit_news_widget extends WP_Widget {
 		}
 		if ($params['display_all_news_link']) {
 			// TODO la page agenda ne liste que les événement futur !!
-			$query = "SELECT post_id FROM {$wpdb->postmeta} as p WHERE p.meta_key='_wp_page_template' and p.meta_value='templates/template actualite.php' LIMIT 1; 
-			";
-			if ($id = $wpdb->get_var($query)) {
-				$output .= '<li><a href="' . get_permalink($id) . '">' . __( 'More on "all news" page', 'cnrswebkit' ) . '</a></li>';
+		    $url = get_pod_page('pageliste_actualite');
+		    
+		    if ($url) {
+		        $output .= '<li><a href="' . $url . '">' . __( 'More on "all news" page', 'cnrswebkit' ) . '</a></li>';
 			}
 		}
 		

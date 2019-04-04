@@ -46,14 +46,6 @@ $nb_logos = $nb_partenaires + $nb_tutelles;
 if ( 0 === $nb_logos ) {
     return; 
 }
-$pagetutelles_et_partenaires_url = get_permalink($cnrs_global_params->field('pagetutelles_et_partenaires')['ID']);
-$is_page_tutelles_et_partenaires = ($pagetutelles_et_partenaires_url === get_the_permalink() );
-
-if ($pagetutelles_et_partenaires_url && !$is_page_tutelles_et_partenaires) {
-    $pagetutelles_et_partenaires_url = '<a href="'. $pagetutelles_et_partenaires_url . '">' . __('Learn more about our partners', 'cnrswebkit') . '</a>';
-} else {
-    $pagetutelles_et_partenaires_url = '';
-}
 
 $first=true;
 
@@ -88,7 +80,22 @@ if ($nb_partenaires && $partenaires_data->has_items()) {
         </div>
     </div>
     <?php
+}
+
+if ($nb_logos) {
+    // TODOTODO erreur polylang activé: get_permalink($cnrs_global_params->field('pagetutelles_et_partenaires')['ID']); récupère la page dans la langue de la page courant, ien si elle n'existe pas!!
+    
+    $pagetutelles_et_partenaires_url = get_pod_page('pagetutelles_et_partenaires');
+    $is_page_tutelles_et_partenaires = ($pagetutelles_et_partenaires_url === get_the_permalink() );
+    
+    if ($pagetutelles_et_partenaires_url && !$is_page_tutelles_et_partenaires) {
+        // TODO message = tutelle ou partenaires ou les 2!!!
+        $pagetutelles_et_partenaires_url = '<a href="'. $pagetutelles_et_partenaires_url . '">' . __('Learn more about our partners', 'cnrswebkit') . '</a>';
+        ?>
+        <div class="partKnowMore"><?php echo $pagetutelles_et_partenaires_url;?></div>
+        <?php
+    } 
 } 
 
 ?> 
-<div class="partKnowMore"><?php echo $pagetutelles_et_partenaires_url;?></div>
+

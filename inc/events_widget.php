@@ -250,7 +250,9 @@ class cnrswebkit_events_widget extends WP_Widget {
 	
 	public static function get_widget_output(&$params){
 
-		global $wpdb;
+	    global $cnrs_global_params;
+	    
+	    global $wpdb;
 		$date_format  = $params['date_format'];
 		$year_format = $params['year_format'];
 		$month_format  = $params['month_format'];
@@ -332,10 +334,10 @@ class cnrswebkit_events_widget extends WP_Widget {
 		}
 		if ($params['display_all_event_link']) {
 			// TODO la page agenda ne liste que les événement futur !!
-			$query = "SELECT post_id FROM {$wpdb->postmeta} as p WHERE p.meta_key='_wp_page_template' and p.meta_value='templates/template agenda.php' LIMIT 1; 
-			";
-			if ($id = $wpdb->get_var($query)) {
-				$output .= '<li><a href="' . get_permalink($id) . '">' . __( 'More on "all events" page', 'cnrswebkit' ) . '</a></li>';
+		    $url = get_pod_page('pageliste_evenement');
+		    
+			if ($url) {
+			    $output .= '<li><a href="' . $url . '">' . __( 'More on "all events" page', 'cnrswebkit' ) . '</a></li>';
 			}
 		}
 		

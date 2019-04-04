@@ -185,7 +185,6 @@ body.page-template-templateactualite .entry-content .loop-contents-actualite art
         margin-top:30px;
     }                            
     article.publication .pubdescription{
-        color:$black;
         margin:0;
         margin-bottom: 20px;
         font-size:15px;
@@ -193,7 +192,7 @@ body.page-template-templateactualite .entry-content .loop-contents-actualite art
         letter-spacing: 0.1px;
     }
     .entry-content blockquote p {
-        border-left: 3px solid $mainColor;
+        border-left: 3px solid;
     }
     #actualite-social-links{padding-top:0;}
 

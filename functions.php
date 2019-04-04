@@ -36,25 +36,16 @@ define( 'CNRS_WEBKIT_URL', plugins_url('', __FILE__ ) );
  * CNRS Web Kit only works in WordPress 4.4 or later.
  */
 if (version_compare($GLOBALS['wp_version'], '4.4-alpha', '<')) {
-    // TODO Add messages for /inc/back-compat.php';
-    require get_template_directory() . '/inc/back-compat.php';
+    require_once get_template_directory() . '/inc/back-compat.php';
+    Return;
 }
 
-// TODO ?? is_plugin_active('pods')  toujours false ici (pas chargé)
-if (! function_exists('pods')) {
-    // TODO Add messages for /inc/back-compat.php';
-    require get_template_directory() . '/inc/back-compat.php';
-
-}
+// Check for dependancies before get_header is called
+require_once get_template_directory() . '/inc/dependancy-check.php';
 
 
-// TODO add dependancy (wp-scss, pods, ? ? )
-/*
- * 
-if ( ! is_plugin_active('pods') ) {    
-    require get_template_directory() . '/inc/back-compat.php';
-}
- */
+// TODO add dependancy (wp-scss, )
+
 
 /*
  * load the event's list widget and news_widget
@@ -75,17 +66,30 @@ add_filter( 'pods_shortcode', function( $tags )  {
     return $tags;
     
 });
-    
-// define the upgrader_pre_download callback to stop upgrade of a local git project/folder
 
-// apply_filters( 'upgrader_pre_download', bool $reply, string $package, WP_Upgrader $this )
-function filter_upgrader_pre_download( $false, $package, $instance ) {
-    // TODOTODO  CODE ?? var_dump($package);die();
-    return $false;
+/**
+ *  Define the upgrader_pre_download callback to stop upgrade if folder is a git or an Eclipse project.
+ *
+ * @param boolean $reply : reply sent by Wordpress (Whether to bail without returning the package. Default false.).
+ * @param string  $package : a theme/package name.
+ * @param object  $instance : the plugin WP_Upgrader instance.
+ *
+ * @return boolean $reply : always return the incoming $reply parameter
+ */
+function cnrs_webkit_upgrader_pre_download( $reply, $package, $instance ) {
+    
+    if ( false !== strpos( $package, 'cnrswebkit' ) && (
+            file_exists( CNRS_WEBKIT_DIR . '/.gitignore' )
+            || file_exists( CNRS_WEBKIT_DIR . '/.project' ) ) ) {
+        // Cancel this update.
+        return new WP_Error( 'update canceled', __( 'CNRS Webkit update has been canceled because corresponding folder is a git folder and/or an eclipse project', 'lab-hal' ) );
+    }
+    
+    return $reply;
 };
 
 // add the filter
-add_filter( 'upgrader_pre_download', 'filter_upgrader_pre_download', 10, 3 );
+add_filter( 'upgrader_pre_download', 'cnrs_webkit_upgrader_pre_download', 10, 3 );
 
 // Sitemap: ajout de div autour des items, ajout de css pour sitemap sur 2 colonnes
 function wsp_items_add_div($return) {
@@ -121,6 +125,7 @@ function replace_core_jquery_version() {
 }
 
 add_action( 'wp_enqueue_scripts', 'replace_core_jquery_version' );
+
 
 // Disable use XML-RPC
 add_filter( 'xmlrpc_enabled', '__return_false' );
@@ -237,6 +242,7 @@ if (!function_exists('cnrswebkit_setup')) :
     }
 
 endif; // cnrswebkit_setup
+
 add_action('after_setup_theme', 'cnrswebkit_setup');
 
 if (!function_exists('cnrswebkit_credits')) :
@@ -248,6 +254,7 @@ if (!function_exists('cnrswebkit_credits')) :
      * @since CNRS Web Kit 1.0
      */
     function cnrswebkit_credits() {
+        // TODO ça remplacer par menu (traduction) 
         ?>
         <div class="cnrs-bottom-line">
             <div><a href="/credits-mentions-legales/">Crédits & mentions légales</a></div>

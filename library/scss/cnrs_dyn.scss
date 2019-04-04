@@ -1,6 +1,6 @@
 /* dynamic-area-start */
 
-$mainColor:#fc4246;
+$mainColor:#ae2573;
 // $mainColor default:#ea514a;
 
 $text_justify:justify;
@@ -48,8 +48,6 @@ $white:#fff;
 
 @mixin fullWidth{
     padding: 70px 112px 100px 112px;
-    width: calc(100% + 224px);
-    margin: 0 -112px;
     @media screen and (max-width: 910px) {
         width:100%;
         margin:0;
@@ -64,9 +62,6 @@ $white:#fff;
         font-family: 'Roboto', sans-serif;
         //padding:60px 30px;
         @include fullWidth;
-        /*padding: 70px 112px 100px 112px;
-        width: calc(100% + 224px);
-        margin: 0 -112px;*/
         //width:100%;
         display:flex;
         justify-content: space-between;
@@ -678,7 +673,6 @@ header.site-header{
     .partTitle{
         /* @include genTitles;*/
         font-weight:700;
-        font-size:24px;
         letter-spacing: 0.1px;
         float:left;
         width:60%;
@@ -693,8 +687,8 @@ header.site-header{
         //width:98%;
         width:100%;
         .itemPart{
-            max-width:150px;
-            margin: 0 20px 0 20px;
+            max-width:200px;
+            padding: 0 20px 0 20px;
             line-height: 15px;
             text-align:center;
             @media screen and (max-width: 910px) {width:50%;}

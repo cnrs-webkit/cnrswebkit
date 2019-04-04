@@ -12,7 +12,7 @@
         <h3><?php echo get_bloginfo('name'); ?></h3>
         <p><?php echo $cnrs_global_params->field('presentation_du_site'); ?></p>
         <!-- TODO lien codé en dur!  --> 
-        <div class="bottomLabo"><a href="/le-laboratoire/"><?php _e('En savoir plus', 'cnrswebkit') ?></a></div>
+        <div class="bottomLabo"><a href="/le-laboratoire/"><?php _e('En savoir plus sur le laboratoire ...', 'cnrswebkit') ?></a></div>
         <div class="bottomLabo">
             <div>
                 <?php

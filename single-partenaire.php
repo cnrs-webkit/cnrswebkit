@@ -7,14 +7,16 @@
  * @since CNRS Web Kit 1.0
  */
 
+ 
 global $cnrs_global_params;
-$sidebar = $cnrs_global_params->field('partenaire_with_sidebar');
+$sidebar = "1" === $cnrs_global_params->field('partenaire_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
 }
 
-get_header(); ?>
+get_header();
+?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">

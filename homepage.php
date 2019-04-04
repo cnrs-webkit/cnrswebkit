@@ -16,7 +16,7 @@ get_header();
     <main id="main" class="site-main" role="main">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <header class="entry-header">
-                <?php //the_title('<h1 class="entry-title">', '</h1>'); ?>
+                <?php // No title, we use lab title there in home-top.php the_title('<h1 class="entry-title">', '</h1>'); ?>
             </header><!-- .entry-header -->
             <div class="entry-content">
                 <?php
@@ -32,7 +32,7 @@ get_header();
                     $custom_params->limit = $cnrs_global_params->field('nombre_dactualites_page_daccueil');
                     $actualite_data = new CnrswebkitPageItemsList('actualite', $custom_params);
                     if ($actualite_data->has_items()) {
-                        ?>
+                        // TODOHREF?>
                         <div class="actuHeader"><h3 class="actuTitle">Les Actualités</h3><a href="/les-actualites/" class="linkAllActus"><?php _e('See All news', 'cnrswebkit') ?></a></div>
                         <div class="loop-contents loop-contents-actualite">
                             <?php

@@ -46,11 +46,10 @@ function cnrs_session_start() {
 
 function cnrsenqueue() {
     // cnrsenqueue() is run when using parent or child theme
-    
-    // always load parent style.css if active child theme Note: style.css is loaded before cnrs_dyn.css
-    wp_enqueue_style('cnrswebkit-parent-styles', get_template_directory_uri() .'/style.css', false);
-    
+   
     if (is_child_theme()) {
+        // always load parent style.css if active child theme Note: style.css is loaded before cnrs_dyn.css
+        wp_enqueue_style('cnrswebkit-parent-styles', get_template_directory_uri() .'/style.css', false);
         // Load child theme style.css
         $deps = array('cnrswebkit-parent-styles');
         wp_enqueue_style('cnrswebkit-child-styles', get_stylesheet_uri(), $deps);
@@ -165,6 +164,36 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
     update_option('CNRS_WEBKIT_VERSION', CNRS_WEBKIT_VERSION);
     
 }
+
+/**
+ * Get the page id for page defined in reglage_du_theme pods
+ *
+ * Getting the page permalink fail when Polylang is used but the given page has no translation
+ * This function search for permalink when polylang is not used. When polylang in used,
+ * first search the locale page URL (locale = current page language) if it exists or
+ * secondly search for the default language page (tis one should exist)
+ *
+ * @param string $field  pod field name
+ * return string '' or the page URL
+ *
+ */
+function get_pod_page ($field='') {
+    $id = get_option('reglage_du_theme_'.$field);
+    if(! is_array($id) ) {
+        return '';
+    }
+    if (function_exists ('pll_languages_list') ) {
+        $pid = pll_get_post($id[0], get_locale()) ;
+        if (! $pid ) {
+            $pid = pll_get_post($id[0], pll_default_language('locale') ) ;
+            
+        }
+        return get_permalink($pid);
+    } else {
+        return get_permalink($id[0]);
+    }
+}
+
 
 class CnrswebkitListPageParams {
 
@@ -392,11 +421,12 @@ class CnrswebkitPageItemsList {
                     'first_last' => false,
                     'prev_text' => '',
                     'next_text' => '',
-                //'page_var' => 'pg',
-                //'base' => get_permalink() . "page/%_%",
-                //'format' => "{$this->page_var}%#%",
                 )
         );
+        // TODO temporary fix Pods issue: https://github.com/pods-framework/pods/issues/5184
+        if (false === strpos( $pagination, 'pods-pagination-last' ) ) {
+            $pagination = "";
+        }
         return $pagination;
     }
 

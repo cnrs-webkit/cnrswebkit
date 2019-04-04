@@ -103,9 +103,15 @@
  * add parameter to hide author (ou config Wordpress ?? )
  * Evénements sur la page d'accueil affiche à présent tous les événements dont date_de_fin>=aujourd'hui)  
 - [ ] "partenaire sur page d'accueil" déplacés dans le footer comme pour les autres pages (sinon situé au dessus des actualités et des événements!! 
-* devient inutile.            
- 
-
+* devient inutile.   
+ * Fix : Si polylang est utilisé, les pages pointées par les pods (dans réglage du thème) ne sont pas trouvées si elles ne sont pas traduites.
+ * Fix : la désactivation de Pods bloque Wordpress en admin etFrontend si le theme CNRS Webkit est activé
+ * Fix : largeur des fenêtres next events, newsletter registration... empiète sur sidebar. 
+ * Styling : contenu événement est à présent sur 2 colonnes
+ * Bug : Fichiers /css/style-lmo.css contient paramètres inutilisables $black et  $mainColor;
+ * homepage "En savoir plus" remplacé par texte plus explicite "En savoir plus sur le laboratoire"
+ * Fix : Pagination show for Single page : Pods issue: https://github.com/pods-framework/pods/issues/5184
+        
 ##### CSS changes  
  * page rubriques (par exemple /le-laboratoire/
   * "vignette" ajustée (taille dépassait l'écran), 

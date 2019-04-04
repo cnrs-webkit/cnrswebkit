@@ -8,13 +8,15 @@
  */
 
 global $cnrs_global_params;
-$sidebar = $cnrs_global_params->field('page_with_sidebar');
+$sidebar = "1" === $cnrs_global_params->field('page_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
 }
 
-get_header(); ?>
+get_header();
+
+?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">

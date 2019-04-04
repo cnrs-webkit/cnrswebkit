@@ -30,9 +30,7 @@ $ics_form = '<form method="post" action="' . get_template_directory_uri() . '/to
     <div class="entry-content">
         <div class="leftCol">
             <div class="article-chapo"><?php echo $current_item->value('chapo'); ?></div>
-            <?php
-            the_content();
-            ?>
+            
         </div>
         <div class="rightCol">
             <div class="eventDateRight"><?php echo get_event_dates($current_item->value('date_de_debut'), $current_item->value('date_de_fin'), 'dateeventsingle'); ?></div>
@@ -51,6 +49,7 @@ $ics_form = '<form method="post" action="' . get_template_directory_uri() . '/to
             <?php echo get_the_post_thumbnail($current_item->value('ID'), 'cnrsloop-size'); ?>
         </div>
         <?php 
+        the_content();
         if ($current_item->value('partenaires')) {
             $event_with_partners = true;
             $custom_params = new CnrswebkitStdListParams();

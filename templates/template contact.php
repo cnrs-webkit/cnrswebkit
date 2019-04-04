@@ -14,7 +14,8 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of contact', 'cnrswebkit');
 
-$sidebar = $cnrs_global_params->field('liste_contacts_with_sidebar');
+
+$sidebar = "1" === $cnrs_global_params->field('liste_contacts_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
@@ -36,7 +37,7 @@ get_header();
                 $_SESSION['lettre_contact'] = false;
                 $contact_data = new CnrswebkitPageItemsList('contact');
                 echo $contact_data->get_html_filters('contact');
-//                echo $contact_data->get_pagination();
+                echo $contact_data->get_pagination();
                 ?>
                 <div id="contact_ajax_container" class="loop-contents loop-contents-contact">
                     <?php
@@ -53,7 +54,7 @@ get_header();
                 </div>
                 <div class="moreContacts"><a page="1" target="#contact_ajax_container">Afficher plus de contacts</a></div>
                 <?php
-//                echo $contact_data->get_pagination();
+                echo $contact_data->get_pagination();
                 ?>
             </div><!-- .entry-content -->
         </article><!-- #post-## -->

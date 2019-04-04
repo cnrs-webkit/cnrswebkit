@@ -41,21 +41,22 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 
 - [ ] Add possible defaut parameter (so that template can be used whitout saving settings first)
      * at install 
-     * at upgrade to for added fields
-- [ ] Disable CPT programmatically (filter pods_wp_post_types) 
+     * at upgrade too for added fields
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] utilité du template content-publication ?? avec !!! "eventDateRight "addCalendar" et "eventLocation" !!!
 - [ ] faut-il ajouter if ( !defined( 'ABSPATH' ) ) exit; aux fichier template, aux autres fichiers PHP ??
 
 - [ ] revoir tous les echo print printf _e( __( _x(
-- [ ] revoir tous les liens href (codage en dur!)
+- [ ] TODOHREF
 - [ ] put code in classes AND separate admin from frontend 
 - [ ]   * GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
 - [ ] image médiathèque/admin le champ à la une m’apparaît totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!)
-    * le champ ne semble pas utilisé: 
+    * le champ ne semble pas utilisé: (vérifié)
     * "Photos et vidéos issues de nos recherches." s'affiche si médiathèque vide v03.fr pb ???? 
 - [ ] Page 404.php n’apparaît pas dans la bonne langue , pourtant locale correcte !!
 - [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
+- [ ] Disable CPT programmatically (filter pods_wp_post_types) 
+
 - [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
 - [ ] Page agenda ne liste que les événement passés (ajouter un lien sur la page pour tous les événements ? 
 - [ ] En faisant ce test (événements ) , j’ai découvert un comportement inadapté de l’affichage des événements:. Je ne comprends pas comment est faite cette sélection.
@@ -63,14 +64,7 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * sur la page « l’agenda » seuls les événements futurs non listés dans « prochains événements » sont affichés (il en manque ici aussi!). 
 
 - [ ] **Voir toutes les commentaires ajoutés TODO SEGUINOT qui pourraient subsister et indiquer des corrections à ajouter non répertoriées dans les lignes précédentes ... **
-- [ ] **Voir toutes les commentaires du thème enfant IRCIA de C. Seguinot qui correspondent à des modifications par rapport au thème original ... **
-- [ ] téléchargement homepage rien sur la page en anglais !!
 - [ ] revoir css mobile
-
-- [ ] Fichiers stylesheets/style-lmo.css  Qu'est ce ?    
-   * color:$black;
-   * border-left: 3px solid $mainColor;
-- [ ] si pods désactivés admin bloqué :Notice: Undefined variable: cnrs_global_params in /home/seguinot/Documents/www/CNRS_Web_Kit_github/wp-content/themes/cnrswebkit/inc/inc-pages-functions.php on line 979
 
 - [ ] import valeurs des pods? ? 
 - [ ] Ajouter aux pods les traductions du json si elles existent dans le thème par défaut JSON , et si elles n'existent pas dans le thème
@@ -78,15 +72,16 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * aux autres pods oui 
    * label_en_GB description_en_GB (! double undescore )
 - [ ] import contenus d'un site (install)
-- [ ] résultat de la recherche pas explicite (rechercher hal par exemple) 
+- [ ] résultat de la recherche pas explicite (rechercher hal par exemple) afficher de vrai liens!! pas des titres? 
 - [ ] revoir toutes les polices font-family:
 - [ ] revoir couleur lien bas de page !! 
 - [ ] ajouter qq traductions dans admin 
-- [ ] "En savoir plus" à remplacer sur homepage par message plus explicite
-- [ ] // TODOTODO  function filter_upgrader_pre_download( $false, $package, $instance ) {
-    
+- [ ] traduction ? toutes avec 'cnrswebkit' ? certaines avec avec 'cnrs_webkit');
+- [ ] générer .pot 
+- [ ] tester emploi_form...
+- [ ] $cnrs_webkit_list_filtered à généraliser !!
 - [ ] 
-- [ ] 
+   
 
 ### liste des infos à publier dans la doc ou dans FAQ
 - [ ] Comment désactiver social network sur la page actus ? 
@@ -103,7 +98,9 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
   * ajouter les langues dns l'administration
   * dans l'administration (des pods) /composants: activer le composant "Translate Pods Admin" s'il n'est pas activé
   * le menu administration (des pods) /translate pods apparait: dans ce menu activer les langues désirées
-
+- [ ] téléchargement homepage rien sur la page en anglais !!
+  * il faut traduire les contenus événements et actualités. 
+ 
 
 ### Liste des bugs et améliorations à apporter sur theme cnrswebkit
 - [ ] Slogan et titre du site :/wp-admin/options-general.php ajouter un message explicatif dans l’admin (du thème ? Ou de WP ? )  
@@ -120,6 +117,6 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * – l’ajout de do_shortcode() sur un champs ne résout pas le problème
    * – la solution proposée par https://pods.io/docs/build/using-shortcodes-pods-templates/ ne fonctionne pas non plus.
  - [ ] pb affichage si col aside courte: il faudrait étendre les sections dans la partie vide de sidebar. Comment ? 
-   
+   * Pagination et filtres sur même ligne 50/50 flex (similaire aux "articles" dans la boucle actualités)
 
 

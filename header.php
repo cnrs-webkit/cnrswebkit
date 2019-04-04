@@ -8,6 +8,7 @@
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
     <head>
@@ -21,6 +22,7 @@
         <?php wp_head(); ?>
         <link rel='stylesheet' id='style-lmo'  href='<?php echo get_template_directory_uri() . '/css/style-lmo.css'; ?>' type='text/css' media='all' />        
     </head>
+
     <body <?php body_class(); ?>>
        <div id="page" class="site">
             <div class="site-inner">
@@ -48,7 +50,7 @@
                         	<?php display_header_partenaires(); ?>
                         	<!-- Fin Mini logos partenaires -->
                         </div><!-- .site-branding -->
-                        <?php if (has_nav_menu('primary') || has_nav_menu('secondary') || has_nav_menu('social')) : ?>
+                        <?php  if (has_nav_menu('primary') || has_nav_menu('secondary') || has_nav_menu('social')) : ?>
                             <button id="menu-toggle" class="menu-toggle"><?php _e('Menu', 'cnrswebkit'); ?></button>
                             <div id="site-header-menu" class="site-header-menu">
                                 <?php if (has_nav_menu('primary')) : ?>

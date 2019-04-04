@@ -21,6 +21,7 @@ if ($liste_evenement_url) {
 	$liste_evenement_url = '</h1><a href="'. $liste_evenement_url . '">' . __('Return to Events list', 'cnrswebkit') . '</a>';
 }
 
+//TODO display it when filtered list whitout items !!
 if ($evenement_data->has_items()) {
     ?>
     <div class="nextEvents">

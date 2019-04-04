@@ -1,0 +1,75 @@
+<?php
+/**
+ * CNRS Web Kit dependancy (Pods) check
+ *
+ * Prevents CNRS Web Kit from running on WordPress whitout Pods Framework activated
+ * If Pods Framework is uninstalled or unactivated, CNRS Webkit theme freezes frontend and backend  
+ * For this reason Wordpress is stopped and Wordpress theme will be reset next time the admin panel is open
+ *
+ * @package CNRS_Web_Kit
+ * @subpackage CNRS_Web_Kit
+ * @since CNRS Web Kit 1.0
+ */
+
+/**
+ * Prevent running CNRS Web Kit whitout Pods Framework activated
+ *
+ * Switches to the default theme.
+ *
+ * @since CNRS Web Kit 1.0
+ */
+function cnrswebkit_dependancy_check(){
+    global $messages;
+    $messages = array(); 
+    // Check for pods ! 
+    if (! function_exists('pods')) {
+        $messages[] = __( 'CNRS Web Kit requires Pods Framework/plugin. Please Ask an administrator to reactivate and/or install Pods .', 'cnrswebkit' );
+        if (is_admin() ){
+            $messages[] = __( 'It appears that Pods Framework has been uninstalled or unactivated. This breaks CNRS Webkit theme and cause frontend and backend freezing.', 'cnrswebkit' );  
+            $messages[] = '<a href="">' . __( 'Wordpress theme has been reset to Default theme.', 'cnrswebkit' ). '</a>';
+            switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
+            unset( $_GET['activated'] );
+        }
+    }
+    
+    if (empty($messages) ) {
+        return; 
+    }
+    // Dependancies issue found !
+    ?>
+    <html>
+    <head>
+    <style>
+    body  {
+        background-color: #f1f1f1 ;
+    } 
+    div.error {
+        margin: 5px 15px 2px;
+        padding: 5px;
+    }
+    div.error p{
+        margin: 5px 15px 2px;
+        border-left: 4px solid #dc3232;
+        background-color: #fff; 
+        box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+        padding: 12px;
+    }
+    </style>
+    </head>
+    <body>
+    <?php 
+    // TODO add minimal style 
+    foreach ($messages as $message) {
+        echo '<div class="error"><p>' . $message . "</p></div>\n";
+    }
+    ?>
+    </body>
+    </html>
+    <?php
+    die(2);
+    
+  
+}
+
+
+cnrswebkit_dependancy_check(); 

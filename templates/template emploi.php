@@ -14,7 +14,7 @@
 // Translators: Template Name translation.
 __('CNRS WebKit list of job offer', 'cnrswebkit');
 
-$sidebar = $cnrs_global_params->field('liste_emplois_with_sidebar');
+$sidebar = "1" === $cnrs_global_params->field('liste_emplois_with_sidebar');
 
 if (! $sidebar){
     add_filter( 'body_class', 'add_no_sidebar_class' );
