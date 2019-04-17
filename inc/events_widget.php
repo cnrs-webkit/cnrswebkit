@@ -1,4 +1,5 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
 
 /*
  * Name cnrswebkit_events_widget
@@ -26,7 +27,8 @@ class cnrswebkit_events_widget extends WP_Widget {
 	protected $defaults;
 	function __construct() {
 		$this->defaults = array(
-            'title'  => __( 'Agenda', 'cnrswebkit' ),
+            /* Translator : this is the agenda widget title (displayed in the widget header)*/ 
+		    'title'  => __( 'Agenda', 'cnrswebkit' ),
 			'limit_all'  => 10,
 			'limit_past'  => 0,
 			'display_widget_if_empty'  => 0,
@@ -46,7 +48,7 @@ class cnrswebkit_events_widget extends WP_Widget {
 			'cnrswebkit_events_widget',
 
 			// Widget name will appear in UI
-			/* translators: This widegt default title should be short to stay on one line when appearing in sidebar widget.*/
+			/* translators: This widegt default name used in admin interface. This should be short to stay on one line when appearing in admin menu.*/
 			__('Event\'s List (cnrswebkit)', 'cnrswebkit'),
 
 			// Widget description
@@ -94,7 +96,7 @@ class cnrswebkit_events_widget extends WP_Widget {
 	<input class="widefat" maxlength="2" style="width:3em;" id="<?php echo $this->get_field_id( 'limit_all' ); ?>" name="<?php echo $this->get_field_name( 'limit_all' ); ?>" type="text" value="<?php echo esc_attr( $instance[ 'limit_all' ] ); ?>" />
 </p>
 <p>
-	<label for="<?php echo $this->get_field_id( 'limit_past' ); ?>"><?php _e( 'Maximum number of optionnal pas item to display', 'cnrswebkit' ); ?></label> 
+	<label for="<?php echo $this->get_field_id( 'limit_past' ); ?>"><?php _e( 'Maximum number of optionnal past (finished) item to display', 'cnrswebkit' ); ?></label> 
 	<input class="widefat" maxlength="2" style="width:3em;" id="<?php echo $this->get_field_id( 'limit_past' ); ?>" name="<?php echo $this->get_field_name( 'limit_past' ); ?>" type="text" value="<?php echo esc_attr( $instance[ 'limit_past' ] ); ?>" />
 </p>
 <p>

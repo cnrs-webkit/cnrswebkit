@@ -1,4 +1,5 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
 
 /*
  * Name cnrswebkit_news_widget

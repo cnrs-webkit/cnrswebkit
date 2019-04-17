@@ -23,11 +23,11 @@
 
     <div class="entry-content">
         <?php
-        /* translators: %s: Name of current post */
+        /* translators: %2$s: Page title , %1$s and %3$s enclosing span used for styling rendered as "Continue reading<span>page title</span>" */
         the_content(sprintf(
-                        __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'cnrswebkit'), get_the_title()
-        ));
-
+        __('Continue reading %1$s"%2$s"%3$s', 'cnrswebkit'), '<span class="screen-reader-text">', get_the_title(), '</span>'
+            ));
+        
         wp_link_pages(array(
             'before' => '<div class="page-links"><span class="page-links-title">' . __('Pages:', 'cnrswebkit') . '</span>',
             'after' => '</div>',
@@ -42,10 +42,10 @@
     <footer class="entry-footer">
         <?php cnrswebkit_entry_meta(); ?>
         <?php
+        /* translators: %2$s: Page title , %1$s and %3$s enclosing span used for styling rendered as "Edit <span>page title</span>" */
         edit_post_link(
                 sprintf(
-                        /* translators: %s: Name of current post */
-                        __('Edit<span class="screen-reader-text"> "%s"</span>', 'cnrswebkit'), get_the_title()
+                __('Edit %1$s "%2$s"%3$s', 'cnrswebkit'), '<span class="screen-reader-text">', get_the_title(), '</span>'
                 ), '<span class="edit-link">', '</span>'
         );
         ?>

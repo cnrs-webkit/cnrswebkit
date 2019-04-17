@@ -112,8 +112,6 @@ $white:#fff;
                     &:nth-of-type(2){
                         margin-left:10px;
                         &:before{
-                            /*content:"\f429 ";
-                            font-family: "Genericons";*/
                             content:"\e907 ";
                             font-family: "icomoon";
                             margin-right: 10px;
@@ -207,7 +205,7 @@ body{
                 @media screen and (max-width: 910px) {padding:0;}
             }
             .site-main{
-                margin-bottom:90px;
+                margin-bottom:30px;
             }
         }
     }
@@ -292,7 +290,7 @@ header.site-header{
             }
         }
         nav#secondary-navigation{
-            margin: 0 90px 0 0;
+            margin: 0 50px 0 0;
             .menu-menu-secondaire-container{
                 li > a, li > a:visited{
                     color:$mainColor;
@@ -592,44 +590,45 @@ header.site-header{
     width:100%;
     margin:15px 0;
     padding:30px 0;
-    border-top:1px solid $lighter_grey;
     display: flex;
     justify-content:center;
     align-items:center;
     position:relative;
+    text-align:center;
     .pods-pagination-number:not(.pods-pagination-next):not(.pods-pagination-prev){
-        margin:0 10px;
-        color:$black;
+        width:30px;
+        height:30px;
+        line-height:30px;
+        margin: 0 10px;
         font-size:17px;
         box-shadow:none;
         font-weight:500;
+
+    }
+    .pods-pagination-number:not(.pods-pagination-current){
+        color:$mainColor;
         &:hover{
-            color:$mainColor;
+            background-color:$mainColor;
+            color:$white;
         }
     }
     .pods-pagination-current{
-        color:$mainColor !important;
-        font-size:20px !important;
+        color:$black;
+        text-decoration: underline;
     }
     a.pods-pagination-next, a.pods-pagination-prev{
-        width:50px;
-        height:50px;
-        border:1px solid $lighter_grey;
-        background-color:$white;
+        width:30px;
+        height:30px;
         box-shadow:none;
         position:absolute;
-        top:20px;
         transition:all .2s ease-Out;
         &:before{
             display: block;
-            /*font-family: "Genericons";
-            content: "\f431";*/
             font-family: "icomoon";
-            color:$black;
-            font-size:30px;
-            line-height:30px;
+            color:$mainColor;
+            font-size:25px;
+            font-weight:700;
             position:absolute;
-            top:10px;
         }
         &:hover{
             background-color:$mainColor;
@@ -642,17 +641,13 @@ header.site-header{
     a.pods-pagination-prev{
         left:0;
         &:before{
-            //transform:rotate(90deg);
             content: "\e903";
-            left: 8px;
         }
     }
     a.pods-pagination-next{
         right:0;
         &:before{
-            //transform:rotate(-90deg);
             content: "\e905";
-            left: 10px;
         }
     }
 }
@@ -749,22 +744,20 @@ header.site-header{
 
 .partKnowMore{
     width:100%;
-    margin-top:10px;
     text-align:right;
     margin-bottom:10px;
+    padding-right:20px;
     @media screen and (max-width: 910px) {height:auto; width:100%; order:3;}
     a{
-        color:$black;
-        &:hover{
-            color:$mainColor;
-        }
+        @include commonLink;
+        border-bottom:none;
     }
 }
 
 
 /* Homepage*/
 body.page-template-homepage{
-    header.site-header{margin-bottom:90px;}
+    header.site-header{margin-bottom:30px;}
     .entry-content{
         h3{
             @include genTitles;
@@ -830,11 +823,6 @@ body.page-template-homepage{
         align-items:flex-start;
         h3{letter-spacing: 0.2px;}
         a.linkAllActus{
-            /*color:$mainColor;
-            font-size:15px;
-            font-weight:500;
-            border-bottom:1px dashed $mainColor;
-            box-shadow:none;*/
             @include commonLink;
             float:right;
             margin-top: 20px;
@@ -850,8 +838,7 @@ body.page-template-homepage{
     .homeLabo{
         display:flex;
         align-items: flex-start;
-        margin-bottom:90px;
-        margin-bottom:150px;
+        margin-bottom:30px;
         @media screen and (max-width: 910px) {flex-direction: column;}
         .laboThumb{
             //height:100%;
@@ -1362,9 +1349,7 @@ body.single-evenement:not(.search-results), body.single-emploi:not(.search-resul
                         &:nth-of-type(2){
                             margin-left:10px;
                             &:before{
-                                //content:"\f429 ";
                                 content:"\e907 ";
-                                //font-family: "Genericons";
                                 font-family: "icomoon";
                                 margin-right: 10px;
                             }
@@ -1660,8 +1645,6 @@ body.fixed{overflow-y:hidden;}
                     height: 40px;
                     transition:all .2s ease-Out;
                     &:before{
-                        //content:"\f406";
-                        //font-family: "Genericons";
                         content:"\e901";
                         font-family: "icomoon";
                         font-size: 25px;
@@ -2146,8 +2129,6 @@ div[id^="form-container-"]{
         height: 40px;
         transition:all .2s ease-Out;
         &:before{
-            //content:"\f406";
-            //font-family: "Genericons";
             content:"\e901";
             font-family: "icomoon";
             font-size: 25px;
@@ -2185,8 +2166,6 @@ $containerSearchSize:500px;
         right:0;
         top:0;
         background-color:$white;
-        height:60px;
-        //width:60px;
         display:flex;
         @media screen and (max-width: 910px) {
             position:relative;
@@ -2233,18 +2212,15 @@ $containerSearchSize:500px;
             #searchIconContainer{
                 background-color:$mainColor;
                 color:white;
-                //padding:20px;
                 margin:0;
-                /*width:50px;
-                height:50px;*/
-                width:60px;
-                height:60px;
+                width:30px;
+                height:30px;
                 display:flex;
                 justify-content:center;
                 align-items:center;
                 transition:all .2s ease-Out;
                 span{
-                    font-size:35px;
+                    font-size:20px;
                     transition:all .2s ease-Out;
                 }
                 &:hover{
@@ -2277,10 +2253,7 @@ $containerSearchSize:500px;
 body.search-results{
     .page-header{
         border-top:0;
-        .page-title{
-            padding-bottom:20px;
-            border-bottom:1px solid $mainColor;
-        }
+
     }
     .site-main{
         article{
@@ -2302,7 +2275,8 @@ body.search-results{
                 margin-left: 10px;
                 position: absolute;
                 right: 0;
-                bottom: 10px;
+                padding-bottom:5px;
+                bottom: 5px;
             }
         }    
     }

@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /**
  * CNRS Web Kit functions and definitions
  *
@@ -42,10 +44,6 @@ if (version_compare($GLOBALS['wp_version'], '4.4-alpha', '<')) {
 
 // Check for dependancies before get_header is called
 require_once get_template_directory() . '/inc/dependancy-check.php';
-
-
-// TODO add dependancy (wp-scss, )
-
 
 /*
  * load the event's list widget and news_widget
@@ -254,7 +252,7 @@ if (!function_exists('cnrswebkit_credits')) :
      * @since CNRS Web Kit 1.0
      */
     function cnrswebkit_credits() {
-        // TODO ça remplacer par menu (traduction) 
+        // TODO  remplacer ça par un menu (pour traduction et car liens codés en dur!!) 
         ?>
         <div class="cnrs-bottom-line">
             <div><a href="/credits-mentions-legales/">Crédits & mentions légales</a></div>

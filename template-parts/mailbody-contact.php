@@ -1,5 +1,5 @@
 <div>
-    <div>Un message de <?php echo $prenom; ?> <?php echo $nom;?></div>
-    <div>Email : <?php echo $email; ?></div>
-    <div>Message : <?php echo $message; ?></div>
+    <div><?php __('Message from : ','cnrswebkit'); echo ' ' . $prenom .' '. $nom; ?></div>
+    <div><?php __('From email : ','cnrswebkit'); echo $email; ?></div>
+    <div><?php __('Message : ','cnrswebkit'); echo $message; ?></div>
 </div>

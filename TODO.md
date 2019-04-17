@@ -29,25 +29,24 @@
  * 15.3 ko /css/style-lmok.css identique au précédent, pas chargé !!!! 
 
 ##### icones 
-Quelle icones utiliser sans dupliquer .... choix => dashicons
+Quelle icones utiliser en frontend sans dupliquer .... choix => icomoon + genericons
  * genericons 28 k css
  * icomoon 3 ko frontend, mais correspond à icomoon commenté dans css !!
  * dashicons 48 ko (utilise par défaut en admin, utilisé par admin/pods, pas en frontend pour l'instant sauf dans lab-hal et lab-directory
- * Google font chargées frontend et backend MAIS utilisées pour éditeur (frontend et backend ???)
+ * Google font chargées frontend et backend MAIS utilisées pour éditeur (frontend et backend ???) et à quelques endroits: voir si on peut s'en passer !!
+  * Merriweather:400,700,900,400italic,700italic,900italic';
+  * Montserrat:400,700';
+  * Inconsolata
  
 ### Liste des bugs et améliorations à apporter
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
 Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
 
-- [ ] Add possible defaut parameter (so that template can be used whitout saving settings first)
+- [ ] Add possible defaut parameter at theme install (so that template can be used whitout saving settings first)
      * at install 
      * at upgrade too for added fields
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] utilité du template content-publication ?? avec !!! "eventDateRight "addCalendar" et "eventLocation" !!!
-- [ ] faut-il ajouter if ( !defined( 'ABSPATH' ) ) exit; aux fichier template, aux autres fichiers PHP ??
-
-- [ ] revoir tous les echo print printf _e( __( _x(
-- [ ] TODOHREF
 - [ ] put code in classes AND separate admin from frontend 
 - [ ]   * GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
 - [ ] image médiathèque/admin le champ à la une m’apparaît totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!)
@@ -58,30 +57,32 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Disable CPT programmatically (filter pods_wp_post_types) 
 
 - [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
+   * ordre sur pods, 
 - [ ] Page agenda ne liste que les événement passés (ajouter un lien sur la page pour tous les événements ? 
 - [ ] En faisant ce test (événements ) , j’ai découvert un comportement inadapté de l’affichage des événements:. Je ne comprends pas comment est faite cette sélection.
    * sur la page d’accueil, les « prochains événements » n’affichent que certains des événements dont la date de début et future: il en manque ! 
    * sur la page « l’agenda » seuls les événements futurs non listés dans « prochains événements » sont affichés (il en manque ici aussi!). 
 
-- [ ] **Voir toutes les commentaires ajoutés TODO SEGUINOT qui pourraient subsister et indiquer des corrections à ajouter non répertoriées dans les lignes précédentes ... **
 - [ ] revoir css mobile
 
 - [ ] import valeurs des pods? ? 
-- [ ] Ajouter aux pods les traductions du json si elles existent dans le thème par défaut JSON , et si elles n'existent pas dans le thème
+- [ ] update theme: Ajouter aux pods les traductions du json si elles existent dans le thème par défaut JSON , et si elles n'existent pas dans le thème
    * au réglage du thème oui 
    * aux autres pods oui 
    * label_en_GB description_en_GB (! double undescore )
 - [ ] import contenus d'un site (install)
-- [ ] résultat de la recherche pas explicite (rechercher hal par exemple) afficher de vrai liens!! pas des titres? 
-- [ ] revoir toutes les polices font-family:
-- [ ] revoir couleur lien bas de page !! 
+- [ ] revoir toutes les polices font-family: (css)
 - [ ] ajouter qq traductions dans admin 
-- [ ] traduction ? toutes avec 'cnrswebkit' ? certaines avec avec 'cnrs_webkit');
 - [ ] générer .pot 
 - [ ] tester emploi_form...
-- [ ] $cnrs_webkit_list_filtered à généraliser !!
+- [ ] 'nombre_dactualites_page_actialite'
+- [ ] Traduction javascript (voir wordpress i18n
 - [ ] 
-   
+- [ ] 
+- [ ] 
+- [ ] 
+
+
 
 ### liste des infos à publier dans la doc ou dans FAQ
 - [ ] Comment désactiver social network sur la page actus ? 

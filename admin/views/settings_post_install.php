@@ -63,7 +63,7 @@
         	<ul>
         		<li>
         			<a href="/wp-admin/admin.php?page=pods"><?php _e('Manual reordering of pods : ','cnrswebkit'); ?></a> 
-        			<?php _e('is achieved by dragging and dropping fields in pods administration','cnrswebkit'); ?>
+        			<?php /* Translators: additionnal text for "Manual reordering of pods" link */ _e('is achieved by dragging and dropping fields in pods administration','cnrswebkit'); ?>
         			
         		</li>
         		<li><?php _e('Automatic reordering of pods fields: this uses the fields order defined in CNRS Webkit theme. Be aware that <strong>automatic reordering will remove your proper manual ordering !</strong>','cnrswebkit'); ?></li>

@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /**
  * CNRS Web Kit back compat functionality
  *
@@ -38,7 +40,8 @@ add_action( 'after_switch_theme', 'cnrswebkit_switch_theme' );
  * @global string $wp_version WordPress version.
  */
 function cnrswebkit_upgrade_notice() {
-	$message = sprintf( __( 'CNRS Web Kit requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again.', 'cnrswebkit' ), $GLOBALS['wp_version'] );
+	/* Tanslators: %s is the Wordpress current version */ 
+    $message = sprintf( __( 'CNRS Web Kit requires at least WordPress version 4.4. You are running version %s. Please upgrade Wordpress and try again.', 'cnrswebkit' ), $GLOBALS['wp_version'] );
 	printf( '<div class="error"><p>%s</p></div>', $message );
 }
 
@@ -50,7 +53,7 @@ function cnrswebkit_upgrade_notice() {
  * @global string $wp_version WordPress version.
  */
 function cnrswebkit_customize() {
-	wp_die( sprintf( __( 'CNRS Web Kit requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again.', 'cnrswebkit' ), $GLOBALS['wp_version'] ), '', array(
+	wp_die( sprintf( __( 'CNRS Web Kit requires at least WordPress version 4.4. You are running version %s. Please upgrade Wordpress and try again.', 'cnrswebkit' ), $GLOBALS['wp_version'] ), '', array(
 		'back_link' => true,
 	) );
 }
@@ -65,7 +68,7 @@ add_action( 'load-customize.php', 'cnrswebkit_customize' );
  */
 function cnrswebkit_preview() {
 	if ( isset( $_GET['preview'] ) ) {
-		wp_die( sprintf( __( 'CNRS Web Kit requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again.', 'cnrswebkit' ), $GLOBALS['wp_version'] ) );
+		wp_die( sprintf( __( 'CNRS Web Kit requires at least WordPress version 4.4. You are running version %s. Please upgrade Wordpress and try again.', 'cnrswebkit' ), $GLOBALS['wp_version'] ) );
 	}
 }
 add_action( 'template_redirect', 'cnrswebkit_preview' );

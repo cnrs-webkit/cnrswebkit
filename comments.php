@@ -27,11 +27,11 @@ if ( post_password_required() ) {
 			<?php
 				$comments_number = get_comments_number();
 				if ( 1 === $comments_number ) {
-					/* translators: %s: post title */
+					/* translators: %s: comment title , &ldquo &rdquo; : left and right single quote */
 					printf( _x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'cnrswebkit' ), get_the_title() );
 				} else {
 					printf(
-						/* translators: 1: number of comments, 2: post title */
+						/* translators: %1$s: number of comments, %2$s: post title, &ldquo &rdquo; : left and right single quote */
 						_nx(
 							'%1$s thought on &ldquo;%2$s&rdquo;',
 							'%1$s thoughts on &ldquo;%2$s&rdquo;',

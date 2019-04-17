@@ -40,8 +40,8 @@
         <?php
         edit_post_link(
                 sprintf(
-                        /* translators: %s: Name of current post */
-                        __('Edit<span class="screen-reader-text"> "%s"</span>', 'cnrswebkit'), get_the_title()
+                        /* translators: %2$s: Title of current post,  %1$s and %3$s enclosing span used for styling rendered as "Edit <span>page title</span>" */
+                        __('Edit %1$s"%2$s"%3$s', 'cnrswebkit'), '<span class="screen-reader-text">', get_the_title(), '</span>'
                 ), '<span class="edit-link">', '</span>'
         );
         ?>

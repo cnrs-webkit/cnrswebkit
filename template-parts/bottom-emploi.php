@@ -13,7 +13,7 @@ $emploi_data = new CnrswebkitPageItemsList('emploi', $custom_params);
 $liste_emploi_url= get_permalink($cnrs_global_params->field('pageliste_emploi')['ID']);
 
 if ($liste_emploi_url) {
-    $liste_emploi_url = '</h1><a href="'. $liste_emploi_url . '">' . __('Return to recruitment list', 'cnrswebkit') . '</a>';
+    $liste_emploi_url = '<a href="'. $liste_emploi_url . '">' . __('Return to recruitment list', 'cnrswebkit') . '</a>';
 }
 
 if ($emploi_data->has_items()) {

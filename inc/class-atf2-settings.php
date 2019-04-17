@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /**
  * Original source file Admin Taxonomy Filter Author: Anh Tran
  * Original Plugin URI: https://wordpress.org/plugins/admin-taxonomy-filter/
@@ -38,7 +40,7 @@ class ATF2_Settings {
 	public function render() {
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Admin Taxonomy Filter', 'cnrswebkit' ); ?></h1>
+			<h1><?php esc_html_e( 'Taxonomy Filter Administration', 'cnrswebkit' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'admin_taxonomy_filter' );

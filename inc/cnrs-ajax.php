@@ -1,5 +1,5 @@
 <?php
-
+if ( !defined( 'ABSPATH' ) ) exit;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -166,25 +166,25 @@ function submit_contact_form() {
 
     $errors = [];
     if (!$form_id || $form_id == '') {
-        $errors[] = __('This contact was not found', 'cnrs_webkit');
+        $errors[] = __('This contact was not found', 'cnrswebkit');
     }
     if (!$area || $area == '') {
-        $errors[] = __('This contact was not found', 'cnrs_webkit');
+        $errors[] = __('This contact was not found', 'cnrswebkit');
     }
     if (!$target || $target == '') {
-        $errors[] = __('This target was not found', 'cnrs_webkit');
+        $errors[] = __('This target was not found', 'cnrswebkit');
     }
     if (!$nom || $nom == '') {
-        $errors[] = __('You must provide your name', 'cnrs_webkit');
+        $errors[] = __('You must provide your name', 'cnrswebkit');
     }
     if (!$prenom || $prenom == '') {
-        $errors[] = __('You must provide your fistname', 'cnrs_webkit');
+        $errors[] = __('You must provide your firstname', 'cnrswebkit');
     }
     if (!$email || $email == '') {
-        $errors[] = __('You must provide your email address', 'cnrs_webkit');
+        $errors[] = __('You must provide your email address', 'cnrswebkit');
     }
     if (!$message || $message == '') {
-        $errors[] = __('You must provide some message', 'cnrs_webkit');
+        $errors[] = __('You must provide some message', 'cnrswebkit');
     } else {
         $message = str_replace('\n', '<br />', $message);
     }
@@ -197,8 +197,8 @@ function submit_contact_form() {
         ];
     } else {
         if (!$object || $object == '') {
-            /* translators: 1: Firstname Name of author, 2: Site or blog name */
-        	$object = sprintf( __('Nouveau message de %1$s depuis le site %2$s',  'cnrswebkit' ), $prenom . ' ' . $nom , get_bloginfo('name') );
+            /* translators: %1$s: Firstname Name of author, %2$s: Site or blog name */
+        	$object = sprintf( __('New message written by %1$s coming from website %2$s',  'cnrswebkit' ), $prenom . ' ' . $nom , get_bloginfo('name') );
          }
         $contact_info = new CnrswebkitRichData($form_id);
         ob_start();
@@ -241,25 +241,25 @@ function submit_emploi_form() {
 
     $errors = [];
     if (!$form_id || $form_id == '') {
-        $errors[] = __('This contact was not found', 'cnrs_webkit');
+        $errors[] = __('This contact was not found', 'cnrswebkit');
     }
     if (!$area || $area == '') {
-        $errors[] = __('This contact was not found', 'cnrs_webkit');
+        $errors[] = __('This contact was not found', 'cnrswebkit');
     }
     if (!$target || $target == '') {
-        $errors[] = __('This target was not found', 'cnrs_webkit');
+        $errors[] = __('This target was not found', 'cnrswebkit');
     }
     if (!$nom || $nom == '') {
-        $errors[] = __('You must provide your name', 'cnrs_webkit');
+        $errors[] = __('You must provide your name', 'cnrswebkit');
     }
     if (!$prenom || $prenom == '') {
-        $errors[] = __('You must provide your fistname', 'cnrs_webkit');
+        $errors[] = __('You must provide your firstname', 'cnrswebkit');
     }
     if (!$email || $email == '') {
-        $errors[] = __('You must provide your email address', 'cnrs_webkit');
+        $errors[] = __('You must provide your email address', 'cnrswebkit');
     }
     if (!$message || $message == '') {
-        $errors[] = __('You must provide some message', 'cnrs_webkit');
+        $errors[] = __('You must provide some message', 'cnrswebkit');
     } else {
         $message = str_replace('\n', '<br />', $message);
     }
@@ -272,7 +272,7 @@ function submit_emploi_form() {
         ];
     } else {
         if (!$object || $object == '') {
-             $object = sprintf( __('Nouveau message de %1$s depuis le site %2$s',  'cnrswebkit' ), $prenom . ' ' . $nom , get_bloginfo('name') );
+             $object = sprintf( __('New message written by %1$s coming from website %2$s',  'cnrswebkit' ), $prenom . ' ' . $nom , get_bloginfo('name') );
         }
         $contact_info = new CnrswebkitRichData($form_id);
         ob_start();
@@ -295,7 +295,7 @@ function submit_emploi_form() {
         $data['to_html'][] = [
             'action' => 'html',
             'target' => $target,
-            'data' => __('Your message has been sent', 'cnrs_webkit')
+            'data' => __('Your message has been sent', 'cnrswebkit')
         ];
     }
     wp_send_json_success($data);
@@ -333,20 +333,20 @@ function submit_newsletter_form() {
             $data['to_html'][] = [
                 'action' => 'html',
                 'target' => '#NewsletterRegistration',
-                'data' => __('Your Email address has been registered', 'cnrs_webkit')
+                'data' => __('Your Email address has been registered', 'cnrswebkit')
             ];
         } else {
             $data['to_html'][] = [
                 'action' => 'html',
                 'target' => '#NewsletterResult',
-                'data' => __('Your Email address has already been registered', 'cnrs_webkit')
+                'data' => __('Your Email address has already been registered', 'cnrswebkit')
             ];
         }
     } else {
         $data['to_html'][] = [
             'action' => 'html',
             'target' => '#NewsletterResult',
-            'data' => __('Adresse email incorrecte', 'cnrs_webkit')
+            'data' => __('Uncorrect email address', 'cnrswebkit')
         ];
     }
     wp_send_json_success($data);

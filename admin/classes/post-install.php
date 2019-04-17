@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 Class cnrs_webkit_post_install {
 
     static function init() {

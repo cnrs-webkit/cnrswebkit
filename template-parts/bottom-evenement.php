@@ -18,10 +18,9 @@ $custom_params->limit = 2;
 $evenement_data = new CnrswebkitPageItemsList('evenement', $custom_params);
 $liste_evenement_url= get_permalink($cnrs_global_params->field('pageliste_evenement')['ID']);
 if ($liste_evenement_url) {
-	$liste_evenement_url = '</h1><a href="'. $liste_evenement_url . '">' . __('Return to Events list', 'cnrswebkit') . '</a>';
+	$liste_evenement_url = '<a href="'. $liste_evenement_url . '">' . __('Return to Events list', 'cnrswebkit') . '</a>';
 }
 
-//TODO display it when filtered list whitout items !!
 if ($evenement_data->has_items()) {
     ?>
     <div class="nextEvents">

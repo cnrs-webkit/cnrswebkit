@@ -11,8 +11,13 @@
         <div class="umi"><?php echo $cnrs_global_params->field('code_du_laboratoire'); ?></div>
         <h3><?php echo get_bloginfo('name'); ?></h3>
         <p><?php echo $cnrs_global_params->field('presentation_du_site'); ?></p>
-        <!-- TODO lien codé en dur!  --> 
-        <div class="bottomLabo"><a href="/le-laboratoire/"><?php _e('En savoir plus sur le laboratoire ...', 'cnrswebkit') ?></a></div>
+        <?php  
+        $page_labo_url= get_permalink($cnrs_global_params->field('page_labo')['ID']);
+        
+        if ($page_labo_url) {
+            echo '<div class="bottomLabo"><a href="'. $page_labo_url . '">' . __('Learn more about our laboratory &hellip;', 'cnrswebkit') . '</a></div>';
+        }
+        ?>
         <div class="bottomLabo">
             <div>
                 <?php

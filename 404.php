@@ -7,7 +7,7 @@
  * @since CNRS Web Kit 1.0
  */
 
-// Translators: Template Name translation.
+// Translators: Template error page name translation.
 __('CNRS WebKit error page', 'cnrswebkit');
 
 get_header(); ?>

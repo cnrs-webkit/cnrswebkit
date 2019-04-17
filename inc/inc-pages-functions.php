@@ -1,4 +1,5 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
  * CNRS Web Kit functions and definitions for specific pages
@@ -88,9 +89,10 @@ function cnrswebkit_detect_need_update() {
     $previous_version = get_option( 'CNRS_WEBKIT_VERSION', -1 ); // no version saved in first version (ATOS).
     
     // TODO Case install import all pods and return
-    /*
-     * import pods structure (config) and pods default values ??
-     */
+    if (-1 == $previous_version) {
+        // This is probably a fresh install of the theme : import pods structure (config) and pods default values ??
+        // cnrswebkit_install();
+    }
     
     if ( version_compare( CNRS_WEBKIT_VERSION, $previous_version, '==' ) ) {
         // Identical version: no upgrade needed !
@@ -107,6 +109,73 @@ function cnrswebkit_detect_need_update() {
 
 add_action( 'admin_init', 'cnrswebkit_detect_need_update' );
 
+/*
+ * import pods structure (config) and pods default values 
+ * 
+ * This function is launched at cnrswebkit install , 
+ * however Wordpress to not provide an "install  theme" hook
+ * the present function can also be launched on theme switch ... .
+ * We must be carefull since the present function can be fired 
+ * when the theme was already installed (theme switch for example)
+ * for this reason we must import something if and only if corresponding 
+ * settings/parameter do not already exists!
+ * 
+ * About uninstall theme
+ * Wordpress do not provide any hook for when a theme is deleted. 
+ * The only way to run some uninstall function is to use a plugin.
+ * Removing theme settings can be done with a plugin holding settings 
+ */
+function cnrswebkit_install() {
+    /* When this function is launched, we are not sure that the theme 
+     * is just installed so every import (pods) should be done with caution . 
+     */
+    
+    global $wp_filesystem;
+    // Initialize the WP filesystem
+    if (empty($wp_filesystem)) {
+        require_once (ABSPATH . '/wp-admin/includes/file.php');
+        WP_Filesystem();
+    }
+    foreach (glob("*.txt") as $filename) {
+        echo "$filename occupe " . filesize($filename) . "\n";
+    }
+    $files = glob(get_template_directory().'/importer/media/*.*');
+    foreach($files as $file) {
+        if (!$wp_filesystem->copy($file, $wp_filesystem->abspath() . '/wp-content/uploads/' . basename($file))) {
+            $YOURPREFIX_demo_importer_error = '1';
+        }
+    }
+    $nrswebkit_install = true; 
+    // and detect if this is really a new install (pods non existing)
+    
+    // First import all pods 
+    $cnrs_webkit_default_pods = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/cnrswebkit_default_pods.json' ) );
+    if (!$cnrs_webkit_default_pods) {
+    // TODO Add error messages!!
+    return;
+    } 
+    
+    // Set default cnrswebkit theme settings so it can be used whitout prior setting saved
+    // see https://pods.io/forums/topic/add-pods-programmatically/
+
+    $pod = pods( 'projects' );
+    
+    // To add a new item, let's set the data first
+    $data = array(
+        'name' => 'Project M01',
+        'managed_by' => 2, // User ID for Mike in the WP Users
+        'date' => '2017-04-29', // this needs to be in format yyyy-mm-dd
+        'members' => array ( 'user1','user2','user3'),
+    );
+    
+    // Add the new item now and get the new ID
+    $new_project_id = $pod->add( $data ); 
+    // then set a flag to propose content import in theme admin page
+    
+    
+    
+}
+
 
 function cnrswebkit_upgrade ($previous_version, $new_version) {
     
@@ -116,16 +185,7 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
         require_once (ABSPATH . '/wp-admin/includes/file.php');
         WP_Filesystem();
     }
-    
-    // Read the default pods json and convert to pods array 
-    /* 
-     * 
-    $cnrs_webkit_default_pods = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/cnrswebkit_default_pods.json' ) );
-    if (!$cnrs_webkit_default_pods) {
-        // TODO Add error messages!! 
-        return;
-    }
-     */    
+      
     // Case Upgrade Update current pods
     $pods_api = pods_api();
    
@@ -424,7 +484,8 @@ class CnrswebkitPageItemsList {
                 )
         );
         // TODO temporary fix Pods issue: https://github.com/pods-framework/pods/issues/5184
-        if (false === strpos( $pagination, 'pods-pagination-last' ) ) {
+        if ( (false === strpos( $pagination, 'pods-pagination-prev' ) ) 
+            && (false === strpos( $pagination, 'pods-pagination-last' ) ) ) {
             $pagination = "";
         }
         return $pagination;
@@ -599,7 +660,7 @@ class CnrswebkitPageItemsList {
             switch ($this->post_type) {
                 case 'actualite':
                     if (is_home() || is_front_page()) {
-                        echo '<article id="actualite-social-links" class="widget"><h1>Suivez-nous</h1></article>';
+                        echo '<article id="actualite-social-links" class="widget"><h1>' . __('Follow us', 'cnrswebkit') . '</h1></article>';
                     }
                     break;
             }
@@ -738,7 +799,7 @@ function get_filter_selector($post_type='', $taxonomy='', $selectorName='') {
     if (! $pods) return '';
 
     $FilterSelectorParams->selectorPod = $taxonomy;
-    $FilterSelectorParams->selectorLabel = __('Catégory', 'cnrswebkit');
+    $FilterSelectorParams->selectorLabel = __('Category', 'cnrswebkit');
     $FilterSelectorParams->selectorEmptyText = __('All', 'cnrswebkit');
     $FilterSelectorParams->selectorName = $taxonomy;
     $built_in_cpt = 'built_in_post_types_' . $post_type; 

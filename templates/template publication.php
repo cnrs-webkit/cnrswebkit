@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: CNRS WebKit list of publication
+ * Template Name: CNRS WebKit list of publications
  * Template Post Type: post, page
  *
  * The template for displaying a list of publication
@@ -12,7 +12,7 @@
  */
 
 // Translators: Template Name translation.
-__('CNRS WebKit list of publication', 'cnrswebkit');
+__('CNRS WebKit list of publications', 'cnrswebkit');
 
 
 $sidebar = "1" === $cnrs_global_params->field('liste_publications_with_sidebar');

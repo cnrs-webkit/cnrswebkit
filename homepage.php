@@ -32,13 +32,18 @@ get_header();
                     $custom_params->limit = $cnrs_global_params->field('nombre_dactualites_page_daccueil');
                     $actualite_data = new CnrswebkitPageItemsList('actualite', $custom_params);
                     if ($actualite_data->has_items()) {
-                        // TODOHREF?>
-                        <div class="actuHeader"><h3 class="actuTitle">Les Actualités</h3><a href="/les-actualites/" class="linkAllActus"><?php _e('See All news', 'cnrswebkit') ?></a></div>
+                        $url = get_pod_page('pageliste_actualite');
+                        $page_link = '';
+                        if ($url) {
+                            $page_link = '<a class="linkAllActus" href="' . $url . '">' . __( 'See All news', 'cnrswebkit' ) . '</a>';
+                        }
+                        ?>
+                        <div class="actuHeader"><h3 class="actuTitle">Les Actualités</h3><?php echo $page_link; ?></div>
                         <div class="loop-contents loop-contents-actualite">
-                            <?php
-                            echo $actualite_data->get_html_item_list();
-                            ?>
-                        </div>
+                        <?php
+                        echo $actualite_data->get_html_item_list();
+                        ?>
+                    	</div>
                         <?php
                     }
                 }
@@ -51,8 +56,7 @@ get_header();
                 if ($cnrs_global_params->field('telechargements_sur_la_page_daccueil')) {
                     ?> 
                     <div class="so-widget-sow-editor so-widget-sow-editor-base">
-                        <!-- TODO translate --> 
-                        <h3 class="widget-title titleDL">Téléchargements</h3>
+                        <h3 class="widget-title titleDL"><?php _e('Downloadable documents', 'cnrswebkit')?></h3>
                     </div>
                     <div class="home-downloads">
                         <?php

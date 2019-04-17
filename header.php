@@ -51,7 +51,7 @@
                         	<!-- Fin Mini logos partenaires -->
                         </div><!-- .site-branding -->
                         <?php  if (has_nav_menu('primary') || has_nav_menu('secondary') || has_nav_menu('social')) : ?>
-                            <button id="menu-toggle" class="menu-toggle"><?php _e('Menu', 'cnrswebkit'); ?></button>
+                            <button id="menu-toggle" class="menu-toggle"><?php /*Translators:  Text used for menu link on small screen */ _e('Menu', 'cnrswebkit'); ?></button>
                             <div id="site-header-menu" class="site-header-menu">
                                 <?php if (has_nav_menu('primary')) : ?>
                                     <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e('Primary Menu', 'cnrswebkit'); ?>">

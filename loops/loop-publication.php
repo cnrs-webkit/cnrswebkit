@@ -55,7 +55,7 @@
                     }
                     ?>
                 </div>
-                <a href="javascript:void(0);" class="knowMorePubLink" target="_blank"><?php _e('En savoir plus', 'cnrswebkit') ?></a>
+                <a href="javascript:void(0);" class="knowMorePubLink" target="_blank"><?php _e('Read more &hellip;', 'cnrswebkit') ?></a>
             <?php } ?>
         </div><!-- .entry-content -->
     </div>

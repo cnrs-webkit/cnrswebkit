@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /**
  * CNRS Web Kit Customizer functionality
  *
@@ -248,6 +250,7 @@ function cnrswebkit_get_color_schemes() {
 	 */
 	return apply_filters( 'cnrswebkit_color_schemes', array(
 		'default' => array(
+			/* Translators: this is a color of cnrswebkit color schemes*/
 			'label'  => __( 'Default', 'cnrswebkit' ),
 			'colors' => array(
 				'#1a1a1a',
@@ -258,7 +261,8 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'dark' => array(
-			'label'  => __( 'Dark', 'cnrswebkit' ),
+		/* Translators: this is a color of cnrswebkit color schemes*/
+		'label'  => __( 'Dark', 'cnrswebkit' ),
 			'colors' => array(
 				'#262626',
 				'#1a1a1a',
@@ -268,7 +272,8 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'gray' => array(
-			'label'  => __( 'Gray', 'cnrswebkit' ),
+		/* Translators: this is a color of cnrswebkit color schemes*/
+		'label'  => __( 'Gray', 'cnrswebkit' ),
 			'colors' => array(
 				'#616a73',
 				'#4d545c',
@@ -278,7 +283,8 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'red' => array(
-			'label'  => __( 'Red', 'cnrswebkit' ),
+		/* Translators: this is a color of cnrswebkit color schemes*/
+		'label'  => __( 'Red', 'cnrswebkit' ),
 			'colors' => array(
 				'#ffffff',
 				'#ff675f',
@@ -288,7 +294,8 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'yellow' => array(
-			'label'  => __( 'Yellow', 'cnrswebkit' ),
+		/* Translators: this is a color of cnrswebkit color schemes*/
+		'label'  => __( 'Yellow', 'cnrswebkit' ),
 			'colors' => array(
 				'#3b3721',
 				'#ffef8e',

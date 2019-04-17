@@ -80,7 +80,7 @@ get_header(); ?>
 						<?php
 							edit_post_link(
 								sprintf(
-									/* translators: %s: Name of current post */
+									/* translators: %s: Title of current page */
 									__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'cnrswebkit' ),
 									get_the_title()
 								),
@@ -99,7 +99,7 @@ get_header(); ?>
 
 					// Parent post navigation.
 					the_post_navigation( array(
-						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'cnrswebkit' ),
+						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent page link', 'cnrswebkit' ),
 					) );
 				// End the loop.
 				endwhile;

@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /**
  * Custom CNRS Web Kit template tags
  *
@@ -22,7 +24,7 @@ function cnrswebkit_entry_meta() {
 		$author_avatar_size = apply_filters( 'cnrswebkit_author_avatar_size', 49 );
 		printf( '<span class="byline"><span class="author vcard">%1$s<span class="screen-reader-text">%2$s </span> <a class="url fn n" href="%3$s">%4$s</a></span></span>',
 			get_avatar( get_the_author_meta( 'user_email' ), $author_avatar_size ),
-			_x( 'Author', 'Used before post author name.', 'cnrswebkit' ),
+			_x( 'Author', 'Used before page author name.', 'cnrswebkit' ),
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			get_the_author()
 		);
@@ -35,7 +37,7 @@ function cnrswebkit_entry_meta() {
 	$format = get_post_format();
 	if ( current_theme_supports( 'post-formats', $format ) ) {
 		printf( '<span class="entry-format">%1$s<a href="%2$s">%3$s</a></span>',
-			sprintf( '<span class="screen-reader-text">%s </span>', _x( 'Format', 'Used before post format.', 'cnrswebkit' ) ),
+			sprintf( '<span class="screen-reader-text">%s </span>', _x( 'Format', 'Used before page format.', 'cnrswebkit' ) ),
 			esc_url( get_post_format_link( $format ) ),
 			get_post_format_string( $format )
 		);
@@ -47,7 +49,8 @@ function cnrswebkit_entry_meta() {
 
 	if ( ! is_singular() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link">';
-		comments_popup_link( sprintf( __( 'Leave a comment<span class="screen-reader-text"> on %s</span>', 'cnrswebkit' ), get_the_title() ) );
+		/* Translators %2$s: Page title , %1$s and %3$s enclosing span used for styling rendered as "Leave a comment on <span>page title</span>"*/
+		comments_popup_link( sprintf( __( 'Leave a comment on %1$s %2$s %3$s', 'cnrswebkit' ), '<span class="screen-reader-text">', get_the_title(), '</span>' ) );
 		echo '</span>';
 	}
 }
@@ -111,36 +114,36 @@ function cnrswebkit_entry_taxonomies() {
 endif;
 
 if ( ! function_exists( 'cnrswebkit_post_thumbnail' ) ) :
-/**
- * Displays an optional post thumbnail.
- *
- * Wraps the post thumbnail in an anchor element on index views, or a div
- * element when on single views.
- *
- * Create your own cnrswebkit_post_thumbnail() function to override in a child theme.
- *
- * @since CNRS Web Kit 1.0
- */
-function cnrswebkit_post_thumbnail() {
-	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
-		return;
-	}
-
-	if ( is_singular() ) :
-	?>
-
-	<div class="post-thumbnail">
-		<?php the_post_thumbnail('cnrspost-thumbnail-size'); ?>
-	</div><!-- .post-thumbnail -->
-
-	<?php else : ?>
-
-	<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
-		<?php the_post_thumbnail( 'cnrspost-thumbnail-size', array( 'alt' => the_title_attribute( 'echo=0' ) ) ); ?>
-	</a>
-
-	<?php endif; // End is_singular()
-}
+    /**
+     * Displays an optional post thumbnail.
+     *
+     * Wraps the post thumbnail in an anchor element on index views, or a div
+     * element when on single views.
+     *
+     * Create your own cnrswebkit_post_thumbnail() function to override in a child theme.
+     *
+     * @since CNRS Web Kit 1.0
+     */
+    function cnrswebkit_post_thumbnail() {
+    	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+    		return;
+    	}
+    
+    	if ( is_singular() ) :
+    	?>
+    
+    	<div class="post-thumbnail">
+    		<?php the_post_thumbnail('cnrspost-thumbnail-size'); ?>
+    	</div><!-- .post-thumbnail -->
+    
+    	<?php else : ?>
+    
+    	<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
+    		<?php the_post_thumbnail( 'cnrspost-thumbnail-size', array( 'alt' => the_title_attribute( 'echo=0' ) ) ); ?>
+    	</a>
+    
+    	<?php endif; // End is_singular()
+    }
 endif;
 
 if ( ! function_exists( 'cnrswebkit_excerpt' ) ) :
@@ -167,60 +170,61 @@ if ( ! function_exists( 'cnrswebkit_excerpt' ) ) :
 endif;
 
 if ( ! function_exists( 'cnrswebkit_excerpt_more' ) && ! is_admin() ) :
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with ... and
- * a 'Continue reading' link.
- *
- * Create your own cnrswebkit_excerpt_more() function to override in a child theme.
- *
- * @since CNRS Web Kit 1.0
- *
- * @return string 'Continue reading' link prepended with an ellipsis.
- */
-function cnrswebkit_excerpt_more() {
-	$link = sprintf( '<a href="%1$s" class="more-link">%2$s</a>',
-		esc_url( get_permalink( get_the_ID() ) ),
-		/* translators: %s: Name of current post */
-		sprintf( __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'cnrswebkit' ), get_the_title( get_the_ID() ) )
-	);
-	return ' &hellip; ' . $link;
-}
-add_filter( 'excerpt_more', 'cnrswebkit_excerpt_more' );
+    /**
+     * Replaces "[...]" (appended to automatically generated excerpts) with ... and
+     * a 'Continue reading' link.
+     *
+     * Create your own cnrswebkit_excerpt_more() function to override in a child theme.
+     *
+     * @since CNRS Web Kit 1.0
+     *
+     * @return string 'Continue reading' link prepended with an ellipsis.
+     */
+    function cnrswebkit_excerpt_more() {
+    	$link = sprintf( '&hellip;<a href="%1$s" class="more-link">%2$s</a>',
+    		esc_url( get_permalink( get_the_ID() ) ),
+    		/* Translators %2$s: Page title , %1$s and %3$s enclosing span used for styling rendered as "Continue reading <span>page title</span>"*/
+    	    sprintf( __( 'Continue reading %1$s %2$s %3$s', 'cnrswebkit' ), '<span class="screen-reader-text">', get_the_title( get_the_ID()), '</span>' )
+    	);
+    
+    	return $link;
+    }
+    add_filter( 'excerpt_more', 'cnrswebkit_excerpt_more' );
 endif;
 
 if ( ! function_exists( 'cnrswebkit_categorized_blog' ) ) :
-/**
- * Determines whether blog/site has more than one category.
- *
- * Create your own cnrswebkit_categorized_blog() function to override in a child theme.
- *
- * @since CNRS Web Kit 1.0
- *
- * @return bool True if there is more than one category, false otherwise.
- */
-function cnrswebkit_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'cnrswebkit_categories' ) ) ) {
-		// Create an array of all the categories that are attached to posts.
-		$all_the_cool_cats = get_categories( array(
-			'fields'     => 'ids',
-			// We only need to know if there is more than one category.
-			'number'     => 2,
-		) );
-
-		// Count the number of categories that are attached to the posts.
-		$all_the_cool_cats = count( $all_the_cool_cats );
-
-		set_transient( 'cnrswebkit_categories', $all_the_cool_cats );
-	}
-
-	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so cnrswebkit_categorized_blog should return true.
-		return true;
-	} else {
-		// This blog has only 1 category so cnrswebkit_categorized_blog should return false.
-		return false;
-	}
-}
+    /**
+     * Determines whether blog/site has more than one category.
+     *
+     * Create your own cnrswebkit_categorized_blog() function to override in a child theme.
+     *
+     * @since CNRS Web Kit 1.0
+     *
+     * @return bool True if there is more than one category, false otherwise.
+     */
+    function cnrswebkit_categorized_blog() {
+    	if ( false === ( $all_the_cool_cats = get_transient( 'cnrswebkit_categories' ) ) ) {
+    		// Create an array of all the categories that are attached to posts.
+    		$all_the_cool_cats = get_categories( array(
+    			'fields'     => 'ids',
+    			// We only need to know if there is more than one category.
+    			'number'     => 2,
+    		) );
+    
+    		// Count the number of categories that are attached to the posts.
+    		$all_the_cool_cats = count( $all_the_cool_cats );
+    
+    		set_transient( 'cnrswebkit_categories', $all_the_cool_cats );
+    	}
+    
+    	if ( $all_the_cool_cats > 1 ) {
+    		// This blog has more than 1 category so cnrswebkit_categorized_blog should return true.
+    		return true;
+    	} else {
+    		// This blog has only 1 category so cnrswebkit_categorized_blog should return false.
+    		return false;
+    	}
+    }
 endif;
 
 /**

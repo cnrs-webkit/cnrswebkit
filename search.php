@@ -42,6 +42,7 @@ get_header();
 			endwhile;
 
 			// Previous/next page navigation.
+			// TODO Adjust pagination style (see pods-pagination-advanced)
 			the_posts_pagination( array(
 				'prev_text'          => __( 'Previous page', 'cnrswebkit' ),
 				'next_text'          => __( 'Next page', 'cnrswebkit' ),

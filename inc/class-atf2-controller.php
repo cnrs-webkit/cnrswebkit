@@ -1,4 +1,5 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Original source file Admin Taxonomy Filter Author: Anh Tran
  * Original Plugin URI: https://wordpress.org/plugins/admin-taxonomy-filter/

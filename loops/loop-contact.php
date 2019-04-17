@@ -32,11 +32,5 @@ if ($display_lettre_line) {
         <span><?php echo $current_item->value('prenom') . ' ' . $current_item->value('nom'); ?></span>
         <strong><?php echo $current_item->value('job'); ?></strong>
     </a>
-    <!--
-<div class="nameContainer"><a href="#" data-id="<?php //echo $current_item->value('ID');   ?>"><?php //echo $current_item->value('prenom') . ' ' . $current_item->value('nom');   ?></a></div>
-<div class="jobContainer"><a href="#" data-id="<?php //echo $current_item->value('ID');   ?>"><?php //echo $current_item->value('job');   ?></a></div>
-    -->
-    <?php
-    ?>
 </article>
 <!-- #post-## -->

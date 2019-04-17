@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: CNRS WebKit single posts and attachments with sidebar
+ * Template Name: CNRS WebKit single page and attachments with sidebar
  * Template Post Type: post, page
  *
  * The default template for displaying all single posts and attachments withh sidebar
@@ -28,17 +28,18 @@ get_header(); ?>
 
 			if ( is_singular( 'attachment' ) ) {
 				// Parent post navigation.
+				/* translators: this will be rendered as "Published in <span>page title</span>" */
 				the_post_navigation( array(
-					'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'cnrswebkit' ),
-				) );
+				'prev_text' => '<span class="meta-nav">' . __('Published in', 'cnrswebkit'). '</span><span class="post-title">%title</span>',
+			    ) );
 			} elseif ( is_singular( 'post' ) ) {
 				// Previous/next post navigation.
 				the_post_navigation( array(
 					'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'cnrswebkit' ) . '</span> ' .
-						'<span class="screen-reader-text">' . __( 'Next post:', 'cnrswebkit' ) . '</span> ' .
+						'<span class="screen-reader-text">' . __( 'Next page :', 'cnrswebkit' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
 					'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'cnrswebkit' ) . '</span> ' .
-						'<span class="screen-reader-text">' . __( 'Previous post:', 'cnrswebkit' ) . '</span> ' .
+						'<span class="screen-reader-text">' . __( 'Previous page :', 'cnrswebkit' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
 				) );
 			}

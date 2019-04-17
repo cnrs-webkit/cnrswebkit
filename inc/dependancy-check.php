@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /**
  * CNRS Web Kit dependancy (Pods) check
  *
@@ -25,12 +27,14 @@ function cnrswebkit_dependancy_check(){
     if (! function_exists('pods')) {
         $messages[] = __( 'CNRS Web Kit requires Pods Framework/plugin. Please Ask an administrator to reactivate and/or install Pods .', 'cnrswebkit' );
         if (is_admin() ){
-            $messages[] = __( 'It appears that Pods Framework has been uninstalled or unactivated. This breaks CNRS Webkit theme and cause frontend and backend freezing.', 'cnrswebkit' );  
+            $messages[] = __( 'It appears that Pods Framework has been uninstalled or unactivated. This breaks CNRS Webkit theme and causes frontend and backend freezing.', 'cnrswebkit' );  
             $messages[] = '<a href="">' . __( 'Wordpress theme has been reset to Default theme.', 'cnrswebkit' ). '</a>';
             switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
             unset( $_GET['activated'] );
         }
     }
+    
+    // TODO add dependancy check (wp-scss, )
     
     if (empty($messages) ) {
         return; 
@@ -58,7 +62,6 @@ function cnrswebkit_dependancy_check(){
     </head>
     <body>
     <?php 
-    // TODO add minimal style 
     foreach ($messages as $message) {
         echo '<div class="error"><p>' . $message . "</p></div>\n";
     }

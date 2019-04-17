@@ -44,7 +44,7 @@
  * Notice undefined index name pour "typologie_emploi" ET "duree_du_poste" in content-emploi.php
  * Notice Undefined index: name in loop-bottomemploi.php
  * Notice: Use of undefined constant relation /bottom-evenement.php 
- * Notice: Use of undefined constant full - assumed 'full' in /home/seguinot/Documents/www/wp_ircica_v0.3/wp-content/themes/cnrswebkit/loops/loop-publication.php on line 13
+ * Notice: Use of undefined constant full - assumed 'full' in /wp-content/themes/cnrswebkit/loops/loop-publication.php on line 13
  * Vignettes, thumbnail : not displayed (commented in PHP), no css applied (too large, center...) (in most templates)
  * Vignettes, thumbnail : add_image_size('cnrspost-thumbnail-size', 200, 9999);  (in most templates)
  * Vignettes, thumbnail : moved before header, floated right.   (in most templates)
@@ -73,7 +73,7 @@
  * Notice: Undefined variable: liste_evenement_url in template-parts/bottom-emploi.php on line 15
  * Warning: filesize()sur téléchargement: erreur due à guid des documents incorrects (modifiés dans base de données)
  * Ajout du réglale page tutelles et partenaires
- * Lien "en savoir plus sur nos tutelles" /partenaires était codé en dur
+ * Liens ("en savoir plus sur nos tutelles" et d'autres...)   était codé en dur
  * Lien "en savoir plus sur nos tutelles" supprimé de la page tutelles
  * section partenaires de l'événement était commentée,
  * section partenaires du laboratoire affichait tous les partenaires  (pas ceux de la sélection dans réglage du thème) !! 
@@ -111,6 +111,13 @@
  * Bug : Fichiers /css/style-lmo.css contient paramètres inutilisables $black et  $mainColor;
  * homepage "En savoir plus" remplacé par texte plus explicite "En savoir plus sur le laboratoire"
  * Fix : Pagination show for Single page : Pods issue: https://github.com/pods-framework/pods/issues/5184
+ * New : when sidebar is empty, content adjust to full size 
+ * CSS: mise en forme de la section pagination (pages actualités, emplois, ...)
+ * Résultat de la recherche: mise en page améliorée
+ * Message pour liste vide (actualités, agenda...) modifié si la liste est filtrée. 
+ * added missing translation (echo 'blabla';)
+ * All existing translation string are now in english (some were in french) Ready for translation (.pot refactored)
+ * Add if ( !defined( 'ABSPATH' ) ) exit; on each php code (not templates)
         
 ##### CSS changes  
  * page rubriques (par exemple /le-laboratoire/
