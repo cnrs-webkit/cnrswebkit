@@ -59,7 +59,6 @@ function cnrsenqueue() {
    
     // get_template_directory_uri() : URI of the current parent theme.
     wp_enqueue_style('icomoon', get_template_directory_uri() . '/css/icomoon.css', array(), '1.0');
-    wp_enqueue_style('cnrswebkit-fonts', cnrswebkit_fonts_url(), array(), null);
     
     // enqueue cnrs_dyn-style in case it is not enqueud by wp-scss (wp-scss not installed or not activated)
     wp_enqueue_style('cnrs_dyn-style', get_template_directory_uri() . '/library/css/cnrs_dyn.css', array(), '1.0');
@@ -88,6 +87,7 @@ function cnrswebkit_detect_need_update() {
     // Do not echo anything in this function, this breaks wordpress!
     $previous_version = get_option( 'CNRS_WEBKIT_VERSION', -1 ); // no version saved in first version (ATOS).
     
+    cnrswebkit_install(); // TODO TEMPORAIRE!! 
     // TODO Case install import all pods and return
     if (-1 == $previous_version) {
         // This is probably a fresh install of the theme : import pods structure (config) and pods default values ??
@@ -136,42 +136,78 @@ function cnrswebkit_install() {
         require_once (ABSPATH . '/wp-admin/includes/file.php');
         WP_Filesystem();
     }
-    foreach (glob("*.txt") as $filename) {
-        echo "$filename occupe " . filesize($filename) . "\n";
-    }
-    $files = glob(get_template_directory().'/importer/media/*.*');
-    foreach($files as $file) {
-        if (!$wp_filesystem->copy($file, $wp_filesystem->abspath() . '/wp-content/uploads/' . basename($file))) {
-            $YOURPREFIX_demo_importer_error = '1';
-        }
-    }
-    $nrswebkit_install = true; 
-    // and detect if this is really a new install (pods non existing)
     
-    // First import all pods 
-    $cnrs_webkit_default_pods = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/cnrswebkit_default_pods.json' ) );
-    if (!$cnrs_webkit_default_pods) {
-    // TODO Add error messages!!
-    return;
-    } 
+    if ( function_exists( 'pods') ) {
+        pods_require_component( 'migrate-packages' );
+    }
+    if ( !function_exists( 'pods_api') ) {
+        return; // Error messages ??
+    }
+    $cnrswebkit_install = true; 
+    if (pods('reglage_du_theme')) {
+        // Theme is already installed !! 
+        $cnrswebkit_install = false; 
+    }
+    // Import pods without replacing existing items when found
+    pods_api()->import_package( get_template_directory().'/assets/pods/cnrswebkit_default_pods.json', false);
+    pods_api()->cache_flush_pods();
+    // TODO add info messages 
     
-    // Set default cnrswebkit theme settings so it can be used whitout prior setting saved
-    // see https://pods.io/forums/topic/add-pods-programmatically/
+    // Default content loading /wp-content/plugins/wordpress-importer/wordpress-importer.php
+    if ( $cnrswebkit_install)  {
+        set_transient( 'cnrswebkit_default_content_load', true );
+    }
+    return; //TODO temporaire 
+    
+    // Set default cnrswebkit theme settings so it can be used whitout prior setting saved in admin panel
+    if ( $cnrswebkit_install)  {
+        // Default pods('reglage_du_theme');
+        $pod = pods('reglage_du_theme');
+        $data = array(
+            'code_du_laboratoire' => 'UMI 1234',
+            'presentation_du_site' => "Ce site est une démonstration de l'utilisation du kit Web du CNRS.
+Thème wordpress simple et personnalisable qui permet de donner une visibilité en ligne aux laboratoires, à leurs missions, leurs actualités...",
+            'partenaires_du_laboratoire' => 'a:0:{}',
+            'couleur_principale' => '#fc4246',
+            'style_de_menu' =>'normal',
+            'actualites_sur_la_page_daccueil' => 8,
+            'nombre_dactualites_page_daccueil' => 6,
+            'agenda_sur_la_page_daccueil' => 1,
+            'telechargements_sur_la_page_daccueil' => 1,
+            'fichiers_telechargements_page_daccueil' => 'a:0:{}',
+            'partenaires_sur_la_page_daccueil' => 1,
+            'newsletter_sur_la_page_daccueil' => 0,
+            'nombre_dactualites_page_actialite' => 10,
+            'nombre_devenements_page_agenda' => 6,
+            'nombre_decontacts_page_contact' => 6,
+            'pageliste_emploi' => 'a:0:{}',
+            'pageliste_actualite' => 'a:0:{}',
+            'pageliste_evenement' => 'a:0:{}',
+            'commentaires_actifs' => 'a:0:{}',
+            'liste_actualites_with_sidebar' => 0,
+            'liste_contacts_with_sidebar' => 1,
+            'liste_emplois_with_sidebar' => 1,
+            'liste_evenements_with_sidebar' => 0,
+            'liste_medias_with_sidebar' => 0,
+            'liste_publications_with_sidebar' => 1,
+            'liste_rubriques_with_sidebar' => 1,
+            'actualite_with_sidebar' => 1,
+            'contact_with_sidebar' => 0,
+            'emploi_with_sidebar' => 0,
+            'evenement_with_sidebar' => 0,
+            'publication_with_sidebar' => 0,
+            'page_with_sidebar' => 1,
+            'pagetutelles_et_partenaires' => 'a:0:{}',
+            'tutelles_du_laboratoire' => 'a:0:{}',
+            'logo_partenaires_header' => 'a:0:{}',
+            'text_justify' => 1,
+            
+        );
+        $pod->save( $data ); 
+    }
 
-    $pod = pods( 'projects' );
     
-    // To add a new item, let's set the data first
-    $data = array(
-        'name' => 'Project M01',
-        'managed_by' => 2, // User ID for Mike in the WP Users
-        'date' => '2017-04-29', // this needs to be in format yyyy-mm-dd
-        'members' => array ( 'user1','user2','user3'),
-    );
-    
-    // Add the new item now and get the new ID
-    $new_project_id = $pod->add( $data ); 
-    // then set a flag to propose content import in theme admin page
-    
+    //TODO replace 'a:0:{}', in pods('reglage_du_theme'); by searching equivalent page, after pages has been imported
     
     
 }

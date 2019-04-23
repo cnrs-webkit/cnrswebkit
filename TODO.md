@@ -1,21 +1,23 @@
 ## cnrswebkit TODO list
 
 #### Other tasks
-- [ ] corriger tous les bugs de la version 0.3
-- [ ] Apporter quelques améliorations indispensables
+- [x] corriger tous les bugs de la version 0.3
+- [x] Apporter quelques améliorations indispensables
 - [ ] constituer un ensemble de paramètres par défaut (pods...) installable (pour utiliser le kit)
 - [ ] Constituer un contenu (page média...) téléchargeable pour tester le kit sans disposer de contenu initial
 - [ ] Rendre le thème upgradable à partir de GitHub
 - [ ] Proposer un thème enfant par défaut
 - [ ] apply Worpdress coding standard
-- [ ] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
-- [ ] ET ajouter traductions en français
+- [x] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
+- [ ] ET ajouter traductions en français (.po)
 - [ ] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement 
 - [ ] Ajouter un ordre aux partenaires aussi
+- [ ] toiletter les styles (redondance, inutiles..) voir https://www.cssportal.com/css-validator/
+
 
 #### liste des fichiers de style et tailles en V0.3
- * 77.7 ko /library/scss/crs_dyn.scss
- * 87.6 ko /library/css/crs_dyn.css (crs_dyn.scss compilé)
+ * 77.7 ko /library/scss/cnrs_dyn.scss
+ * 87.6 ko /library/css/cnrs_dyn.css (version compilée de cnrs_dyn.scss )
  * 70.0 ko /style.css
  * 12.9 ko /rtl.css
  * 00.7 ko /css/admin.css
@@ -24,20 +26,12 @@
  * 00.7 ko /css/ie.css
  * 02.6 ko /css/ie7.css
  * 03.5 ko /css/ie8.css
- * 01.1 ko /css/style_dyn.css vide supprimé 
  * 15.3 ko /css/style-lmo.css attention ajouté en direct dans header sans enqueue, pb $maincolor ... !!
- * 15.3 ko /css/style-lmok.css identique au précédent, pas chargé !!!! 
 
-##### icones 
-Quelle icones utiliser en frontend sans dupliquer .... choix => icomoon + genericons
- * genericons 28 k css
- * icomoon 3 ko frontend, mais correspond à icomoon commenté dans css !!
- * dashicons 48 ko (utilise par défaut en admin, utilisé par admin/pods, pas en frontend pour l'instant sauf dans lab-hal et lab-directory
- * Google font chargées frontend et backend MAIS utilisées pour éditeur (frontend et backend ???) et à quelques endroits: voir si on peut s'en passer !!
-  * Merriweather:400,700,900,400italic,700italic,900italic';
-  * Montserrat:400,700';
-  * Inconsolata
- 
+#### liste des fichiers de style supprimés
+ * 01.1 ko /css/style_dyn.css vide supprimé 
+ * 15.3 ko /css/style-lmok.css identique à /css/style-lmo.css, pas chargé !!!! 
+
 ### Liste des bugs et améliorations à apporter
 Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
 Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
@@ -77,8 +71,8 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] tester emploi_form...
 - [ ] 'nombre_dactualites_page_actialite'
 - [ ] Traduction javascript (voir wordpress i18n
-- [ ] 
-- [ ] 
+- [ ] Définir programatiquement H1 H2  H6, supprimer les déclarations multples dans .css
+- [ ] import: exporter, modifier url pour pointer vers url inexistantes, essayer import avec au préalable copie de Uploads
 - [ ] 
 - [ ] 
 

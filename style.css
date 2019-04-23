@@ -11,7 +11,7 @@
  * Author URI:        https://atos.net/
  * Description:       CNRS Web Kit is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. CNRS Web Kit will make your WordPress look beautiful everywhere.
  * Version:           0.4.1
- * License:           http://www.gnu.org/licenses/gpl-2.0.html
+ * License:           http://www.gnu.org/licenses/gpl-3.0.html
  * Contributors:      the Atos team (up to v 0.3), Christophe Seguinot (since v 0.4 ...)
  * Tags:              one-column, two-columns, right-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready, blog
  * Text Domain:       cnrswebkit
@@ -24,7 +24,7 @@
  *
  * 1.0 - Normalize
  * 2.0 - Genericons
- * 3.0 - Typography
+ 
  * 4.0 - Elements
  * 5.0 - Forms
  * 6.0 - Navigation
@@ -299,155 +299,6 @@ optgroup {
 
 
 /**
- * 3.0 - Typography
- */
-/*
-body,
-button,
-input,
-select,
-textarea {
-	color: #1a1a1a;
-	font-family: Merriweather, Georgia, serif;
-	font-size: 16px;
-	font-size: 1rem;
-	line-height: 1.75;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	clear: both;
-	font-weight: 700;
-	margin: 0;
-	text-rendering: optimizeLegibility;
-}
-
-p {
-	margin: 0 0 1.75em;
-}
-
-dfn,
-cite,
-em,
-i {
-	font-style: italic;
-}
-
-blockquote {
-	border: 0 solid #1a1a1a;
-	border-left-width: 4px;
-	color: #686868;
-	font-size: 19px;
-	font-size: 1.1875rem;
-	font-style: italic;
-	line-height: 1.4736842105;
-	margin: 0 0 1.4736842105em;
-	overflow: hidden;
-	padding: 0 0 0 1.263157895em;
-}
-
-blockquote,
-q {
-	quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
-}
-
-blockquote p {
-	margin-bottom: 1.4736842105em;
-}
-
-blockquote cite,
-blockquote small {
-	color: #1a1a1a;
-	display: block;
-	font-size: 16px;
-	font-size: 1rem;
-	line-height: 1.75;
-}
-
-blockquote cite:before,
-blockquote small:before {
-	content: "\2014\00a0";
-}
-
-blockquote em,
-blockquote i,
-blockquote cite {
-	font-style: normal;
-}
-
-blockquote strong,
-blockquote b {
-	font-weight: 400;
-}
-
-blockquote > :last-child {
-	margin-bottom: 0;
-}
-
-address {
-	font-style: italic;
-	margin: 0 0 1.75em;
-}
-
-code,
-kbd,
-tt,
-var,
-samp,
-pre {
-	font-family: Inconsolata, monospace;
-}
-
-pre {
-	border: 1px solid #d1d1d1;
-	font-size: 16px;
-	font-size: 1rem;
-	line-height: 1.3125;
-	margin: 0 0 1.75em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.75em;
-	white-space: pre;
-	white-space: pre-wrap;
-	word-wrap: break-word;
-}
-
-code {
-	background-color: #d1d1d1;
-	padding: 0.125em 0.25em;
-}
-
-abbr,
-acronym {
-	border-bottom: 1px dotted #d1d1d1;
-	cursor: help;
-}
-
-mark,
-ins {
-	background: #007acc;
-	color: #fff;
-	padding: 0.125em 0.25em;
-	text-decoration: none;
-}
-
-big {
-	font-size: 125%;
-}
-*/
-
-/**
  * 4.0 - Elements
  */
 
@@ -562,24 +413,20 @@ td {
 /* Placeholder text color -- selectors need to be separate to work. */
 ::-webkit-input-placeholder {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 }
 
 :-moz-placeholder {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 }
 
 ::-moz-placeholder {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	opacity: 1;
 	/* Since FF19 lowers the opacity of the placeholder by default */
 }
 
 :-ms-input-placeholder {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 }
 
 
@@ -607,7 +454,6 @@ input[type="submit"][disabled]:focus {
 	border: 0;
 	border-radius: 2px;
 	color: #fff;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-weight: 700;
 	letter-spacing: 0.046875em;
 	line-height: 1;
@@ -682,7 +528,6 @@ textarea:focus {
 .post-password-form label {
 	color: #686868;
 	display: block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	letter-spacing: 0.076923077em;
@@ -802,9 +647,7 @@ a:active {
 	display: block;
 }
 
-.main-navigation {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
-}
+
 
 .site-footer .main-navigation {
 	margin-bottom: 1.75em;
@@ -1057,7 +900,6 @@ a:active {
 	border-top: 4px solid #1a1a1a;
 	border-bottom: 4px solid #1a1a1a;
 	clear: both;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	margin: 0 7.6923% 3.5em;
 }
 
@@ -1083,7 +925,6 @@ a:active {
 
 .post-navigation .post-title {
 	display: inline;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 23px;
 	font-size: 1.4375rem;
 	font-weight: 700;
@@ -1102,7 +943,6 @@ a:active {
 
 .pagination {
 	border-top: 4px solid #1a1a1a;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 19px;
 	font-size: 1.1875rem;
 	margin: 0 7.6923% 2.947368421em;
@@ -1241,7 +1081,6 @@ a:active {
 	border-top: 1px solid #d1d1d1;
 	border-bottom: 1px solid #d1d1d1;
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	line-height: 1.6153846154;
@@ -1297,7 +1136,6 @@ a:active {
 	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
 	color: #21759b;
 	display: block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 14px;
 	font-weight: 700;
 	left: -9999em;
@@ -1419,7 +1257,6 @@ blockquote:after,
 }
 
 .widget .widget-title {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 16px;
 	font-size: 1rem;
 	letter-spacing: 0.046875em;
@@ -1470,7 +1307,6 @@ blockquote:after,
 .widget_recent_entries .post-date {
 	color: #686868;
 	display: block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	line-height: 1.615384615;
@@ -1490,7 +1326,6 @@ blockquote:after,
 .widget_rss cite {
 	color: #686868;
 	display: block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	font-style: normal;
@@ -1511,7 +1346,6 @@ blockquote:after,
 	border: 1px solid #d1d1d1;
 	border-radius: 2px;
 	display: inline-block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	line-height: 1;
 	margin: 0 0.1875em 0.4375em 0;
 	padding: 0.5625em 0.4375em 0.5em;
@@ -1594,7 +1428,6 @@ blockquote:after,
 }
 
 .site-title {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 23px;
 	font-size: 1.4375rem;
 	font-weight: 700;
@@ -1695,7 +1528,6 @@ blockquote:after,
 }
 
 .entry-title {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 28px;
 	font-size: 1.75rem;
 	font-weight: 700;
@@ -1962,7 +1794,6 @@ body:not(.search-results) .entry-summary > :last-child,
 
 .entry-footer {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	line-height: 1.6153846154;
@@ -1998,7 +1829,6 @@ body:not(.search-results) .entry-summary > :last-child,
 .sticky-post {
 	color: #686868;
 	display: block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	letter-spacing: 0.076923077em;
@@ -2038,7 +1868,6 @@ body.search-no-results .page-header {
 }
 
 .page-title {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 23px;
 	font-size: 1.4375rem;
 	line-height: 1.2173913043;
@@ -2061,7 +1890,6 @@ body.search-no-results .page-header {
 
 .page-links {
 	clear: both;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	margin: 0 0 1.75em;
 }
 
@@ -2168,7 +1996,6 @@ body.search-no-results .page-header {
 .comments-title,
 .comment-reply-title {
 	border-top: 4px solid #1a1a1a;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 23px;
 	font-size: 1.4375rem;
 	font-weight: 700;
@@ -2224,7 +2051,6 @@ body.search-no-results .page-header {
 .comment-metadata,
 .pingback .edit-link {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	line-height: 1.6153846154;
@@ -2274,7 +2100,6 @@ body.search-no-results .page-header {
 	border-radius: 2px;
 	color: #007acc;
 	display: inline-block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	line-height: 1;
@@ -2296,7 +2121,6 @@ body.search-no-results .page-header {
 .comment-form label {
 	color: #686868;
 	display: block;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	letter-spacing: 0.076923077em;
@@ -2322,7 +2146,6 @@ body.search-no-results .page-header {
 
 .no-comments {
 	border-top: 1px solid #d1d1d1;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-weight: 700;
 	margin: 0;
 	padding-top: 1.75em;
@@ -2334,7 +2157,7 @@ body.search-no-results .page-header {
 }
 
 .form-allowed-tags code {
-	font-family: Inconsolata, monospace;
+	font-family: monospace;
 }
 
 .form-submit {
@@ -2343,7 +2166,7 @@ body.search-no-results .page-header {
 
 .required {
 	color: #007acc;
-	font-family: Merriweather, Georgia, serif;
+	font-family: Georgia, serif;
 }
 
 .comment-reply-title small {
@@ -2414,7 +2237,6 @@ body.search-no-results .page-header {
 .site-footer .site-title:after {
 	content: "\002f";
 	display: inline-block;
-	font-family: Montserrat, sans-serif;
 	opacity: 0.7;
 	padding: 0 0.307692308em 0 0.538461538em;
 }
@@ -2632,7 +2454,6 @@ p > video {
 .widecolumn label,
 .widecolumn .mu_register label {
 	color: #686868;
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
 	font-weight: 400;

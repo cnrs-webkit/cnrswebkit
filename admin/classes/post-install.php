@@ -28,14 +28,59 @@ Class cnrs_webkit_post_install {
         }
                 
         if (isset( $_POST['Reorder_template_settings_Pods']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
-            self::Reorder_template_settings_Pods(); 
+            self::reorder_template_settings_Pods(); 
         }
-        
+
+        if (isset( $_POST['default_content_load']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
+            self::default_content_load($_POST['default_content_load']);
+        }
         // Form messages must be displayed before loading form
         cnrsWebkitAdminNotices::displayAdminNotice();
         require_once( CNRS_WEBKIT_DIR . '/admin/views/settings_post_install.php' );
     }
-    static function Reorder_template_settings_Pods() {
+    
+    static function default_content_load($filename = '') {
+        global $wp_filesystem;
+        $messages = array();
+        
+        // Load WP_Import class
+        define( 'WP_LOAD_IMPORTERS', true );
+        require_once ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
+        /*
+        if ( ! class_exists( 'WP_Import' ) ) {
+            $class_wp_import = ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
+             if ( file_exists( $class_wp_import ) )
+                require_once $class_wp_import;
+        }
+        */
+        if ( ! class_exists( 'WP_Import' ) ) {
+            $messages[] = array('message' => 'CNRS Webkit : You must install <a href="import.php">"wordpress-importer"</a> plugin before importing default CNRS Webkit content ! (https://wordpress.org/plugins/wordpress-importer/)',
+                'notice-level' => 'notice-info' );
+            cnrsWebkitAdminNotices::addNotices( $messages );
+            return; 
+        }
+        
+        $WP_import = new WP_Import;
+        
+        // Initialize the WP filesystem
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
+        $file = CNRS_WEBKIT_DIR . '/assets/content'. $filename .'.xml';
+        $WP_import->import(CNRS_WEBKIT_DIR . '/assets/content/' . $file);
+        /*
+        foreach ($files as $file) {
+            if ('xml' === pathinfo($file['name'], PATHINFO_EXTENSION)) {
+                $WP_import->import(CNRS_WEBKIT_DIR . '/assets/content/' . $file['name']);
+            }
+        }
+        */
+        delete_transient( 'cnrswebkit_default_content_load');
+        return;
+    }
+    
+    static function reorder_template_settings_Pods() {
         
         global $wp_filesystem;
         $messages = array();

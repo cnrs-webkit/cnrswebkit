@@ -229,12 +229,6 @@ if (!function_exists('cnrswebkit_setup')) :
             'chat',
         ));
 
-        /*
-         * This theme styles the visual editor to resemble the theme style,
-         * specifically font, colors, icons, and column width.
-         */
-        add_editor_style(array('css/editor-style.css', cnrswebkit_fonts_url()));
-
         // Indicate widget sidebars can use selective refresh in the Customizer.
         add_theme_support('customize-selective-refresh-widgets');
     }
@@ -323,48 +317,6 @@ function cnrswebkit_widgets_init() {
 
 add_action('widgets_init', 'cnrswebkit_widgets_init');
 
-if (!function_exists('cnrswebkit_fonts_url')) :
-
-    /**
-     * Register Google fonts for CNRS Web Kit.
-     *
-     * Create your own cnrswebkit_fonts_url() function to override in a child theme.
-     *
-     * @since CNRS Web Kit 1.0
-     *
-     * @return string Google fonts URL for the theme.
-     */
-    function cnrswebkit_fonts_url() {
-        $fonts_url = '';
-        $fonts = array();
-        $subsets = 'latin,latin-ext';
-
-        /* translators: If there are characters in your language that are not supported by Merriweather, translate this to 'off'. Do not translate into your own language. */
-        if ('off' !== _x('on', 'Merriweather font: on or off', 'cnrswebkit')) {
-            $fonts[] = 'Merriweather:400,700,900,400italic,700italic,900italic';
-        }
-
-        /* translators: If there are characters in your language that are not supported by Montserrat, translate this to 'off'. Do not translate into your own language. */
-        if ('off' !== _x('on', 'Montserrat font: on or off', 'cnrswebkit')) {
-            $fonts[] = 'Montserrat:400,700';
-        }
-
-        /* translators: If there are characters in your language that are not supported by Inconsolata, translate this to 'off'. Do not translate into your own language. */
-        if ('off' !== _x('on', 'Inconsolata font: on or off', 'cnrswebkit')) {
-            $fonts[] = 'Inconsolata:400';
-        }
-
-        if ($fonts) {
-            $fonts_url = add_query_arg(array(
-                'family' => urlencode(implode('|', $fonts)),
-                'subset' => urlencode($subsets),
-                    ), 'https://fonts.googleapis.com/css');
-        }
-
-        return $fonts_url;
-    }
-
-endif;
 
 /**
  * Handles JavaScript detection.
