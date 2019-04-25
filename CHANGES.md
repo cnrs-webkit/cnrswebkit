@@ -119,6 +119,7 @@
  * All existing translation string are now in english (some were in french) Ready for translation (.pot refactored)
  * Add if ( !defined( 'ABSPATH' ) ) exit; on each php code (not templates)
  * fontes Google peu utiles, souvent urchargées par Roboto supprimées: Merriweather Montserrat et Inconsolata
+ * lien pour l'installation du plugin pods si manquant 
         
 ##### CSS changes  
  * page rubriques (par exemple /le-laboratoire/

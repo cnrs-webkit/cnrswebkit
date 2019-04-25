@@ -34,6 +34,11 @@ define( 'CNRS_WEBKIT_VERSION', '0.4.1' );
 define( 'CNRS_WEBKIT_DIR', dirname( __FILE__ ) );
 define( 'CNRS_WEBKIT_URL', plugins_url('', __FILE__ ) );
 
+if ( ! defined( 'WP_LOAD_IMPORTERS' ) ) {
+    // define should be used outside class definition
+    define( 'WP_LOAD_IMPORTERS', true );
+}
+
 /**
  * CNRS Web Kit only works in WordPress 4.4 or later.
  */

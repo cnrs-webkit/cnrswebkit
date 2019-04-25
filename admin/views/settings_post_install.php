@@ -29,10 +29,16 @@
   }
   button {
   margin:5px!important;
+  vertical-align: baseline!important;
   }
-  .imported {
+  button.danger_zone {
     background: red!important;
   }
+  .danger_zone{
+    color: red;
+  }
+
+
   
 </style>
 <script type="text/javascript">
@@ -41,9 +47,15 @@ function cnrswebkit_default_content_load(form) {
     form.submit();
     }
 }
+
+function cnrswebkit_set_cnrs_template_settings_to_default(form) {
+    if (confirm("Are you sure you want set CNRS Webkit template settings to their default value?")) {
+    form.submit();
+    }
+}
 </script>
 
-<form method="post">
+<form method="post" action = "admin.php?page=CNRS-Webkit&import">
 	<h2><?php _e('CNRS Webkit Post-install/Upgrade Settings :','cnrswebkit'); ?></h2>
     <div class="flex_container">
        <div class ="half_width">
@@ -87,10 +99,8 @@ function cnrswebkit_default_content_load(form) {
     	            }
     	        }
     	    }
-    	    if ($cnrswebkit_default_content_load) {
-    	        // Delete the global transient cnrswebkit_default_content_load
-    	        delete_transient( 'cnrswebkit_default_content_load');
-    	    }
+    	    // Delete the global transient cnrswebkit_default_content_load
+    	    delete_transient( 'cnrswebkit_default_content_load');
         	?>
         	<ul>
             	<?php 
@@ -106,14 +116,17 @@ function cnrswebkit_default_content_load(form) {
          		<li><?php _e('This should not duplicate existing content','cnrswebkit'); ?></li>
           	</ul>
         	<?php 
-        	echo '<p style = "color:#0085ba;">'. __('Blue button correspond to content that were not already imported','cnrswebkit') . '</p>';
+        	echo '<p>'; 
+        	echo '<span style = "color:#0085ba;">'. __('Blue buttons correspond to content that were not imported','cnrswebkit') . '</span>';
+        	echo '<br /><span style = "color:red;">'. __('Red buttons correspond to content that have been already imported','cnrswebkit') . '</span>';
+        	echo '</p>'; 
         	foreach ($default_contents as $file => $to_import) {
-        	    $class = $default_contents[$filename]? 'imported':'';
+        	    $class = $to_import?  '' : 'danger_zone';
         	   echo '<button type="submit" name="default_content_load" class="button button-primary ' . $class . '" value="' . $file . '">' . 
                     $file . '</button>'; 
         	}
         	?>
-        	<?php echo '<p style = "color:red;">'. __('Red button correspond to content already imported','cnrswebkit') . '</p>'; ?>
+     
         </div>
 		<div class ="half_width">
         	<b><?php _e('Reorder Pods fields in "template settings"','cnrswebkit'); ?></b><br/><br/>
@@ -131,12 +144,32 @@ function cnrswebkit_default_content_load(form) {
         	</p>
         	<button type="submit" name="Reorder_template_settings_Pods" class="button button-primary button-large" value="Reorder_template_settings_Pods"><?php _e('Automatic reorder pods fields', 'cnrswebkit'); ?></button>
         </div>       
+
+        <div class ="half_width">
+        	<b class ="danger_zone"><?php _e('Re installing CNRS WebKit : Danger zone!!','cnrswebkit'); ?></b><br/><br/>
+        	<p>
+        	All feature provided below correspond to task automatically launched during Theme install. The below link should be unuseful, they are provided to force reinstall procedure in case something went wrong!
+        	</p>
+        	Coming soon !! 
+        	<ul>
+        		<li>
+            		Reload CNRSWebkit pods (whitout erasing existing pods)
+            		<button type="submit" name="Reinstall" class="button button-primary button-large" value="cnrswebkit_load_cnrs_default_pods"><?php _e('Reload', 'cnrswebkit'); ?></button>
+        		</li>
+        		<li  class ="danger_zone">
+        			Reset CNRS Webkit template settings (pods) to their default values 
+    				<button type="submit" name="Reinstall" class="button button-primary button-large danger_zone" value="cnrswebkit_set_cnrs_template_settings_to_default"><?php _e('Reset', 'cnrswebkit'); ?></button>
+    				 (This will erase your settings)
+    			</li>
+        	</ul>
+        	</p>
+        </div> 
+
         <div class ="full_width">
         	<b>TODO (coming soon) ! </b><br/><br/>
         	<p>
         	Mise à jour des traductions des pods à partir des traductions du thème CNRS (sans surcharger/effacer les traduction de l'utilisateur)
         	</p>
-        </div>
         </div>
 
         <?php wp_nonce_field('settings_post_install'); ?>	

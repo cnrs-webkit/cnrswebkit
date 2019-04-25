@@ -3,7 +3,7 @@
 #### Other tasks
 - [x] corriger tous les bugs de la version 0.3
 - [x] Apporter quelques améliorations indispensables
-- [ ] constituer un ensemble de paramètres par défaut (pods...) installable (pour utiliser le kit)
+- [x] constituer un ensemble de paramètres par défaut (pods...) installable (pour utiliser le kit)
 - [ ] Constituer un contenu (page média...) téléchargeable pour tester le kit sans disposer de contenu initial
 - [ ] Rendre le thème upgradable à partir de GitHub
 - [ ] Proposer un thème enfant par défaut
@@ -73,8 +73,8 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
 - [ ] Traduction javascript (voir wordpress i18n
 - [ ] Définir programatiquement H1 H2  H6, supprimer les déclarations multples dans .css
 - [ ] import: exporter, modifier url pour pointer vers url inexistantes, essayer import avec au préalable copie de Uploads
-- [ ] 
-- [ ] 
+- [ ] Modifier le fichier illustrant le thème
+- [ ] 	
 
 
 
@@ -95,7 +95,15 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
   * le menu administration (des pods) /translate pods apparait: dans ce menu activer les langues désirées
 - [ ] téléchargement homepage rien sur la page en anglais !!
   * il faut traduire les contenus événements et actualités. 
- 
+- [ ] Liste des dépendances /todo avant d'installer le thème : Mettre cette liste dans le theme pour affichage
+  * installer wordpress 
+  * installer polylang si le site gère plusieurs langues (optionnel)
+  * configurer la/les langue(s) désirée(s) en admin et en frontend
+  * installer le plugin pods
+  * activation du "migrate packages" des pods
+  * installer le thème cnrs webkit
+  importer les contenus par défaut (optionnel)
+    
 
 ### Liste des bugs et améliorations à apporter sur theme cnrswebkit
 - [ ] Slogan et titre du site :/wp-admin/options-general.php ajouter un message explicatif dans l’admin (du thème ? Ou de WP ? )  

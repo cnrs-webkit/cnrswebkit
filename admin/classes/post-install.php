@@ -1,6 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) exit;
 
+
 Class cnrs_webkit_post_install {
 
     static function init() {
@@ -34,6 +35,18 @@ Class cnrs_webkit_post_install {
         if (isset( $_POST['default_content_load']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
             self::default_content_load($_POST['default_content_load']);
         }
+        
+        if (isset( $_POST['Reinstall']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
+            
+            if ('cnrswebkit_load_cnrs_default_pods' ===$_POST['Reinstall']) {
+                cnrswebkit_load_cnrs_default_pods();
+            }
+            
+            if ('cnrswebkit_set_cnrs_template_settings_to_default' ===$_POST['Reinstall']) {
+                cnrswebkit_set_cnrs_template_settings_to_default();
+            }
+    				
+        }
         // Form messages must be displayed before loading form
         cnrsWebkitAdminNotices::displayAdminNotice();
         require_once( CNRS_WEBKIT_DIR . '/admin/views/settings_post_install.php' );
@@ -43,16 +56,25 @@ Class cnrs_webkit_post_install {
         global $wp_filesystem;
         $messages = array();
         
-        // Load WP_Import class
-        define( 'WP_LOAD_IMPORTERS', true );
-        require_once ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
-        /*
+        // require_once ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
+
+        https://hotexamples.com/examples/-/WP_Import/import/php-wp_import-import-method-examples.html
+        // Load Importer API
+        //require_once ABSPATH . 'wp-admin/includes/import.php';
+        /* if ( !class_exists( 'WP_Importer' ) ) {
+            $class_wp_importer = ABSPATH . 'wp-admin/includes/class-wp-importer.php';
+            if ( file_exists( $class_wp_importer ) ) {
+                require_once $class_wp_importer;
+            }
+        }
+*/
         if ( ! class_exists( 'WP_Import' ) ) {
             $class_wp_import = ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
-             if ( file_exists( $class_wp_import ) )
+            if ( file_exists( $class_wp_import ) ) {
                 require_once $class_wp_import;
+            }
         }
-        */
+
         if ( ! class_exists( 'WP_Import' ) ) {
             $messages[] = array('message' => 'CNRS Webkit : You must install <a href="import.php">"wordpress-importer"</a> plugin before importing default CNRS Webkit content ! (https://wordpress.org/plugins/wordpress-importer/)',
                 'notice-level' => 'notice-info' );
@@ -67,16 +89,10 @@ Class cnrs_webkit_post_install {
             require_once (ABSPATH . '/wp-admin/includes/file.php');
             WP_Filesystem();
         }
-        $file = CNRS_WEBKIT_DIR . '/assets/content'. $filename .'.xml';
-        $WP_import->import(CNRS_WEBKIT_DIR . '/assets/content/' . $file);
-        /*
-        foreach ($files as $file) {
-            if ('xml' === pathinfo($file['name'], PATHINFO_EXTENSION)) {
-                $WP_import->import(CNRS_WEBKIT_DIR . '/assets/content/' . $file['name']);
-            }
-        }
-        */
-        delete_transient( 'cnrswebkit_default_content_load');
+        
+        $file = CNRS_WEBKIT_DIR . '/assets/content/'. $filename .'.xml';
+        $WP_import->import($file);
+        delete_transient ('cnrswebkit_default_content_load'.$filename);
         return;
     }
     

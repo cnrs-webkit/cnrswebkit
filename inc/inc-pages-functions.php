@@ -87,11 +87,11 @@ function cnrswebkit_detect_need_update() {
     // Do not echo anything in this function, this breaks wordpress!
     $previous_version = get_option( 'CNRS_WEBKIT_VERSION', -1 ); // no version saved in first version (ATOS).
     
-    cnrswebkit_install(); // TODO TEMPORAIRE!! 
-    // TODO Case install import all pods and return
+    cnrswebkit_install(); //temporary
+    // Case install import all pods and return
     if (-1 == $previous_version) {
         // This is probably a fresh install of the theme : import pods structure (config) and pods default values ??
-        // cnrswebkit_install();
+        cnrswebkit_install();
     }
     
     if ( version_compare( CNRS_WEBKIT_VERSION, $previous_version, '==' ) ) {
@@ -130,6 +130,43 @@ function cnrswebkit_install() {
      * is just installed so every import (pods) should be done with caution . 
      */
     
+    
+    if ( function_exists( 'pods') ) {
+        pods_require_component( 'migrate-packages' );
+    }
+    if ( !function_exists( 'pods_api') ) {
+        return false; // TODO Error messages ??
+    }
+    $cnrswebkit_install = true; 
+    
+    if (pods('reglage_du_theme', null, true)) {
+        // Theme is already installed !! 
+        $cnrswebkit_install = false;
+        return false; 
+    }
+
+    if ( $cnrswebkit_install)  {
+        /* Default content loading.
+         *
+         * When transient cnrswebkit_default_content_load is set,
+         * the default content loading admin page is activated
+         */
+        set_transient( 'cnrswebkit_default_content_load', true );
+        
+        if (! cnrswebkit_load_cnrs_default_pods() ) {
+            // TODO message 
+            return false; 
+        }
+        
+        // 
+        cnrswebkit_set_cnrs_template_settings_to_default();
+        return true; 
+    }
+}
+
+function cnrswebkit_load_cnrs_default_pods() {
+    // Import pods without replacing existing items when found
+    
     global $wp_filesystem;
     // Initialize the WP filesystem
     if (empty($wp_filesystem)) {
@@ -137,81 +174,69 @@ function cnrswebkit_install() {
         WP_Filesystem();
     }
     
-    if ( function_exists( 'pods') ) {
-        pods_require_component( 'migrate-packages' );
-    }
-    if ( !function_exists( 'pods_api') ) {
-        return; // Error messages ??
-    }
-    $cnrswebkit_install = true; 
-    if (pods('reglage_du_theme')) {
-        // Theme is already installed !! 
-        $cnrswebkit_install = false; 
-    }
-    // Import pods without replacing existing items when found
-    pods_api()->import_package( get_template_directory().'/assets/pods/cnrswebkit_default_pods.json', false);
-    pods_api()->cache_flush_pods();
-    // TODO add info messages 
+    pods_require_component( 'migrate-packages' );
+    $pods_api = pods_api();
     
-    // Default content loading /wp-content/plugins/wordpress-importer/wordpress-importer.php
-    if ( $cnrswebkit_install)  {
-        set_transient( 'cnrswebkit_default_content_load', true );
+    $default_package = $wp_filesystem->get_contents(get_template_directory().'/assets/pods/cnrswebkit_default_pods.json') ;
+    $temp = $pods_api->import_package($default_package , false);
+    $pods_api->cache_flush_pods();
+    
+    if (! pods('reglage_du_theme', null, true)) {
+        return false; 
     }
-    return; //TODO temporaire 
-    
-    // Set default cnrswebkit theme settings so it can be used whitout prior setting saved in admin panel
-    if ( $cnrswebkit_install)  {
-        // Default pods('reglage_du_theme');
-        $pod = pods('reglage_du_theme');
-        $data = array(
-            'code_du_laboratoire' => 'UMI 1234',
-            'presentation_du_site' => "Ce site est une démonstration de l'utilisation du kit Web du CNRS.
-Thème wordpress simple et personnalisable qui permet de donner une visibilité en ligne aux laboratoires, à leurs missions, leurs actualités...",
-            'partenaires_du_laboratoire' => 'a:0:{}',
-            'couleur_principale' => '#fc4246',
-            'style_de_menu' =>'normal',
-            'actualites_sur_la_page_daccueil' => 8,
-            'nombre_dactualites_page_daccueil' => 6,
-            'agenda_sur_la_page_daccueil' => 1,
-            'telechargements_sur_la_page_daccueil' => 1,
-            'fichiers_telechargements_page_daccueil' => 'a:0:{}',
-            'partenaires_sur_la_page_daccueil' => 1,
-            'newsletter_sur_la_page_daccueil' => 0,
-            'nombre_dactualites_page_actialite' => 10,
-            'nombre_devenements_page_agenda' => 6,
-            'nombre_decontacts_page_contact' => 6,
-            'pageliste_emploi' => 'a:0:{}',
-            'pageliste_actualite' => 'a:0:{}',
-            'pageliste_evenement' => 'a:0:{}',
-            'commentaires_actifs' => 'a:0:{}',
-            'liste_actualites_with_sidebar' => 0,
-            'liste_contacts_with_sidebar' => 1,
-            'liste_emplois_with_sidebar' => 1,
-            'liste_evenements_with_sidebar' => 0,
-            'liste_medias_with_sidebar' => 0,
-            'liste_publications_with_sidebar' => 1,
-            'liste_rubriques_with_sidebar' => 1,
-            'actualite_with_sidebar' => 1,
-            'contact_with_sidebar' => 0,
-            'emploi_with_sidebar' => 0,
-            'evenement_with_sidebar' => 0,
-            'publication_with_sidebar' => 0,
-            'page_with_sidebar' => 1,
-            'pagetutelles_et_partenaires' => 'a:0:{}',
-            'tutelles_du_laboratoire' => 'a:0:{}',
-            'logo_partenaires_header' => 'a:0:{}',
-            'text_justify' => 1,
-            
-        );
-        $pod->save( $data ); 
-    }
-
-    
-    //TODO replace 'a:0:{}', in pods('reglage_du_theme'); by searching equivalent page, after pages has been imported
-    
-    
+    return true; 
 }
 
+function cnrswebkit_set_cnrs_template_settings_to_default() {
+    
+    // Set default cnrswebkit theme settings so it can be used whitout prior setting saved in admin panel
+    $pod = pods('reglage_du_theme');
+    $id = $pod->id;
+    $data = array(
+        'code_du_laboratoire' => 'UMI 1234',
+        'presentation_du_site' => "Ce site est une démonstration de l'utilisation du kit Web du CNRS.
+Thème wordpress simple et personnalisable qui permet de donner une visibilité en ligne aux laboratoires, à leurs missions, leurs actualités...",
+        'partenaires_du_laboratoire' => 'a:0:{}',
+        'couleur_principale' => '#fc4246',
+        'style_de_menu' =>'normal',
+        'actualites_sur_la_page_daccueil' => 8,
+        'nombre_dactualites_page_daccueil' => 6,
+        'agenda_sur_la_page_daccueil' => 1,
+        'telechargements_sur_la_page_daccueil' => 1,
+        'fichiers_telechargements_page_daccueil' => 'a:0:{}',
+        'partenaires_sur_la_page_daccueil' => 1,
+        'newsletter_sur_la_page_daccueil' => 0,
+        'nombre_dactualites_page_actialite' => 10,
+        'nombre_devenements_page_agenda' => 6,
+        'nombre_decontacts_page_contact' => 6,
+        'pageliste_emploi' => 'a:0:{}',
+        'pageliste_actualite' => 'a:0:{}',
+        'pageliste_evenement' => 'a:0:{}',
+        'commentaires_actifs' => 'a:0:{}',
+        'liste_actualites_with_sidebar' => 0,
+        'liste_contacts_with_sidebar' => 1,
+        'liste_emplois_with_sidebar' => 1,
+        'liste_evenements_with_sidebar' => 0,
+        'liste_medias_with_sidebar' => 0,
+        'liste_publications_with_sidebar' => 1,
+        'liste_rubriques_with_sidebar' => 1,
+        'actualite_with_sidebar' => 1,
+        'contact_with_sidebar' => 0,
+        'emploi_with_sidebar' => 0,
+        'evenement_with_sidebar' => 0,
+        'publication_with_sidebar' => 0,
+        'page_with_sidebar' => 1,
+        'pagetutelles_et_partenaires' => 'a:0:{}',
+        'tutelles_du_laboratoire' => 'a:0:{}',
+        'logo_partenaires_header' => 'a:0:{}',
+        'text_justify' => 'justify',
+        
+    );
+    //TODO replace 'a:0:{}', in pods('reglage_du_theme'); by searching equivalent page, after pages have been imported
+    
+    $pod->save( $data , null, $id);
+    return true; 
+}
 
 function cnrswebkit_upgrade ($previous_version, $new_version) {
     
@@ -221,7 +246,7 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
         require_once (ABSPATH . '/wp-admin/includes/file.php');
         WP_Filesystem();
     }
-      
+   
     // Case Upgrade Update current pods
     $pods_api = pods_api();
    
@@ -230,11 +255,10 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
     
     // Load current settings "reglage_du_theme"
     $reglage_du_theme = pods('reglage_du_theme');
-    
     // Add non existing fields in settings "reglage_du_theme"
     $message = '';
-    
     foreach ($default_reglage_du_theme->pods as $pod_id => $pod_array) {
+        
         if ('reglage_du_theme' === $pod_array->name) {
             // First add new field 
             foreach ($pod_array->fields as $field_slug => $field) {
@@ -255,7 +279,7 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
             }
         }
     }
-
+    
     //TODO remove option on uninstall 
     update_option('CNRS_WEBKIT_VERSION', CNRS_WEBKIT_VERSION);
     
