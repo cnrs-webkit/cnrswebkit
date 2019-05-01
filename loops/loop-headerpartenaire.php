@@ -6,7 +6,7 @@
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  * 
- * Loop Name: Boucle d'actialités
+ * Loop Name: Boucle Partenaires
  */
 ?>
 

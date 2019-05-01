@@ -39,6 +39,9 @@ if ( ! defined( 'WP_LOAD_IMPORTERS' ) ) {
     define( 'WP_LOAD_IMPORTERS', true );
 }
 
+if (is_admin() ) {
+    require_once get_template_directory() . '/admin/classes/cnrswebkit.php';
+}
 /**
  * CNRS Web Kit only works in WordPress 4.4 or later.
  */

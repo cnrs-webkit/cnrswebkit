@@ -51,6 +51,8 @@ get_header();
                         }
                     }
                     
+                    // include for is_plugin_active which is an admin only function
+                    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );  
                     if (is_plugin_active('newsletter') ) {
                         /*
                          TODO Ces 2 liens sont brisés !!

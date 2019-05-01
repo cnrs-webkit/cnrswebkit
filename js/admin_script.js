@@ -11,7 +11,8 @@ jQuery(document).ready(function ($) {
             var dateFin = jQuery('#pods-form-ui-pods-meta-date-de-fin').val();
             var dateCompareFin = dateFin.substring(6, 10) + dateFin.substring(3, 5) + dateFin.substring(0, 2) + dateFin.substring(12, 16);
             if (dateCompareFin < dateCompareDebut) {
-                jQuery('.pods-form-ui-row-name-date-de-fin').find('td').prepend('<div class="pods-validate-error-message">La date de fin doit être supérieure à la date de début.</div>');
+                /* TODO javascript i18n*/ 
+            	jQuery('.pods-form-ui-row-name-date-de-fin').find('td').prepend('<div class="pods-validate-error-message">La date de fin doit être supérieure à la date de début.</div>');
                 jQuery('html,body').animate({scrollTop: jQuery("#pods-form-ui-pods-meta-date-de-debut").offset().top}, 'slow');
                 return false;
             }

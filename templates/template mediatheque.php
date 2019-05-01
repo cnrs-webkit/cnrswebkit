@@ -45,9 +45,9 @@ get_header();
                         echo $mediatheque_data->get_html_item_list();
                     } else {
                         if ($cnrs_webkit_list_filtered) {
-                            echo '<br/><p>'. __('There is no recruitment offer in this filtered list', 'cnrswebkit') . '</p>';
+                            echo '<br/><p>'. __('There is no media in this filtered list', 'cnrswebkit') . '</p>';
                         } else {
-                            echo '<br/><p>'. __('There is currently no recruitment offer published', 'cnrswebkit') . '</p>';
+                            echo '<br/><p>'. __('There is currently no media published', 'cnrswebkit') . '</p>';
                         }
                     }
                     ?>

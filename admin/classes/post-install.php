@@ -129,23 +129,26 @@ Class cnrs_webkit_post_install {
             
             // reorder fields in settings "reglage_du_theme"
             foreach ($reglage_du_theme->fields as $field_slug => $field) {
+                
                 // reorder fields in settings "reglage_du_theme"
                 $old = $field['weight'];
                 $new = $default_reglage_du_theme->fields->$field_slug->weight;
                 if ($old !== $new) {
                     $field['weight']= $new;
                     $pods_api->save_field($field);
-                    $message .= "<br/>&nbsp;&nbsp;&nbsp; field :$old==>$new [$field_slug]";
-                    
+                    $message .= "<br/>&nbsp;&nbsp;&nbsp; field :$old==>$new [$field_slug]"; 
                 }
+                
+               
+
             }
             // $success = $reglage_du_theme->save($reglage_du_theme);
             // Add a form message
             if ($message) {
-                $messages[] = array('message' => "CNRS Webkit : Liste des champs réordonnés: ".$message,
+                $messages[] = array('message' => "CNRS Webkit : Field list has been reordered (in template setting pods)".$message,
                     'notice-level' => 'notice-info' );
             } else {
-                $messages[] = array('message' => "CNRS Webkit : Field were already ordered !",
+                $messages[] = array('message' => "CNRS Webkit : Fields were already ordered ! (in template setting pods)",
                     'notice-level' => 'notice-info' ); 
             }
             cnrsWebkitAdminNotices::addNotices( $messages  );

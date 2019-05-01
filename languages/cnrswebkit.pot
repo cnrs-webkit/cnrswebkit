@@ -717,7 +717,7 @@ msgid "Other recruitment"
 msgstr ""
 
 #: template-parts/bottom-evenement.php:21
-msgid "Return to Events list"
+msgid "Browse Events list"
 msgstr ""
 
 #: template-parts/bottom-evenement.php:28

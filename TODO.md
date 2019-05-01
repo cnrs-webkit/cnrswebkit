@@ -33,48 +33,47 @@
  * 15.3 ko /css/style-lmok.css identique à /css/style-lmo.css, pas chargé !!!! 
 
 ### Liste des bugs et améliorations à apporter
-Cette liste est la concaténation de l'ensemble des observations faites sur le forum et par C. Seguinot. Certains items peuvent être redondants car la liste n'a été ni structurée ni priorisée. 
-Au fur et à mesure des corrections par les développeurs, cette liste sera épurée et les modifications consignées dans le changelog intitulé [CHANGES.md](CHANGES.md). __La plupart des bugs sont relatifs à un template; dans ce cas il faut examiner l'ensemble du code pour corriger les éventuels bugs identiques ou similaires des autres templates.__ 
 
-- [ ] Add possible defaut parameter at theme install (so that template can be used whitout saving settings first)
-     * at install 
-     * at upgrade too for added fields
 - [ ] ? désactiver les vignettes sur format mobile ?
-- [ ] utilité du template content-publication ?? avec !!! "eventDateRight "addCalendar" et "eventLocation" !!!
 - [ ] put code in classes AND separate admin from frontend 
 - [ ]   * GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
-- [ ] image médiathèque/admin le champ à la une m’apparaît totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!)
-    * le champ ne semble pas utilisé: (vérifié)
-    * "Photos et vidéos issues de nos recherches." s'affiche si médiathèque vide v03.fr pb ???? 
-- [ ] Page 404.php n’apparaît pas dans la bonne langue , pourtant locale correcte !!
-- [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
+- [ ] image médiathèque/admin le champ à la une EST totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!) [Cocher pour afficher cette actualité sur la page d'accueil]
+    * le champ ne semble pas utilisé: (OUI, vérifié) retirer de la config des pods mais comment upgrader ???
+- [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus d'admin inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
 - [ ] Disable CPT programmatically (filter pods_wp_post_types) 
 
 - [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
-   * ordre sur pods, 
-- [ ] Page agenda ne liste que les événement passés (ajouter un lien sur la page pour tous les événements ? 
-- [ ] En faisant ce test (événements ) , j’ai découvert un comportement inadapté de l’affichage des événements:. Je ne comprends pas comment est faite cette sélection.
-   * sur la page d’accueil, les « prochains événements » n’affichent que certains des événements dont la date de début et future: il en manque ! 
-   * sur la page « l’agenda » seuls les événements futurs non listés dans « prochains événements » sont affichés (il en manque ici aussi!). 
-
-- [ ] revoir css mobile
-
-- [ ] import valeurs des pods? ? 
-- [ ] update theme: Ajouter aux pods les traductions du json si elles existent dans le thème par défaut JSON , et si elles n'existent pas dans le thème
+   * ordre sur pods, mais comment MAJ les pods des sites déjà installés ?? 
+- [ ] update theme: Ajouter aux pods les traductions du json si elles existent dans le thème par défaut JSON , et si elles n'existent pas dans le thème installé
    * au réglage du thème oui 
    * aux autres pods oui 
    * label_en_GB description_en_GB (! double undescore )
-- [ ] import contenus d'un site (install)
+
+- [ ] revoir css mobile
+
 - [ ] revoir toutes les polices font-family: (css)
-- [ ] ajouter qq traductions dans admin 
-- [ ] générer .pot 
+- [ ] faut-il ajouter qq traductions personnalisables dans admin ??? 
 - [ ] tester emploi_form...
-- [ ] 'nombre_dactualites_page_actialite'
-- [ ] Traduction javascript (voir wordpress i18n
+- [ ] /* TODO javascript i18n*/ https://pascalbirchler.com/internationalization-in-wordpress-5-0/
+       
 - [ ] Définir programatiquement H1 H2  H6, supprimer les déclarations multples dans .css
-- [ ] import: exporter, modifier url pour pointer vers url inexistantes, essayer import avec au préalable copie de Uploads
 - [ ] Modifier le fichier illustrant le thème
-- [ ] 	
+- [ ] Social Links Menu Quid ?? http://wp_test_kit.fr/wp-admin/nav-menus.php?action=locations
+   * conflit ?? avec "social network"
+- [ ] Ajouter en admin options de l'écran (colonnes) pour CPT du kit  ? comment? programmation ou config des pods? et quid si quelqu'un utilise le kit mais supprime des pods
+- [ ] Emplois: il existe un champ "type de poste" et une typologie d'emploi aussi redondant !!
+- [ ] importer le css personalisé indispensable (menu...)
+- [ ] 
+- [ ]  
+
+### TODO site de démo 
+- [ ] Dircomnas ?? à modifier sur site démo
+- [ ] modifier les liens bas de page non fonctionnels non paramétrables -> site origin ??
+- [ ] supprimer les brouillons inutiles
+- [ ] supprimer les médias inutilisés
+- [ ] proposer pages en anglais / site bilingue pour montrer comment ça marche et proposer traduction des pods par défaut
+- [ ] 
+- [ ] 
 
 
 
@@ -89,8 +88,20 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
    * disparition actualités.. Il faut rafraichir tous les  permaliens 
 - [ ] NON a faire dans Pods ...reste inutile car traduction dans pods / partenaires On peut ajouter la traduction de "du laboratoire" qui donne "du" "de l'" ... selon les cas 
 - [ ] favicon ?  sur page sur /wp-admin/customize.php?return=%2Fwp-admin%2F           
-- [ ] traduction des pods 
-  * ajouter les langues dns l'administration
+
+- [ ] PODS Comment mettre à jour les pods qui peuvent être modifiés par le webmaster??
+  * peut-on ajouter/supprimer des pods CPT ?? non car cela rompt le fonctionnement du kit. 
+    * il est préférable de supprimer des contenus, pas les CTP correspondants
+    * on proposera dans l'admin de désactiver les CPT (uniquement dans les menus d'admin)
+  * peut-on ajouter/supprimer des champs aux pods [en local sur mon site? (webmasters)  sur le theme CNRSWebkit? (développeurs) ]
+   * côté developpeur on supprime les champs à la une inutiles et non géréset le champ "type de poste" 
+    * mais il ne faut plus supprimer de champs côté developpeur
+    * c'est indispensable de pouvoir en ajouter pour l'annuaire des contacts (webmasters) , et doivent être géré dans le thème (développeurs)
+  	* les traductions des champs existants dans le kit sont mises à jour si le champ existent sur le thème installé, et que sa traduction n'existe pas (on ne surcharge pas les traductions du webmaster)
+  	* l'ordre des champs est actualise sur demande du webmaster, pas automatiquement. 
+ 
+- [ ] traduction des pods (jouter des)
+  * ajouter les langues dans l'administration
   * dans l'administration (des pods) /composants: activer le composant "Translate Pods Admin" s'il n'est pas activé
   * le menu administration (des pods) /translate pods apparait: dans ce menu activer les langues désirées
 - [ ] téléchargement homepage rien sur la page en anglais !!
@@ -101,9 +112,28 @@ Au fur et à mesure des corrections par les développeurs, cette liste sera épu
   * configurer la/les langue(s) désirée(s) en admin et en frontend
   * installer le plugin pods
   * activation du "migrate packages" des pods
+  * installer wp_sitemap_page
+  * installer WP-SCSS
   * installer le thème cnrs webkit
-  importer les contenus par défaut (optionnel)
-    
+  * optionnel installer site origine (requis pour contenu demo)
+  * 
+  
+  * importer les contenus de démo (optionnel)
+- [ ] Import des contenus en manuel 
+  * importer fichier .xml
+  * en cochant la case "importer les médias"
+  * message d'erreur Failed to import post_translations pll_59c919044ddeb
+Failed to import language Français 
+  *  Failed to import “ polylang_mo_6 ”: Invalid post type polylang_mo
+  * apparence /menus /onglet manage location gérer les emplacements
+    * Primary menu sélectionner menu principal
+    * Secondary menu sélectionner menu secondaire
+    * Primary menu sélectionner pas de sélection
+    * enregistrer 
+ 
+https://www.google.com/search?client=firefox-b&q=wordpress+modify+secret+key
+https://fr.wordpress.org/plugins/change-table-prefix/
++ ajouter procédure pour imposer modification login/password    
 
 ### Liste des bugs et améliorations à apporter sur theme cnrswebkit
 - [ ] Slogan et titre du site :/wp-admin/options-general.php ajouter un message explicatif dans l’admin (du thème ? Ou de WP ? )  

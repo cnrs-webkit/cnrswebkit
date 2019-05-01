@@ -87,7 +87,6 @@ function cnrswebkit_detect_need_update() {
     // Do not echo anything in this function, this breaks wordpress!
     $previous_version = get_option( 'CNRS_WEBKIT_VERSION', -1 ); // no version saved in first version (ATOS).
     
-    cnrswebkit_install(); //temporary
     // Case install import all pods and return
     if (-1 == $previous_version) {
         // This is probably a fresh install of the theme : import pods structure (config) and pods default values ??
@@ -175,12 +174,18 @@ function cnrswebkit_load_cnrs_default_pods() {
     }
     
     pods_require_component( 'migrate-packages' );
-    $pods_api = pods_api();
+    
     
     $default_package = $wp_filesystem->get_contents(get_template_directory().'/assets/pods/cnrswebkit_default_pods.json') ;
-    $temp = $pods_api->import_package($default_package , false);
-    $pods_api->cache_flush_pods();
-    
+    /*
+     * 
+     $pods_api = pods_api();
+     $temp = $pods_api->import_package($default_package , false);
+     $pods_api->cache_flush_pods();
+         */
+    pods_api()->import_package($default_package , false);
+
+    pods_api()->cache_flush_pods();
     if (! pods('reglage_du_theme', null, true)) {
         return false; 
     }
@@ -206,7 +211,7 @@ Thème wordpress simple et personnalisable qui permet de donner une visibilité 
         'fichiers_telechargements_page_daccueil' => 'a:0:{}',
         'partenaires_sur_la_page_daccueil' => 1,
         'newsletter_sur_la_page_daccueil' => 0,
-        'nombre_dactualites_page_actialite' => 10,
+        'nombre_dactualites_page_actualite' => 10,
         'nombre_devenements_page_agenda' => 6,
         'nombre_decontacts_page_contact' => 6,
         'pageliste_emploi' => 'a:0:{}',
@@ -268,7 +273,18 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
                     $temp = $pods_api->save_field($field);
                     $message .= "<br/>&nbsp;&nbsp;&nbsp; - added field : $field->label [$field_slug]";
                 }
+                //TODOTODO move this in cnrswebkit_upgrade
+                // rename slug nombre_dactualites_page_actualite to nombre_dactualites_page_actualite (typo in Atos version)
+                if ('nombre_dactualites_page_actualite' === $field_slug) {
+                    $field['name']= 'nombre_dactualites_page_actualite';
+                    update_option( 'reglage_du_theme_nombre_dactualites_page_actualite', get_option('reglage_du_theme_nombre_dactualites_page_actualite'));
+                    delete_option('reglage_du_theme_nombre_dactualites_page_actualite');
+                    $pods_api->save_field($field);
+                    $pods_api->delete_field('nombre_dactualites_page_actualite');
+                    $message .= "<br/>&nbsp;&nbsp;&nbsp; - renamed field : nombre_dactualites_page_actualite";
+                }
             }
+            
             // Add a message for administrator
             if ($message) {
                 $messages = array();
@@ -378,7 +394,7 @@ class CnrswebkitListParams {
 
         case 'actualite':
             $this->record_GET_filters();
-            $this->limit = $cnrs_global_params->field('nombre_dactualites_page_actialite');
+            $this->limit = $cnrs_global_params->field('nombre_dactualites_page_actualite');
             $this->where = array(
                 'relation' => 'AND',
             );
@@ -634,6 +650,9 @@ class CnrswebkitPageItemsList {
                         break;
                     case 'evenement':
                         global $cnrs_global_params;
+                        if (! isset($_SESSION['date_month'])) {
+                            $_SESSION['date_month']='';
+                        }
                         if (!$previous_date && get_post_date($current_item->value('date_de_debut'), 'monthyear') != $_SESSION['date_month']) {
                             $date_month = get_post_date($current_item->value('date_de_debut'), 'monthyear');
                             $display_month_line = true;

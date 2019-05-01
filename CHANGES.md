@@ -120,7 +120,14 @@
  * Add if ( !defined( 'ABSPATH' ) ) exit; on each php code (not templates)
  * fontes Google peu utiles, souvent urchargées par Roboto supprimées: Merriweather Montserrat et Inconsolata
  * lien pour l'installation du plugin pods si manquant 
-        
+ * is_plugin_active('newsletter') need include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+ * Undefined index: date_month in /cnrswebkit/inc/inc-pages-functions.php on line 637
+ * Default pods values are now set at theme install (so that template can be used whitout saving settings first)
+ * template inutilisé supprimé : content-publication
+ * rename slug nombre_dactualites_page_actualite to nombre_dactualites_page_actualite (typo in Atos version) 
+                
+
+ 	     
 ##### CSS changes  
  * page rubriques (par exemple /le-laboratoire/
   * "vignette" ajustée (taille dépassait l'écran), 

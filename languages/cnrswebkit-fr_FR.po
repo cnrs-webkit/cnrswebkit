@@ -710,7 +710,7 @@ msgstr "Voir les sections parentes"
 
 #: template-parts/bottom-emploi.php:16
 #, fuzzy
-#| msgid "Return to Events list"
+#| msgid "Browse Events list"
 msgid "Return to recruitment list"
 msgstr "Retour à la liste d'événements"
 
@@ -719,8 +719,8 @@ msgid "Other recruitment"
 msgstr "Autres Recrutements"
 
 #: template-parts/bottom-evenement.php:21
-msgid "Return to Events list"
-msgstr "Retour à la liste d'événements"
+msgid "Browse Events list"
+msgstr "Voir la liste d'événements"
 
 #: template-parts/bottom-evenement.php:28
 msgid "Next events"
