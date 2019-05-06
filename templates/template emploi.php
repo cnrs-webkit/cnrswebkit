@@ -39,6 +39,7 @@ get_header();
                 echo $actualites_data->get_html_filters();
 				echo $actualites_data->get_pagination();
 				if ($actualites_data->has_items() ) {
+				    
 				    echo $actualites_data->get_html_item_list();
 				} else {
 				    if ($cnrs_webkit_list_filtered) {

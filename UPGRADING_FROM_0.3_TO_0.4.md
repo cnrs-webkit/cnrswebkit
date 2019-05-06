@@ -1,5 +1,5 @@
 ### IMPéRATIF avant de commencer
- * aller dans l'administration à "apparence / réglage du thème", paraméter les nouveaux champs (sidebar) comme désiré et enregistrer 
+ * aller dans l'administration à "apparence / réglage du thème", paraméter les nouveaux champs (notamment sidebar) comme désiré et enregistrer 
  * N.B. il faut au moins enregistrer les paramètres par défauts, sinon toutes les sidebar sont désactivées!
  
 ### paramétrage à modifier
@@ -7,6 +7,7 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
  * il faut à présent définir le logo du site dans l'admin : le thème utilisait auparavant : /assets/img/kitweb.png !!
  * Ajout de pods pour le réglage du thème
   *  les nouveaux paramètres seront automatiquement ajoutés, il faut cependant effectuer un enregistrement des paramètres du thème
+ * Traduction des Pods: toutes les nouvelles traductions peuvent être ajoutées sur votre site web, manuellement car si vous avez traduit il n'est pas nécessaire de la faire. Voir la page d'administration "CNRS WebKit" /wp-admin/admin.php?page=CNRS-Webkit
  * Modifier le contenu de la page newsletter (shortcode erroné)
    * [newsletter form="1"]  devient [newsletter_form form="1"] 
  * Traduction des chapô à activer
@@ -23,7 +24,9 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
  * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
  * Ligne crédits du bas de page/footer:  La fonction cnrswebkit_credits() a été créée. Elle est surchargeable dans le thème enfant. Elle permet d'afficher une liste de liens sur la ligne crédits... 
  
- 
+### éléments supprimés/modifiés (Pods)
+ * Emplois: champ type de poste supprimé car redondant avec typologie d'emplois utilisable dans les filtres
+
 ### éléments pouvant impacter le visuel du site
  Ce paragraphe indique toutes les modifications pouvant avoir un impact visuel sur le site. Veuillez consulter cette liste et ajuster le CSS ou le paramétrage pour rétablir le fonctionnement que vous désirez. 
  

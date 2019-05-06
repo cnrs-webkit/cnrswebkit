@@ -4,6 +4,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 Class cnrs_webkit_post_install {
 
+    
     static function init() {
 
         
@@ -20,32 +21,43 @@ Class cnrs_webkit_post_install {
         // array( 'cnrs_webkit_post_install', 'settings_post_install')
         add_menu_page('CNRS Webkit', 'CNRS Webkit', 'manage_options', 'CNRS-Webkit', array( 'cnrs_webkit_post_install', 'settings_post_install') );
     }
-    
     static function settings_post_install() {
         
         // TODO adjust access rights
         if (!current_user_can( 'administrator' )) {
             return;
         }
+        if (isset ($_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' ) ) {
+           
                 
-        if (isset( $_POST['Reorder_template_settings_Pods']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
-            self::reorder_template_settings_Pods(); 
-        }
-
-        if (isset( $_POST['default_content_load']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
-            self::default_content_load($_POST['default_content_load']);
-        }
-        
-        if (isset( $_POST['Reinstall']) && wp_verify_nonce( $_POST['_wpnonce'], 'settings_post_install' )){
-            
-            if ('cnrswebkit_load_cnrs_default_pods' ===$_POST['Reinstall']) {
-                cnrswebkit_load_cnrs_default_pods();
+            if (isset( $_POST['Reorder_template_settings_Pods']) ){
+                self::reorder_template_settings_Pods(); 
+            }
+    
+            if (isset( $_POST['default_content_load']) ){
+                self::default_content_load($_POST['default_content_load']);
             }
             
-            if ('cnrswebkit_set_cnrs_template_settings_to_default' ===$_POST['Reinstall']) {
-                cnrswebkit_set_cnrs_template_settings_to_default();
+            if (isset( $_POST['Reinstall']) ){
+                
+                if ('cnrswebkit_load_cnrs_default_pods' ===$_POST['Reinstall']) {
+                    cnrswebkit_load_cnrs_default_pods();
+                }
+                
+                if ('cnrswebkit_set_cnrs_template_settings_to_default' ===$_POST['Reinstall']) {
+                    cnrswebkit_set_cnrs_template_settings_to_default();
+                }
+                
+                if ('force_load_pods_translations' ===$_POST['Reinstall']) {
+                    self::load_pods_translations(true);
+                }
+                if ('load_pods_translations' ===$_POST['Reinstall']) {
+                    self::load_pods_translations(false);
+                }
+                
+                
+        				
             }
-    				
         }
         // Form messages must be displayed before loading form
         cnrsWebkitAdminNotices::displayAdminNotice();
@@ -94,6 +106,84 @@ Class cnrs_webkit_post_install {
         $WP_import->import($file);
         delete_transient ('cnrswebkit_default_content_load'.$filename);
         return;
+    }
+    
+    /**
+     * 
+     * @param boolean $force true if demo value should erase existing values
+     */
+    static function load_pods_translations($force = false) {
+        global $wp_filesystem;
+        $messages = array();
+        
+        // Initialize the WP filesystem
+        if (empty($wp_filesystem)) {
+            require_once (ABSPATH . '/wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
+        
+        // Load default pods
+        $default_pods = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/cnrswebkit_default_pods.json' ) );
+        
+        // Load pods api
+        foreach ( $default_pods->pods as $default_pod ) {
+            // Iterate thru all exiting pods in installed theme 
+            $pod_params = array('name' => $default_pod->name);
+            if (pods_api()->pod_exists($pod_params)) {
+                $pod = pods_api()->load_pod($pod_params);     
+                self::translate_pod($pod, $default_pod, $force); 
+                pods_api()->save_pod($pod);
+                
+                $default_pods_fields = isset($default_pod->fields)? $default_pod->fields : array();
+                foreach ( $default_pods_fields as $field_name => $default_pods_field ) {
+                    $pod_field_params = array('pod_id' => $pod['id'], 'pod' => $default_pod->name, 'name' => $field_name);
+                    if (pods_api()->field_exists($pod_field_params)) { 
+                        $pod_field = pods_api()->load_field($pod_field_params); 
+                        self::translate_pod_field($pod_field, $default_pods_field, $force);
+                        pods_api()->save_field($pod_field);
+                    }
+                }
+            }
+        }
+        
+    }
+    /**
+     * 
+     * @param array  $pod : array corresponding to a pod
+     * @param std_class $default_pod : std_class object corresponding to default pod
+     * @param boolean $force: true if default translation must replace existing one*
+     */
+    
+    static function translate_pod(&$pod, $default_pod, $force = false) {
+  
+        foreach ($default_pod as $key=>$value) {
+            if ( (0 === strpos($key, 'label') || 0 === strpos($key, 'description')) && (''!==$value) ) {
+                switch ($key) {
+                case 'label':
+                case 'description':
+                    // label and description (without suffix) are saved in $pod[$key]
+                    if ( $force || ! isset($pod[$key])  
+                    || ( isset($pod[$key])  && '' === $pod[$key])
+                            ) {
+                                $pod[$key] = $value; // echo "<br> ----REPLACE-> $key  : $value \n";
+                    }
+                    break;
+                default:
+                    // translated label and description (with suffix) and options are saved in $pod['options'][$key]
+                    if ( $force || ! isset($pod['options'][$key])
+                    || ( isset($pod['options'][$key])  && '' === $pod['options'][$key])
+                    ) {
+                        $pod['options'][$key] = $value; // echo "<br> ----REPLACE-> $key  : $value \n";
+                    }
+                }
+            }
+        }    
+    }
+    
+    static function translate_pod_field(&$pod_field, $default_pods_field, $force = false) {
+        // echo "<br> -------------> field_id={$pod_field['id']} field= {$pod_field['name']} \n";
+        //First translate as a pod 
+        self::translate_pod($pod_field, $default_pods_field, $force ); 
     }
     
     static function reorder_template_settings_Pods() {

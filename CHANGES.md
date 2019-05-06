@@ -124,8 +124,11 @@
  * Undefined index: date_month in /cnrswebkit/inc/inc-pages-functions.php on line 637
  * Default pods values are now set at theme install (so that template can be used whitout saving settings first)
  * template inutilisé supprimé : content-publication
- * rename slug nombre_dactualites_page_actualite to nombre_dactualites_page_actualite (typo in Atos version) 
-                
+ * rename slug nombre_dactualites_page_actualite to nombre_dactualites_page_actualite (typo in Atos version)
+ * Modification du fichier screenshot.png illustrant le thème 
+ * suppression de quelques champs 'à la une' inutiles (emploi, mediatheque, publication)
+ * Emplois: il existe un champ "type de poste" (supprimé) et une typologie d'emploi aussi redondant
+ * Menu permettant d'ajouter aux pods les nouvelles traductions du theme CNRSWebkit 
 
  	     
 ##### CSS changes  

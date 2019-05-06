@@ -32,42 +32,35 @@
  * 01.1 ko /css/style_dyn.css vide supprimé 
  * 15.3 ko /css/style-lmok.css identique à /css/style-lmo.css, pas chargé !!!! 
 
-### Liste des bugs et améliorations à apporter
+### Liste des bugs et améliorations à apporter avant publication 1ère version
 
-- [ ] ? désactiver les vignettes sur format mobile ?
-- [ ] put code in classes AND separate admin from frontend 
-- [ ]   * GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
-- [ ] image médiathèque/admin le champ à la une EST totalement inutile ici (il doit provenir d'un copier coller des pages actualités pour lesquelles ce champ est pertinent!) [Cocher pour afficher cette actualité sur la page d'accueil]
-    * le champ ne semble pas utilisé: (OUI, vérifié) retirer de la config des pods mais comment upgrader ???
+- [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
 - [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus d'admin inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
-- [ ] Disable CPT programmatically (filter pods_wp_post_types) 
-
+- [ ] ajouter des champs dans les listes admin (ordre pour les pods, date pour événements, ... 
+   * Disable CPT programmatically (filter pods_wp_post_types) 
 - [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
    * ordre sur pods, mais comment MAJ les pods des sites déjà installés ?? 
-- [ ] update theme: Ajouter aux pods les traductions du json si elles existent dans le thème par défaut JSON , et si elles n'existent pas dans le thème installé
-   * au réglage du thème oui 
-   * aux autres pods oui 
-   * label_en_GB description_en_GB (! double undescore )
-
-- [ ] revoir css mobile
-
-- [ ] revoir toutes les polices font-family: (css)
-- [ ] faut-il ajouter qq traductions personnalisables dans admin ??? 
-- [ ] tester emploi_form...
-- [ ] /* TODO javascript i18n*/ https://pascalbirchler.com/internationalization-in-wordpress-5-0/
-       
 - [ ] Définir programatiquement H1 H2  H6, supprimer les déclarations multples dans .css
-- [ ] Modifier le fichier illustrant le thème
 - [ ] Social Links Menu Quid ?? http://wp_test_kit.fr/wp-admin/nav-menus.php?action=locations
    * conflit ?? avec "social network"
-- [ ] Ajouter en admin options de l'écran (colonnes) pour CPT du kit  ? comment? programmation ou config des pods? et quid si quelqu'un utilise le kit mais supprime des pods
-- [ ] Emplois: il existe un champ "type de poste" et une typologie d'emploi aussi redondant !!
-- [ ] importer le css personalisé indispensable (menu...)
-- [ ] 
-- [ ]  
+- [ ] CSS: importer le "css personalisé" indispensable (menu...)
 
-### TODO site de démo 
-- [ ] Dircomnas ?? à modifier sur site démo
+### Liste des futures améliorations à apporter
+- [ ] ? désactiver les vignettes sur format mobile ?
+- [ ] put code in classes AND separate admin from frontend 
+- [ ] revoir css mobile
+- [ ] revoir toutes les polices font-family: (css)
+- [ ] faut-il ajouter qq traductions personnalisables dans admin ???
+  * surcharge des traductions partenaire et tutelles???  
+- [ ] /* TODO javascript i18n*/ https://pascalbirchler.com/internationalization-in-wordpress-5-0/
+- [ ] Ajouter en admin options de l'écran (colonnes) pour CPT du kit  ? comment? programmation ou config des pods? et quid si quelqu'un utilise le kit mais supprime des pods
+- [ ] tester emploi_form...
+- [ ] Améliorer le rendu de la section téléchargements
+- [ ] 
+- [ ] 
+
+### TODO site de démo /package
+- [ ] http://Dircomnas ?? à modifier sur site démo
 - [ ] modifier les liens bas de page non fonctionnels non paramétrables -> site origin ??
 - [ ] supprimer les brouillons inutiles
 - [ ] supprimer les médias inutilisés
@@ -98,9 +91,9 @@
     * mais il ne faut plus supprimer de champs côté developpeur
     * c'est indispensable de pouvoir en ajouter pour l'annuaire des contacts (webmasters) , et doivent être géré dans le thème (développeurs)
   	* les traductions des champs existants dans le kit sont mises à jour si le champ existent sur le thème installé, et que sa traduction n'existe pas (on ne surcharge pas les traductions du webmaster)
-  	* l'ordre des champs est actualise sur demande du webmaster, pas automatiquement. 
+  	* l'ordre des champs est actualise automatiquement mais que pour réglages du thème 
  
-- [ ] traduction des pods (jouter des)
+- [ ] traduction des pods (ajouter des)
   * ajouter les langues dans l'administration
   * dans l'administration (des pods) /composants: activer le composant "Translate Pods Admin" s'il n'est pas activé
   * le menu administration (des pods) /translate pods apparait: dans ce menu activer les langues désirées
@@ -116,7 +109,7 @@
   * installer WP-SCSS
   * installer le thème cnrs webkit
   * optionnel installer site origine (requis pour contenu demo)
-  * 
+  * installet GithubUpdater
   
   * importer les contenus de démo (optionnel)
 - [ ] Import des contenus en manuel 

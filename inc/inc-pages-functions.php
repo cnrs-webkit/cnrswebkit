@@ -176,16 +176,11 @@ function cnrswebkit_load_cnrs_default_pods() {
     pods_require_component( 'migrate-packages' );
     
     
-    $default_package = $wp_filesystem->get_contents(get_template_directory().'/assets/pods/cnrswebkit_default_pods.json') ;
-    /*
-     * 
-     $pods_api = pods_api();
-     $temp = $pods_api->import_package($default_package , false);
-     $pods_api->cache_flush_pods();
-         */
-    pods_api()->import_package($default_package , false);
+    $default_package = $wp_filesystem->get_contents(get_template_directory().'/assets/pods/cnrswebkit_default_pods.json') ; 
+    $pods_api = pods_api();
+    $temp = $pods_api->import_package($default_package , false);
+    $pods_api->cache_flush_pods();
 
-    pods_api()->cache_flush_pods();
     if (! pods('reglage_du_theme', null, true)) {
         return false; 
     }
@@ -255,13 +250,29 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
     // Case Upgrade Update current pods
     $pods_api = pods_api();
    
-    // Load default settings "reglage_du_theme"
-    $default_reglage_du_theme = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/default_reglage_du_theme.json' ) );
+    /* rename slug nombre_dactualites_page_actialite to nombre_dactualites_page_actualite (typo in Atos version)
+     * This should be done before nombre_dactualites_page_actualite is added below in section
+     * Add non existing fields in settings "reglage_du_theme"
+     */
+    if ($field = $pods_api->load_field ( array('pod' => 'reglage_du_theme', 'name'=> 'nombre_dactualites_page_actialite') ) ){
+        $pods_api->delete_field(array('pod_id' => $field['pod_id'], 'id' => $field['id']) );
+        $field['name'] = 'nombre_dactualites_page_actualite';
+        // field cannot be saved whit a previously existing id 
+        unset ($field['id']);
+        update_option( 'reglage_du_theme_nombre_dactualites_page_actualite', get_option('reglage_du_theme_nombre_dactualites_page_actualite'));
+        delete_option('reglage_du_theme_nombre_dactualites_page_actualite');
+        $pods_api->save_field($field);
+        $messages[] = array('message' => "Mise à jour CNRS Webkit ($previous_version ->$new_version) : le champs nombre_dactualites_page_actialite a été renommé (erreur typo)",
+            'notice-level' => 'notice-info' );
+        // Inform the admin of the renaming
+        cnrsWebkitAdminNotices::addNotices( $messages  );
+    }
     
-    // Load current settings "reglage_du_theme"
-    $reglage_du_theme = pods('reglage_du_theme');
     // Add non existing fields in settings "reglage_du_theme"
+    $default_reglage_du_theme = json_decode( $wp_filesystem->get_contents(get_template_directory() . '/assets/pods/default_reglage_du_theme.json' ) );
+    $reglage_du_theme = pods('reglage_du_theme');
     $message = '';
+    
     foreach ($default_reglage_du_theme->pods as $pod_id => $pod_array) {
         
         if ('reglage_du_theme' === $pod_array->name) {
@@ -273,30 +284,46 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
                     $temp = $pods_api->save_field($field);
                     $message .= "<br/>&nbsp;&nbsp;&nbsp; - added field : $field->label [$field_slug]";
                 }
-                //TODOTODO move this in cnrswebkit_upgrade
-                // rename slug nombre_dactualites_page_actualite to nombre_dactualites_page_actualite (typo in Atos version)
-                if ('nombre_dactualites_page_actualite' === $field_slug) {
-                    $field['name']= 'nombre_dactualites_page_actualite';
-                    update_option( 'reglage_du_theme_nombre_dactualites_page_actualite', get_option('reglage_du_theme_nombre_dactualites_page_actualite'));
-                    delete_option('reglage_du_theme_nombre_dactualites_page_actualite');
-                    $pods_api->save_field($field);
-                    $pods_api->delete_field('nombre_dactualites_page_actualite');
-                    $message .= "<br/>&nbsp;&nbsp;&nbsp; - renamed field : nombre_dactualites_page_actualite";
-                }
             }
             
-            // Add a message for administrator
+            // Inform the admin that new settings are available 
             if ($message) {
                 $messages = array();
-                $messages[] = array('message' => "CNRS Webkit : Suite à la mise a jour ($previous_version ->$new_version) Veuillez paramétrer (dans l\'administration des Pods) les champs ajoutés suivants: ".$message,
+                $messages[] = array('message' => "Mise à jour CNRS Webkit ($previous_version ->$new_version) : Veuillez paramétrer (dans l'administration des Pods) les champs ajoutés suivants: ".$message,
                     'notice-level' => 'notice-info' );
-                // Inform the admin that new settings are available 
                 cnrsWebkitAdminNotices::addNotices( $messages  );
             }
         }
     }
     
-    //TODO remove option on uninstall 
+ 
+    
+    // remove some unused fields
+    $message = '';
+    $fields_to_remove = array(
+        array('pod' => 'emploi', 'name'=> 'type_de_poste'),  
+        array('pod' => 'emploi', 'name'=> 'a_la_une'),
+        array('pod' => 'mediatheque', 'name'=> 'a_la_une'),
+        array('pod' => 'publication', 'name'=> 'a_la_une'),
+    );
+    foreach($fields_to_remove as $field_to_remove) {
+        if ($field = $pods_api->load_field ( $field_to_remove ) ){
+            $pods_api->delete_field(array('pod_id' => $field['pod_id'], 'id' => $field['id']) );
+            $message .= "<br> pod : {$field['pod']} , champ : {$field['name']}";
+        }
+    }
+    // Inform the admin that fields have been removed 
+    if ($message) {
+        $messages = array();
+        $messages[] = array('message' => "Mise à jour CNRS Webkit ($previous_version ->$new_version) :les champs suivants (Pods) inutilisés ont été supprimés: ".$message,
+            'notice-level' => 'notice-info' );
+        // Inform the admin that new settings are available
+        cnrsWebkitAdminNotices::addNotices( $messages  );
+    }
+    
+    $pods_api->cache_flush_pods();
+    
+    //TODO remove option on uninstall (no hook/action for that !!) 
     update_option('CNRS_WEBKIT_VERSION', CNRS_WEBKIT_VERSION);
     
 }
@@ -389,7 +416,7 @@ class CnrswebkitListParams {
     function __construct($post_type, $custom_params = false) {
         global $cnrs_global_params;
         global $cnrs_webkit_list_filtered; 
-        $cnrs_webkit_list_filtered= false; 
+        $cnrs_webkit_list_filtered = false; 
         switch ($post_type) {
 
         case 'actualite':
@@ -428,7 +455,17 @@ class CnrswebkitListParams {
             break;
         case 'emploi':
             $this->record_GET_filters();
-            $this->orderby = 'type_de_poste.name ASC';
+            // TODOTODO type_de_poste
+            // $this->orderby = 'type_de_poste.name ASC';
+/* not working !!
+            $this->tax_query = array (
+                array(
+                    'taxonomy' => 'typologie_emploi',
+                    'field'    => 'name',
+                    'terms'    => array('cdd')
+                )
+            );
+*/
             $this->where = array(
                 'relation' => 'AND',
             );
@@ -539,9 +576,9 @@ class CnrswebkitPageItemsList {
         $this->post_type = $post_type;
         $this->custom_params = $custom_params;
         $this->post_type_params = new CnrswebkitListParams($this->post_type, $custom_params);
-        $this->post_list_params = new CnrswebkitListPageParams($this->post_type);
-	    $this->pods_data = pods($this->post_type, $this->post_type_params);
-	    $this->init_list();
+        $this->post_list_params = new CnrswebkitListPageParams($this->post_type);  
+        $this->pods_data = pods($this->post_type, $this->post_type_params);
+        $this->init_list();
     }
 
     private function init_list() {
@@ -684,12 +721,19 @@ class CnrswebkitPageItemsList {
                     case 'mediatheque':
                         break;
                     case 'emploi':
-                        if (!$previous_type && $current_item->value('type_de_poste')['name'] != $_SESSION['type_emploi']) {
-                            $type_emploi = $current_item->value('type_de_poste')['name'];
+                        
+                        $post_id = $this->pods_data->data->data[$iteration_number]->ID; 
+                        $type_de_poste = wp_get_post_terms($post_id, 'typologie_emploi', array("fields" => "names"));
+                        if (is_array($type_de_poste) && !empty ($type_de_poste)) {
+                            $type_de_poste = $type_de_poste[0];
+                        }
+                        
+                        if (!$previous_type && $type_de_poste != $_SESSION['type_emploi']) {
+                            $type_emploi = $type_de_poste;
                             $display_type_line = true;
                             $previous_type = true;
-                        } else if ($current_item->value('type_de_poste')['name'] != $type_emploi && $current_item->value('type_de_poste')['name'] != $_SESSION['type_emploi']) {
-                            $type_emploi = $current_item->value('type_de_poste')['name'];
+                        } else if ($type_de_poste != $type_emploi && $type_de_poste != $_SESSION['type_emploi']) {
+                            $type_emploi = $type_de_poste;
                             $display_type_line = true;
                         } else {
                             $display_type_line = false;
@@ -1239,11 +1283,16 @@ class cnrsWebkitAdminNotices
         delete_option(self::NOTICE_FIELD);
     }
     
-    public static function addNotices( $notices ) {
-        if ( $notices ) {
-            update_option(self::NOTICE_FIELD, $notices);
+    public static function addNotices( $new_notices ) {
+        if ( $new_notices ) {
+            $notices = get_option(self::NOTICE_FIELD); 
+            if (!$notices) {
+                update_option(self::NOTICE_FIELD, $new_notices);
+            } else {
+                update_option(self::NOTICE_FIELD, array_merge($notices, $new_notices));
+            }
         }
-        
+ 
     }
 }
 

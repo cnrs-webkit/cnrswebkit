@@ -58,17 +58,7 @@ function cnrswebkit_set_cnrs_template_settings_to_default(form) {
 <form method="post" action = "admin.php?page=CNRS-Webkit&import">
 	<h2><?php _e('CNRS Webkit Post-install/Upgrade Settings :','cnrswebkit'); ?></h2>
     <div class="flex_container">
-       <div class ="half_width">
-        	<b><?php _e('Load default Pods values','cnrswebkit'); ?></b><br/><br/>
-        	<p>
-        	Coming soon (only for fresh install)
-        	</p>
-        	<ul>
-        		<li>-----</li>
-        		<li>-------</li>
-        	</ul>
-        	</p>
-        </div> 
+
        <div class ="half_width">
         	<b><?php _e('Import default cnrswebkit content (pages, news, events, contacts...)','cnrswebkit'); ?></b><br/><br/>
         	<?php
@@ -139,38 +129,52 @@ function cnrswebkit_set_cnrs_template_settings_to_default(form) {
         			<?php /* Translators: additionnal text for "Manual reordering of pods" link */ _e('is achieved by dragging and dropping fields in pods administration','cnrswebkit'); ?>
         			
         		</li>
-        		<li><?php _e('Automatic reordering of pods fields: this uses the fields order defined in CNRS Webkit theme. Be aware that <strong>automatic reordering will remove your proper manual ordering !</strong>','cnrswebkit'); ?></li>
+        		<li><?php _e('Automatic reordering of pods fields: this uses the fields order defined in CNRS Webkit theme. Be aware that <strong>automatic reordering will remove your proper manual ordering! (if you define some ordering!)</strong>','cnrswebkit'); ?></li>
         	</ul>
         	</p>
         	<button type="submit" name="Reorder_template_settings_Pods" class="button button-primary button-large" value="Reorder_template_settings_Pods"><?php _e('Automatic reorder pods fields', 'cnrswebkit'); ?></button>
         </div>       
 
-        <div class ="half_width">
-        	<b class ="danger_zone"><?php _e('Re installing CNRS WebKit : Danger zone!!','cnrswebkit'); ?></b><br/><br/>
+        <div class ="full_width">
+        	<b ><?php _e('Updating of CNRS WebKit Pods:','cnrswebkit'); ?></b><br/><br/>
         	<p>
         	All feature provided below correspond to task automatically launched during Theme install. The below link should be unuseful, they are provided to force reinstall procedure in case something went wrong!
         	</p>
-        	Coming soon !! 
+        	<p>
+        	Beware that each operation described below may take up to 1 minute to proceed. Be patient! 
+        	</p>
         	<ul>
         		<li>
-            		Reload CNRSWebkit pods (whitout erasing existing pods)
-            		<button type="submit" name="Reinstall" class="button button-primary button-large" value="cnrswebkit_load_cnrs_default_pods"><?php _e('Reload', 'cnrswebkit'); ?></button>
+            		<button type="submit" name="Reinstall" class="button button-primary button-large" value="cnrswebkit_load_cnrs_default_pods"><?php _e('Reload CNRSWebKit Pods', 'cnrswebkit'); ?></button>
+            		Reload all CNRSWebkit pods (whitout erasing other pods (defined outside of CNRSWebkit), without erasing your CNRSWebKit settings (pods values))
         		</li>
-        		<li  class ="danger_zone">
-        			Reset CNRS Webkit template settings (pods) to their default values 
-    				<button type="submit" name="Reinstall" class="button button-primary button-large danger_zone" value="cnrswebkit_set_cnrs_template_settings_to_default"><?php _e('Reset', 'cnrswebkit'); ?></button>
-    				 (This will erase your settings)
+        		<li>
+            		<button type="submit" name="Reinstall" class="button button-primary button-large" value="load_pods_translations"><?php _e('Add new Pods translations', 'cnrswebkit'); ?></button>
+            		This will load all CNRSWebKit pods new translations that have been added in CNRSWebKit since you installed it, while preserving your existing translation. 
+         		</li>
+        	</ul>
+        	</p>
+        </div> 
+        <div class ="full_width">
+        	<b class ="danger_zone"><?php _e('Reinstalling and Resettings of CNRS WebKit Pods: Danger zone!!','cnrswebkit'); ?></b><br/><br/>
+        	<p>
+        	All feature provided below correspond to task automatically launched during Theme install. The below link should be unuseful, they are provided to force reinstall procedure in case something went wrong!
+        	</p>
+        	<p>
+        	Beware that each operation described below may take up to 1 minute to proceed. Be patient! 
+        	</p>
+			<ul>
+        		<li class="danger_zone">
+            		<button type="submit" name="Reinstall" class="button button-primary button-large danger_zone" value="force_load_pods_translations"><?php _e('Reload pods translations', 'cnrswebkit'); ?></button>
+            		This will load all CNRSWebKit pods translations, and erase your existing translation 
+        		</li>
+        		<li class="danger_zone">
+        			<button type="submit" name="Reinstall" class="button button-primary button-large danger_zone" value="cnrswebkit_set_cnrs_template_settings_to_default"><?php _e('Reset template settings', 'cnrswebkit'); ?></button>
+    				This will load CNRSWebKit template default settings. This will erase your existing template settings of CNRSWebKit.
     			</li>
         	</ul>
         	</p>
         </div> 
-
-        <div class ="full_width">
-        	<b>TODO (coming soon) ! </b><br/><br/>
-        	<p>
-        	Mise à jour des traductions des pods à partir des traductions du thème CNRS (sans surcharger/effacer les traduction de l'utilisateur)
-        	</p>
-        </div>
 
         <?php wp_nonce_field('settings_post_install'); ?>	
     </div>
