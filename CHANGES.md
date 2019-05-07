@@ -15,7 +15,7 @@
  * New : Tutelles du laboratoire à renseigner dans le réglage du thème (en plus des partenaires du labo)
  * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
  * new : text-align can be set (left or justify) in template settings  
- *  
+ * new : "date de fin de publication" alias "date d'expiration" au dela de laquelle les actualités et emplois ne sont plus listés sur le site web.  
  
 ##### Fixed bugs, errors 
  * Notice: Undefined variable: post_id ../template-parts/home-top.php on line 10
@@ -129,6 +129,7 @@
  * suppression de quelques champs 'à la une' inutiles (emploi, mediatheque, publication)
  * Emplois: il existe un champ "type de poste" (supprimé) et une typologie d'emploi aussi redondant
  * Menu permettant d'ajouter aux pods les nouvelles traductions du theme CNRSWebkit 
+ * affichage du champ "publication end date" actualités et emplois dans l'administration (pour faciliter la gestion des contenus) 
 
  	     
 ##### CSS changes  

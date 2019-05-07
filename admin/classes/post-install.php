@@ -7,7 +7,6 @@ Class cnrs_webkit_post_install {
     
     static function init() {
 
-        
         // TODO adjust access rights
         if (!current_user_can( 'administrator' )) {
             return;
@@ -21,6 +20,7 @@ Class cnrs_webkit_post_install {
         // array( 'cnrs_webkit_post_install', 'settings_post_install')
         add_menu_page('CNRS Webkit', 'CNRS Webkit', 'manage_options', 'CNRS-Webkit', array( 'cnrs_webkit_post_install', 'settings_post_install') );
     }
+
     static function settings_post_install() {
         
         // TODO adjust access rights
@@ -67,19 +67,7 @@ Class cnrs_webkit_post_install {
     static function default_content_load($filename = '') {
         global $wp_filesystem;
         $messages = array();
-        
-        // require_once ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
 
-        https://hotexamples.com/examples/-/WP_Import/import/php-wp_import-import-method-examples.html
-        // Load Importer API
-        //require_once ABSPATH . 'wp-admin/includes/import.php';
-        /* if ( !class_exists( 'WP_Importer' ) ) {
-            $class_wp_importer = ABSPATH . 'wp-admin/includes/class-wp-importer.php';
-            if ( file_exists( $class_wp_importer ) ) {
-                require_once $class_wp_importer;
-            }
-        }
-*/
         if ( ! class_exists( 'WP_Import' ) ) {
             $class_wp_import = ABSPATH . 'wp-content/plugins/wordpress-importer/wordpress-importer.php';
             if ( file_exists( $class_wp_import ) ) {

@@ -4,15 +4,45 @@
 - [x] corriger tous les bugs de la version 0.3
 - [x] Apporter quelques améliorations indispensables
 - [x] constituer un ensemble de paramètres par défaut (pods...) installable (pour utiliser le kit)
-- [ ] Constituer un contenu (page média...) téléchargeable pour tester le kit sans disposer de contenu initial
+- [x] Constituer un contenu (page média...) téléchargeable pour tester le kit sans disposer de contenu initial
 - [ ] Rendre le thème upgradable à partir de GitHub
 - [ ] Proposer un thème enfant par défaut
 - [ ] apply Worpdress coding standard
 - [x] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
 - [ ] ET ajouter traductions en français (.po)
-- [ ] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement 
-- [ ] Ajouter un ordre aux partenaires aussi
-- [ ] toiletter les styles (redondance, inutiles..) voir https://www.cssportal.com/css-validator/
+- [x] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement (utiliser date publication)
+- [x] Ajouter un ordre aux partenaires aussi
+- [ ] toiletter les styles (redondance, inutilisés..) voir https://www.cssportal.com/css-validator/
+
+### Liste des bugs et améliorations à apporter avant publication 1ère version
+
+- [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
+- [ ] Définir programatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
+- [ ] CSS: importer le "css personnalisé" indispensable (menu...)
+
+### Liste des futures améliorations à apporter
+- [ ] ? désactiver les vignettes sur format mobile ?
+- [ ] put code in classes AND separate admin from frontend 
+- [ ] revoir css mobile
+- [ ] revoir toutes les polices font-family: (css)
+- [ ] faut-il ajouter qq traductions personnalisables dans admin ???
+  * surcharge des traductions partenaire et tutelles???  
+- [ ] /* TODO javascript i18n*/ https://pascalbirchler.com/internationalization-in-wordpress-5-0/
+- [ ] tester emploi_form...
+- [ ] Améliorer le rendu de la section téléchargements
+- [ ] Social Links Menu Quid ?? http://wp_test_kit.fr/wp-admin/nav-menus.php?action=locations
+   * conflit ?? avec "social network"
+- [ ] 
+- [ ] 
+
+### TODO site de démo /package
+- [ ] http://Dircomnas ?? à modifier sur site démo
+- [ ] modifier les liens bas de page non fonctionnels non paramétrables -> site origin ??
+- [ ] supprimer les brouillons inutiles
+- [ ] supprimer les médias inutilisés
+- [ ] proposer pages en anglais / site bilingue pour montrer comment ça marche et proposer traduction des pods par défaut
+- [ ] 
+- [ ] 
 
 
 #### liste des fichiers de style et tailles en V0.3
@@ -32,42 +62,6 @@
  * 01.1 ko /css/style_dyn.css vide supprimé 
  * 15.3 ko /css/style-lmok.css identique à /css/style-lmo.css, pas chargé !!!! 
 
-### Liste des bugs et améliorations à apporter avant publication 1ère version
-
-- [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
-- [ ] Il faut proposer dans l’admin de pouvoir désactiver les menus d'admin inutilisés (Article/pages/annuaire/actualités/emploi/evenements/partenaires/Médiathèque
-- [ ] ajouter des champs dans les listes admin (ordre pour les pods, date pour événements, ... 
-   * Disable CPT programmatically (filter pods_wp_post_types) 
-- [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
-   * ordre sur pods, mais comment MAJ les pods des sites déjà installés ?? 
-- [ ] Définir programatiquement H1 H2  H6, supprimer les déclarations multples dans .css
-- [ ] Social Links Menu Quid ?? http://wp_test_kit.fr/wp-admin/nav-menus.php?action=locations
-   * conflit ?? avec "social network"
-- [ ] CSS: importer le "css personalisé" indispensable (menu...)
-
-### Liste des futures améliorations à apporter
-- [ ] ? désactiver les vignettes sur format mobile ?
-- [ ] put code in classes AND separate admin from frontend 
-- [ ] revoir css mobile
-- [ ] revoir toutes les polices font-family: (css)
-- [ ] faut-il ajouter qq traductions personnalisables dans admin ???
-  * surcharge des traductions partenaire et tutelles???  
-- [ ] /* TODO javascript i18n*/ https://pascalbirchler.com/internationalization-in-wordpress-5-0/
-- [ ] Ajouter en admin options de l'écran (colonnes) pour CPT du kit  ? comment? programmation ou config des pods? et quid si quelqu'un utilise le kit mais supprime des pods
-- [ ] tester emploi_form...
-- [ ] Améliorer le rendu de la section téléchargements
-- [ ] 
-- [ ] 
-
-### TODO site de démo /package
-- [ ] http://Dircomnas ?? à modifier sur site démo
-- [ ] modifier les liens bas de page non fonctionnels non paramétrables -> site origin ??
-- [ ] supprimer les brouillons inutiles
-- [ ] supprimer les médias inutilisés
-- [ ] proposer pages en anglais / site bilingue pour montrer comment ça marche et proposer traduction des pods par défaut
-- [ ] 
-- [ ] 
-
 
 
 ### liste des infos à publier dans la doc ou dans FAQ
@@ -83,9 +77,14 @@
 - [ ] favicon ?  sur page sur /wp-admin/customize.php?return=%2Fwp-admin%2F           
 
 - [ ] PODS Comment mettre à jour les pods qui peuvent être modifiés par le webmaster??
+on distingue: 
+- reglages du thème
+- custom post type (actualité, événements, contact, publications)
+- taxonomies (catégories / typologies)
+-
   * peut-on ajouter/supprimer des pods CPT ?? non car cela rompt le fonctionnement du kit. 
-    * il est préférable de supprimer des contenus, pas les CTP correspondants
-    * on proposera dans l'admin de désactiver les CPT (uniquement dans les menus d'admin)
+    * il est préférable de supprimer des contenus, pas les CTP correspondants NON
+    * on proposera dans l'admin de désactiver les CPT (uniquement dans les menus d'admin) NON
   * peut-on ajouter/supprimer des champs aux pods [en local sur mon site? (webmasters)  sur le theme CNRSWebkit? (développeurs) ]
    * côté developpeur on supprime les champs à la une inutiles et non géréset le champ "type de poste" 
     * mais il ne faut plus supprimer de champs côté developpeur
@@ -93,7 +92,8 @@
   	* les traductions des champs existants dans le kit sont mises à jour si le champ existent sur le thème installé, et que sa traduction n'existe pas (on ne surcharge pas les traductions du webmaster)
   	* l'ordre des champs est actualise automatiquement mais que pour réglages du thème 
  
-- [ ] traduction des pods (ajouter des)
+- [ ] traduction des pods (comment ajouter des)
+  * installer et activer le plugin Polylang 
   * ajouter les langues dans l'administration
   * dans l'administration (des pods) /composants: activer le composant "Translate Pods Admin" s'il n'est pas activé
   * le menu administration (des pods) /translate pods apparait: dans ce menu activer les langues désirées
@@ -123,7 +123,14 @@ Failed to import language Français
     * Secondary menu sélectionner menu secondaire
     * Primary menu sélectionner pas de sélection
     * enregistrer 
- 
+- [ ] Pods Custon Post Types et autres types inutilisés
+  * l'administration ne propose pas de désactiver les Pods inutilisés. On peut supprimer les pods inutiliser dans l'administration des Pods. Les mises à jour du thème ne ré-installent pas les Pods supprimés. 
+- [ ] Ajouter un ordre pour partenaires : http://kit-web.cnrs.fr/forums/topic/partenaires/
+   * on utilise la date pour ordonner les parttenaires 
+   * voir https://www.wpexplorer.com/order-custom-post-type-posts-wordpress/
+   * les autres méthodes ne sont pas plus efficaces et nécessite code ou plugin. 
+- [ ] Ajouter les taxonomies dans les liste de contenus : à activer dans admin/pods/: panneau d'admin de la  taxonomie / onglet interface administrateur / cocher Afficher une colonne taxonomie pour les types de contenus
+  
 https://www.google.com/search?client=firefox-b&q=wordpress+modify+secret+key
 https://fr.wordpress.org/plugins/change-table-prefix/
 + ajouter procédure pour imposer modification login/password    

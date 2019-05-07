@@ -23,9 +23,9 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
    * on peut afficher tutelles ET/OU partenaires (affichage est actif dès que des tutelles ET/OU des partenaires sont définis
  * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
  * Ligne crédits du bas de page/footer:  La fonction cnrswebkit_credits() a été créée. Elle est surchargeable dans le thème enfant. Elle permet d'afficher une liste de liens sur la ligne crédits... 
- 
+ * champ "date_fin_publication" ajouté aux pods "emploi" et "evénement" : remplace page expirator pour ceux qui l'utilisait, ajoutez une date d'exoiration aux contenus correspondant (sans date de fin de publication, les contenus n'expirent pas et restent à l'affichage...  
 ### éléments supprimés/modifiés (Pods)
- * Emplois: champ type de poste supprimé car redondant avec typologie d'emplois utilisable dans les filtres
+ * Emplois: champ type de poste supprimé car redondant avec typologie d'emplois utilisable dans les filtres => reconfigurer les type de poste correctement
 
 ### éléments pouvant impacter le visuel du site
  Ce paragraphe indique toutes les modifications pouvant avoir un impact visuel sur le site. Veuillez consulter cette liste et ajuster le CSS ou le paramétrage pour rétablir le fonctionnement que vous désirez. 

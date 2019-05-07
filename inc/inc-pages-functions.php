@@ -422,9 +422,18 @@ class CnrswebkitListParams {
         case 'actualite':
             $this->record_GET_filters();
             $this->limit = $cnrs_global_params->field('nombre_dactualites_page_actualite');
+
             $this->where = array(
                 'relation' => 'AND',
             );
+            /* Add meta_query where clause to select before date_fin_publication
+             * Null (Not exists) date correspond to "no publication end date"
+             * account for zero date in case someone use it as default in Pods configuration
+             */
+            $this->where[] = "(
+                        (date_fin_publication.meta_value >='".strftime('%Y-%m-%d')."')
+                        OR (date_fin_publication.meta_value='0000-00-00')
+                        OR (date_fin_publication.meta_value IS NULL) )";
             break;
         case 'evenement':
             $this->record_GET_filters();
@@ -455,20 +464,24 @@ class CnrswebkitListParams {
             break;
         case 'emploi':
             $this->record_GET_filters();
-            // TODOTODO type_de_poste
-            // $this->orderby = 'type_de_poste.name ASC';
-/* not working !!
-            $this->tax_query = array (
-                array(
-                    'taxonomy' => 'typologie_emploi',
-                    'field'    => 'name',
-                    'terms'    => array('cdd')
-                )
-            );
-*/
+            
             $this->where = array(
                 'relation' => 'AND',
             );
+            
+            /* Add meta_query where clause to select before date_fin_publication
+             * Null (Not exists) date correspond to "no publication end date"
+             * account for zero date in case someone use it as default in Pods configuration
+             */
+            $this->where[] = "( 
+                        (date_fin_publication.meta_value >='".strftime('%Y-%m-%d')."') 
+                        OR (date_fin_publication.meta_value='0000-00-00') 
+                        OR (date_fin_publication.meta_value IS NULL) )";
+
+            $this->orderby = 'type_de_poste.meta_value ASC';
+             
+
+
             $this->limit = -1;
             break;
         case 'publication':
@@ -829,6 +842,7 @@ class CnrswebkitRichData {
     private $rich_data;
 
     function __construct($post_id) {
+        //TODO double affectation ligne suivante ???
         $this->the_post = $this->the_post = get_post($post_id);
         $this->metadata = pods($this->the_post->post_type, array('where' => 't.ID = ' . $post_id));
         $this->rich_data = new CnrswebkitItemData($this->metadata, $this->the_post);
@@ -875,6 +889,14 @@ class CnrswebkitItemData {
             return $this->the_post->$key;
         }
         return false;
+    }
+    public function fields_list() {
+        $fields = array(); 
+        // TODOTODO 
+        foreach ($this->metadata->fields() as $key => $field) {
+            $fields[$key] = $field['label'];    
+        }
+        return $fields;
     }
 
 }
