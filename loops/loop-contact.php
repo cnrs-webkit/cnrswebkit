@@ -15,7 +15,14 @@ if ($display_lettre_line) {
     <div class="lettrecontact"><?php echo $lettre_contact; ?></div>
     <?php
 }
-$field_list = $current_item->fields_list();
+// build an array of fields key, label type : remove =1 for each that should not be listed by Cnrswebkit_span_field
+$fields_list = $current_item->fields_list();
+$fields_list['ID']['remove']=1;
+$fields_list['nom']['remove']=1;
+$fields_list['prenom']['remove']=1;
+$fields_list['job']['remove']=1;
+$fields_list['telephone']['remove']=1;
+$fields_list['description']['remove']=1;
 ?>
 <article id="post-<?php echo $current_item->value('ID'); ?>" <?php post_class([$current_item->value('post_type')], $current_item->value('ID')); ?>>
     <div class="contactDetails">
@@ -24,7 +31,7 @@ $field_list = $current_item->fields_list();
         <div class="detailsContainer">
             <span class="name"><?php echo ($current_item->value('prenom')); ?> <?php echo ($current_item->value('nom')); ?></span>
             <span class="function"><?php echo ($current_item->value('job')); ?></span>
-            <span class="normal"><?php /* TODOTODO */ echo $field_list['telephone'] . ' : '; echo ($current_item->value('telephone')); ?></span>
+            <?php foreach ($fields_list as $field_slug => $label) {echo Cnrswebkit_span_field($field_slug,$current_item->value($field_slug),$fields_list);} ?>
             <p><?php echo (text_to_html($current_item->value('description'))); ?></p>
             <a href="#" class="contactLink" target="#form-container-<?php echo $current_item->value('ID'); ?>" dataid="<?php echo $current_item->value('ID'); ?>"><?php _e('Contact this person', 'cnrswebkit') ?></a>
             <div id="form-container-<?php echo $current_item->value('ID'); ?>"></div>

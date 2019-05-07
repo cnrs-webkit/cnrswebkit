@@ -16,6 +16,7 @@
  * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
  * new : text-align can be set (left or justify) in template settings  
  * new : "date de fin de publication" alias "date d'expiration" au dela de laquelle les actualités et emplois ne sont plus listés sur le site web.  
+ - new : Tous les pods définis pour les contact (annuaire) s'affichent désormais sur la page annuaire
  
 ##### Fixed bugs, errors 
  * Notice: Undefined variable: post_id ../template-parts/home-top.php on line 10

@@ -26,7 +26,8 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
  * champ "date_fin_publication" ajouté aux pods "emploi" et "evénement" : remplace page expirator pour ceux qui l'utilisait, ajoutez une date d'exoiration aux contenus correspondant (sans date de fin de publication, les contenus n'expirent pas et restent à l'affichage...  
 ### éléments supprimés/modifiés (Pods)
  * Emplois: champ type de poste supprimé car redondant avec typologie d'emplois utilisable dans les filtres => reconfigurer les type de poste correctement
-
+ * Annuaire : il n'est plus nécessaire de surcharger loop-contact.php. Tous les pods définis pour les contacts (annuaire) s'affichent désormais sur la page annuaire
+ 
 ### éléments pouvant impacter le visuel du site
  Ce paragraphe indique toutes les modifications pouvant avoir un impact visuel sur le site. Veuillez consulter cette liste et ajuster le CSS ou le paramétrage pour rétablir le fonctionnement que vous désirez. 
  

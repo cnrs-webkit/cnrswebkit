@@ -187,6 +187,7 @@ function cnrswebkit_load_cnrs_default_pods() {
     return true; 
 }
 
+
 function cnrswebkit_set_cnrs_template_settings_to_default() {
     
     // Set default cnrswebkit theme settings so it can be used whitout prior setting saved in admin panel
@@ -357,6 +358,16 @@ function get_pod_page ($field='') {
     }
 }
 
+
+function Cnrswebkit_span_field($key, $value, $fields_list, $before='<span class="normal">', $after='</span>',$separator=' : ') {
+    if (! $value ||  $fields_list[$key]['remove']) return '';
+    if ('email'=== $fields_list[$key]['type']) {
+        $value = '<a href="mailto:' . $value .'">'. $value .'</a>';
+    }elseif ('website'=== $fields_list[$key]['type']) {
+        $value = '<a href="' . $value .'">'. $value .'</a>';
+    }
+    return $before.$fields_list[$key]['label'].$separator.$value.$after;
+}
 
 class CnrswebkitListPageParams {
 
@@ -661,7 +672,7 @@ class CnrswebkitPageItemsList {
         $cnrs_webkit_list_filtered = false; 
         return '';
     }
-    // $logo_width default logo_wisdth en % 
+    // $logo_width default logo_width en % 
     
     public function get_html_item_list($template = false, $logo_width = '25') {
         if (!$template) {
@@ -893,11 +904,18 @@ class CnrswebkitItemData {
     public function fields_list() {
         $fields = array(); 
         // TODOTODO 
+
         foreach ($this->metadata->fields() as $key => $field) {
-            $fields[$key] = $field['label'];    
-        }
+            $fields[$key] = array(
+                'label'=> $field['label'], 
+                'type' =>$field['type'], 
+                'remove' =>0,
+                )
+            ;   
+         }
         return $fields;
     }
+
 
 }
 

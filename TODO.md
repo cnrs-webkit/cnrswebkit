@@ -88,7 +88,7 @@ on distingue:
   * peut-on ajouter/supprimer des champs aux pods [en local sur mon site? (webmasters)  sur le theme CNRSWebkit? (développeurs) ]
    * côté developpeur on supprime les champs à la une inutiles et non géréset le champ "type de poste" 
     * mais il ne faut plus supprimer de champs côté developpeur
-    * c'est indispensable de pouvoir en ajouter pour l'annuaire des contacts (webmasters) , et doivent être géré dans le thème (développeurs)
+
   	* les traductions des champs existants dans le kit sont mises à jour si le champ existent sur le thème installé, et que sa traduction n'existe pas (on ne surcharge pas les traductions du webmaster)
   	* l'ordre des champs est actualise automatiquement mais que pour réglages du thème 
  
@@ -141,14 +141,6 @@ https://fr.wordpress.org/plugins/change-table-prefix/
    * les librairies utilisées par WP-SCSS ne sont pas chargées (il faut les copier dans le thème enfant)
    * les menus sont absents
    * ? comment surcharger les templates dans ces conditions ? Voir section ad’hoc
-- [ ] Défaut de fonctionnement annuaire
-   * Les champs ajoutés aux pods ne s’affichent pas sur la page contact
-   * 2- Les shortcode dans les champs existants ne sont pas interprétés même si on active « utiliser les shortcodes » dans la configuration du champs
-   * L’affichage de l’annuaire est fait pas le code /wp-content/themes/cnrswebkit/loops/loop-contact.php
-   * ce code est prévu pour n’afficher QUE les champs prédéfinis dans le kit. Donc les champs ajoutés ne s’affichent pas
-   * – je n’ai pas trouvé d’instruction do_shortcode ni dans ce fichier, ni dans le kit
-   * – l’ajout de do_shortcode() sur un champs ne résout pas le problème
-   * – la solution proposée par https://pods.io/docs/build/using-shortcodes-pods-templates/ ne fonctionne pas non plus.
  - [ ] pb affichage si col aside courte: il faudrait étendre les sections dans la partie vide de sidebar. Comment ? 
    * Pagination et filtres sur même ligne 50/50 flex (similaire aux "articles" dans la boucle actualités)
 
