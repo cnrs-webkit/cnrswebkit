@@ -220,7 +220,7 @@ Class cnrs_webkit_post_install {
                
 
             }
-            // $success = $reglage_du_theme->save($reglage_du_theme);
+            $success = $reglage_du_theme->save($reglage_du_theme);
             // Add a form message
             if ($message) {
                 $messages[] = array('message' => "CNRS Webkit : Field list has been reordered (in template setting pods)".$message,

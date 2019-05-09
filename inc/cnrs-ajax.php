@@ -37,6 +37,9 @@ function load_more() {
             $evenement_data = new CnrswebkitPageItemsList('evenement', $custom_params);
             $total_items = $evenement_data->total_items();
             $custom_params->limit = $cnrs_global_params->field('nombre_devenements_page_agenda');
+            if (0 === $custom_params->limit ) {
+                $custom_params->limit = -1;
+            }
             $custom_params->page = $page;
             $evenement_data = new CnrswebkitPageItemsList('evenement', $custom_params);
             ob_start();
@@ -55,6 +58,9 @@ function load_more() {
             $contact_data = new CnrswebkitPageItemsList('contact', $custom_params);
             $total_items = $contact_data->total_items();
             $custom_params->limit = $cnrs_global_params->field('nombre_decontacts_page_contact');
+            if (0 === $custom_params->limit ) {
+                $custom_params->limit = -1;
+            }
             $custom_params->page = $page;
             $contact_data = new CnrswebkitPageItemsList('contact', $custom_params);
             ob_start();

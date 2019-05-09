@@ -30,6 +30,9 @@ get_header();
                         'compare' => '='
                     ];
                     $custom_params->limit = $cnrs_global_params->field('nombre_dactualites_page_daccueil');
+                    if (0 === $custom_params->limit ) {
+                        $custom_params->limit = -1;
+                    }
                     $actualite_data = new CnrswebkitPageItemsList('actualite', $custom_params);
                     if ($actualite_data->has_items()) {
                         $url = get_pod_page('pageliste_actualite');

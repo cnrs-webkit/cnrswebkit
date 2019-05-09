@@ -17,6 +17,7 @@
  * new : text-align can be set (left or justify) in template settings  
  * new : "date de fin de publication" alias "date d'expiration" au dela de laquelle les actualités et emplois ne sont plus listés sur le site web.  
  - new : Tous les pods définis pour les contact (annuaire) s'affichent désormais sur la page annuaire
+ - new : le nombre d'items des listes actualités, contact, événement peut être illimité en choississant 0 comme limite
  
 ##### Fixed bugs, errors 
  * Notice: Undefined variable: post_id ../template-parts/home-top.php on line 10

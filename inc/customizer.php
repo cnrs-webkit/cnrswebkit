@@ -150,12 +150,13 @@ function cnrswebkit_customize_register( $wp_customize ) {
 	$wp_customize->remove_control( 'header_textcolor' );
 
 	// Add link color setting and control.
+	/* TODOTODO Unusefull link color defined in reglage_du_theme Pods
 	$wp_customize->add_setting( 'link_color', array(
 		'default'           => $color_scheme[2],
 		'sanitize_callback' => 'sanitize_hex_color',
 		'transport'         => 'postMessage',
 	) );
-
+*/
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
 		'label'       => __( 'Link Color', 'cnrswebkit' ),
 		'section'     => 'colors',

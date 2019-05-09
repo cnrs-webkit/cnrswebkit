@@ -433,6 +433,10 @@ class CnrswebkitListParams {
         case 'actualite':
             $this->record_GET_filters();
             $this->limit = $cnrs_global_params->field('nombre_dactualites_page_actualite');
+            
+            if (0 === $this->limit ) {
+                $this->limit = -1;
+            }
 
             $this->where = array(
                 'relation' => 'AND',
@@ -449,6 +453,9 @@ class CnrswebkitListParams {
         case 'evenement':
             $this->record_GET_filters();
             $this->limit = $cnrs_global_params->field('nombre_devenements_page_agenda');
+            if (0 === $this->limit ) {
+                $this->limit = -1;
+            }
             $this->where = array(
                 'relation' => 'AND',
             );
@@ -470,6 +477,9 @@ class CnrswebkitListParams {
         case 'contact':
             $this->record_GET_filters();
             $this->limit = $cnrs_global_params->field('nombre_decontacts_page_contact');
+            if (0 === $this->limit ) {
+                $this->limit = -1;
+            }
             $this->orderby = 'nom ASC';
             $this->where = array();
             break;
@@ -600,7 +610,8 @@ class CnrswebkitPageItemsList {
         $this->post_type = $post_type;
         $this->custom_params = $custom_params;
         $this->post_type_params = new CnrswebkitListParams($this->post_type, $custom_params);
-        $this->post_list_params = new CnrswebkitListPageParams($this->post_type);  
+        $this->post_list_params = new CnrswebkitListPageParams($this->post_type); 
+        $this->limit = 
         $this->pods_data = pods($this->post_type, $this->post_type_params);
         $this->init_list();
     }
@@ -633,6 +644,10 @@ class CnrswebkitPageItemsList {
             return true;
         }
         return false;
+    }
+    
+    public function limit() {
+        return $this->post_type_params->limit;
     }
 
     public function has_items() {
@@ -1155,9 +1170,11 @@ function update_evenement($pieces, $is_new_item) {
     }
 }
 
+// TODO only used in admin?? 
 add_action('pods_api_post_save_pod_item_reglage_du_theme', 'update_site_params', 10, 3);
 
 function update_site_params($pieces, $is_new_item, $id) {
+    
     $content = file_get_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss');
     
     $term = $pieces['fields']['couleur_principale']['value'];
@@ -1172,7 +1189,7 @@ function update_site_params($pieces, $is_new_item, $id) {
         $term = 'left';
     }
     
-    $content = preg_replace('/\$text_justify:[A-Za-z-]{4,15};/', '$text_justify:' . $term . ';', $content);
+    $content = preg_replace('/\$text_justify:[A-Za-z]{0,15};/', '$text_justify:' . $term . ';', $content);
     
     file_put_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss', $content);
 }

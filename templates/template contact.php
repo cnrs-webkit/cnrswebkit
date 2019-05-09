@@ -52,8 +52,10 @@ get_header();
                     }
                     ?>
                 </div>
-                <div class="moreContacts"><a page="1" target="#contact_ajax_container">Afficher plus de contacts</a></div>
+                <?php if ($contact_data->limit()>1) { ?>
+                <div class="moreContacts"><a page="1" target="#contact_ajax_container"><?php _e('Display more contacts','cnrswebkit');?></a></div>
                 <?php
+                    }
                 echo $contact_data->get_pagination();
                 ?>
             </div><!-- .entry-content -->

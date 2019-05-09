@@ -104,12 +104,11 @@ body.page-template-templatecontact .loop-contents-contact .lettrecontact {
 .main-navigation li {
     border-top: 1px solid #E6E6E6;
 }
-.cnrs-filters {
-    margin-bottom: -1px!important;
-}
+
 .cnrs-filters select {
     cursor:pointer
 }
+
 .loop-contents-actualite {
     margin-top: 50px
 }
@@ -382,7 +381,6 @@ body.page-template-templateactualite .entry-content .loop-contents-actualite art
     }
     .cnrs-filters {
         padding: 30px 0 30px 0!important;
-        margin-bottom: -1px!important;
     }
     .cnrs-filters > div:first-of-type {
         display: none!important

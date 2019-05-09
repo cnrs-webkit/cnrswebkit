@@ -19,8 +19,15 @@
 - [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
 - [ ] Définir programatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
 - [ ] CSS: importer le "css personnalisé" indispensable (menu...)
+- [ ] customize Couleur des liens pas utilisée
+- [ ] conflit couleur liens : customizer qui ajoute du CSS avec le réglage du theme (lien) dyn.css qui est chargé après
+   * laquelle choisir ??? 
+   * dyncss plus intéressant a priori mais limité à liens 
+   * mais il faut intégrer les autres couleurs dans le dyn_css
+
 
 ### Liste des futures améliorations à apporter
+- [ ] page contact thumbcontainer à mettre floatant pour que la description s'étende sur toute la largeur 
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] put code in classes AND separate admin from frontend 
 - [ ] revoir css mobile
@@ -32,6 +39,11 @@
 - [ ] Améliorer le rendu de la section téléchargements
 - [ ] Social Links Menu Quid ?? http://wp_test_kit.fr/wp-admin/nav-menus.php?action=locations
    * conflit ?? avec "social network"
+- [ ] Les liens depuis des pages de listes ne fonctionnent pas tous avec la même logique :
+– parfois c’est le titre qui est cliquable https://kit-demo.cnrs.fr/lagenda/,
+– parfois il y a un bouton « en savoir plus » et le titre est non cliquable https://kit-demo.cnrs.fr/les-publications/
+– parfois le titre et le texte resume sont cliquable, sans « en savoir plus » https://kit-demo.cnrs.fr/les-actualites/.
+
 - [ ] 
 - [ ] 
 

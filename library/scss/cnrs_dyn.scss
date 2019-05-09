@@ -1,6 +1,6 @@
 /* dynamic-area-start */
 
-$mainColor:#fc4246;
+$mainColor:#a32a8d;
 // $mainColor default:#ea514a;
 
 $text_justify:1;
@@ -211,7 +211,13 @@ body{
     }
     .widget{
         border:0;
+ 		margin-bottom: 0.5em;
+		padding-top: 0.5em;
     }
+    .widget > .widget-title {
+	border-top: 2px solid $mainColor;
+	background-color: $lighter_grey;
+	}
     h1.entry-title{
         font-family: 'Roboto', sans-serif;
         font-weight:700;
@@ -540,8 +546,9 @@ header.site-header{
 .cnrs-filters{
     border-top:1px solid $lighter_grey;
     border-bottom:1px solid $lighter_grey;
+    border-radius: 4px;
     padding:30px 0 30px 0;
-    margin-bottom:15px;
+    margin-bottom:-1px;
     margin-top:60px;
     display:flex;
     justify-content: space-between;
@@ -549,23 +556,24 @@ header.site-header{
     & > div:nth-of-type(1){
         flex:1;
         color:$light_grey;
-        font-size: 17px;
+        font-size: inherit;
         font-weight: 400;
     }
     & > div:not(:nth-of-type(1)){
         position:relative;
         select{
+            border-radius: 4px;
+  			border: 1px solid lightgray;
             margin-left:30px;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            border:0;
             box-shadow: none;
             background: transparent;
             background-image: none;
             padding: 0 20px;
             font-family: 'Roboto', sans-serif;
-            font-size:17px;
+            font-size:inherit;
             color:$black;
             font-weight:500;
             &:focus{outline: none;}
@@ -1686,8 +1694,8 @@ body.page-child{
         }
         & > .entry-content{
             border-top:1px solid $lighter_grey;
-            margin:60px 0 0 0;
-            padding:60px 0 0 0;
+            margin:20px 0 0 0;
+            padding:20px 0 0 0;
             & > div{ //content page
                      h3{
                          font-size:30px;
@@ -1701,7 +1709,7 @@ body.page-child{
                      p{
                          width:65%;
                          @media screen and (max-width: 910px) {width:100%;}
-                         margin:0 0 50px 0;
+                         margin:0 0 30px 0;
                          font-size:17px;
                          line-height: 30px;
                          letter-spacing:0;
@@ -1719,16 +1727,16 @@ body.page-child{
         @media screen and (max-width: 910px) {margin: 0 60px;}
     }
     .voirAussi{
-        padding:60px 0 70px 0;
-        margin:70px 0 0 0;
+        padding: 20px 0 30px 0;
+        margin: 30px 0 0 0;
         border-top:1px solid $lighter_grey;
         border-bottom:1px solid $lighter_grey;
         h2{
-            font-size:40px;
+            font-size:30px;
             font-weight:700;
             letter-spacing: 0.1px;
-            margin-bottom:60px;
-        }
+            margin-bottom: 0.5em;
+         }
         a.vaItem{
             vertical-align: top;
             width:calc(33% - 40px);
@@ -1744,18 +1752,15 @@ body.page-child{
             }
             strong{
                 display:block;
-                font-size:20px;
+                font-size:17px;
                 font-weight:700;
-                letter-spacing: 0.1px;
-                margin:0 0 30px 0;
+                margin:0 0 10px 0;
             }
             span{
                 display:block;
-                font-size:15px;
-                line-height: 25px;
-                letter-spacing: 0.1px;
+                font-size:17px;
             }
-            @media screen and (max-width: 910px) {margin:0 0 50px 0; width:100%;}
+            @media screen and (max-width: 910px) {margin:0 0 30px 0; width:100%;}
         }
     }
 }
@@ -2186,6 +2191,8 @@ $containerSearchSize:500px;
                         span:before{
                             content:"\e901";
                             color:$mainColor;
+                            font-size: 20px;
+                            transition: all 0.2s ease-Out;            
                         }
                     }
                     & ~ #searchInput{
@@ -2410,5 +2417,6 @@ body.search-results{
 .wsp-container::after {
   clear: both;
 }
+
 
 

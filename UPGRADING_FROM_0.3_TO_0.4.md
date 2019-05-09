@@ -27,6 +27,12 @@ Cette liste indique les modifications de paramétrage à apporter pour ceux qui 
 ### éléments supprimés/modifiés (Pods)
  * Emplois: champ type de poste supprimé car redondant avec typologie d'emplois utilisable dans les filtres => reconfigurer les type de poste correctement
  * Annuaire : il n'est plus nécessaire de surcharger loop-contact.php. Tous les pods définis pour les contacts (annuaire) s'affichent désormais sur la page annuaire
+ * Limite du nombre de contenus affiché: actualité page accueuil, actualité page actualité, contact, événements
+   * on peut afficher sans limite mais il faut modifier dans le pods réglages du thème les champs correspondant, 
+   * par exemple pour modifier le champ nombre_decontacts_page_contact
+   * onglet "options de champs complémentaires
+   * mettre 0 pour 'Nombre minimum"
+   * puis dans apparence / Réglages du thème, choisir 0 pour Nombre de contacts page contact
  
 ### éléments pouvant impacter le visuel du site
  Ce paragraphe indique toutes les modifications pouvant avoir un impact visuel sur le site. Veuillez consulter cette liste et ajuster le CSS ou le paramétrage pour rétablir le fonctionnement que vous désirez. 
