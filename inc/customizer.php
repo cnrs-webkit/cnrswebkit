@@ -150,13 +150,12 @@ function cnrswebkit_customize_register( $wp_customize ) {
 	$wp_customize->remove_control( 'header_textcolor' );
 
 	// Add link color setting and control.
-	/* TODOTODO Unusefull link color defined in reglage_du_theme Pods
 	$wp_customize->add_setting( 'link_color', array(
 		'default'           => $color_scheme[2],
 		'sanitize_callback' => 'sanitize_hex_color',
 		'transport'         => 'postMessage',
 	) );
-*/
+
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
 		'label'       => __( 'Link Color', 'cnrswebkit' ),
 		'section'     => 'colors',
@@ -251,7 +250,7 @@ function cnrswebkit_get_color_schemes() {
 	 */
 	return apply_filters( 'cnrswebkit_color_schemes', array(
 		'default' => array(
-			/* Translators: this is a color of cnrswebkit color schemes*/
+			/* Translators: this is one color scheme among all color schemes of CNRSWebKit */
 			'label'  => __( 'Default', 'cnrswebkit' ),
 			'colors' => array(
 				'#1a1a1a',
@@ -262,7 +261,7 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'dark' => array(
-		/* Translators: this is a color of cnrswebkit color schemes*/
+		/* Translators: this is one color scheme among all color schemes of CNRSWebKit */
 		'label'  => __( 'Dark', 'cnrswebkit' ),
 			'colors' => array(
 				'#262626',
@@ -273,7 +272,7 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'gray' => array(
-		/* Translators: this is a color of cnrswebkit color schemes*/
+		/* Translators: this is one color scheme among all color schemes of CNRSWebKit */
 		'label'  => __( 'Gray', 'cnrswebkit' ),
 			'colors' => array(
 				'#616a73',
@@ -284,7 +283,7 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'red' => array(
-		/* Translators: this is a color of cnrswebkit color schemes*/
+		/* Translators: this is one color scheme among all color schemes of CNRSWebKit */
 		'label'  => __( 'Red', 'cnrswebkit' ),
 			'colors' => array(
 				'#ffffff',
@@ -295,7 +294,7 @@ function cnrswebkit_get_color_schemes() {
 			),
 		),
 		'yellow' => array(
-		/* Translators: this is a color of cnrswebkit color schemes*/
+		/* Translators: this is one color scheme among all color schemes of CNRSWebKit */
 		'label'  => __( 'Yellow', 'cnrswebkit' ),
 			'colors' => array(
 				'#3b3721',
@@ -1197,3 +1196,110 @@ function cnrswebkit_secondary_text_color_css() {
 	wp_add_inline_style( 'cnrswebkit-style', sprintf( $css, $secondary_text_color ) );
 }
 add_action( 'wp_enqueue_scripts', 'cnrswebkit_secondary_text_color_css', 11 );
+ 
+ /**
+  * Attempt to use Dynamic css with WP_customizer
+  * source: https://seothemes.com/how-to-compile-wordpress-theme-customizer-values-into-main-stylesheet/
+  */
+add_action( 'customize_save_after', 'cnrswebkit_customize_css');
+
+function cnrswebkit_customize_css() {
+    
+    // Check if WP-SCSS plugin is active.
+    
+    if ( ! is_plugin_active( 'wp-scss/wp-scss.php' ) ) {
+        return;
+    }
+    
+    // Redefine WP-SCSS variables 
+    add_filter('wp_scss_variables','wp_scss_set_variables');
+    // Tell WP-SCSS to recompile  
+    if ( ! defined( 'WP_SCSS_ALWAYS_RECOMPILE' ) ) {
+        define( 'WP_SCSS_ALWAYS_RECOMPILE', true );
+    }
+    // Get the default colors.
+    //TODO replace maincolor by link_color
+    $default_colors = array('mainColor','#ea514a');
+    
+    // Create an array of variables.
+    $variables = array();
+    // Loop through each variable and get theme_mod.
+    
+    foreach ( $default_colors as $key => $value ) {
+        // $variables[ $key ] = get_theme_mod( $key, $value );
+        //TODO replace maincolor by link_color
+        $variables[ $key ] = get_theme_mod( 'link_color', $value );
+    }
+    
+    // Modify cnrs_dyn.scss file 
+    $content = file_get_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss');
+    
+    $term = get_theme_mod( 'link_color'); 
+    
+    // https://www.php.net/manual/fr/function.preg-replace.php
+    $content = preg_replace('/\$mainColor:#[A-Za-z0-9]{6};/', '$mainColor:' . $term . ';', $content);
+    
+    file_put_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss', $content);
+}
+
+
+// Check if WP-SCSS plugin is active.
+
+if ( ! is_plugin_active( 'wp-scss/wp-scss.php' ) ) {
+    return;
+}
+
+// Always recompile in the customizer.
+
+if ( is_customize_preview() && ! defined( 'WP_SCSS_ALWAYS_RECOMPILE' ) ) {
+    // TODO define( 'WP_SCSS_ALWAYS_RECOMPILE', true );
+}
+
+// Update the default paths to match theme.
+
+$wpscss_options = get_option( 'wpscss_options' );
+// TODO "if" not necessary !! Beware this forces new values for options already set in the plugin !!
+// Good for cnrswebkit, bad for others !!
+if ( $wpscss_options['scss_dir'] !== '/sass/' || $wpscss_options['css_dir'] !== '/' ) {
+
+    // Alter the options array appropriately. 
+    $wpscss_options['scss_dir'] = '/library/scss/';
+    $wpscss_options['css_dir']  = '/library/css/';
+
+    // Update entire array
+    update_option( 'wpscss_options', $wpscss_options );
+    
+}
+
+add_filter('wp_scss_variables','wp_scss_set_variables');
+
+/**
+ * Update SCSS variables
+ *
+ * @since  1.0.0
+ *
+ * @return array
+ */
+
+function wp_scss_set_variables(){
+    
+    // Get the default colors.
+    //TODO replace maincolor by link_color
+    $default_colors = array('mainColor','#ea514a');
+    
+    // Create an array of variables.
+    $variables = array();
+    // Loop through each variable and get theme_mod.
+    
+    foreach ( $default_colors as $key => $value ) {
+        // $variables[ $key ] = get_theme_mod( $key, $value );
+        //TODO replace maincolor by link_color
+        $variables[ $key ] = get_theme_mod( 'link_color', $value );
+    }
+    
+    return $variables;
+    
+}
+
+
+

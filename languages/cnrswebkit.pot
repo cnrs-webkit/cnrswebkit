@@ -332,27 +332,27 @@ msgstr ""
 msgid "Secondary Text Color"
 msgstr ""
 
-#. Translators: this is a color of cnrswebkit color schemes
+#. Translators: this is one color scheme among all color schemes of CNRSWebKit 
 #: inc/customizer.php:252
 msgid "Default"
 msgstr ""
 
-#. Translators: this is a color of cnrswebkit color schemes
+#. Translators: this is one color scheme among all color schemes of CNRSWebKit 
 #: inc/customizer.php:263
 msgid "Dark"
 msgstr ""
 
-#. Translators: this is a color of cnrswebkit color schemes
+#. Translators: this is one color scheme among all color schemes of CNRSWebKit 
 #: inc/customizer.php:274
 msgid "Gray"
 msgstr ""
 
-#. Translators: this is a color of cnrswebkit color schemes
+#. Translators: this is one color scheme among all color schemes of CNRSWebKit 
 #: inc/customizer.php:285
 msgid "Red"
 msgstr ""
 
-#. Translators: this is a color of cnrswebkit color schemes
+#. Translators: this is one color scheme among all color schemes of CNRSWebKit 
 #: inc/customizer.php:296
 msgid "Yellow"
 msgstr ""

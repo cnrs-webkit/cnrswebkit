@@ -469,6 +469,7 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Customizer additions.
  */
+// TODO Admin only !! 
 require get_template_directory() . '/inc/customizer.php';
 
 /**

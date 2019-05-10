@@ -24,7 +24,20 @@
    * laquelle choisir ??? 
    * dyncss plus intéressant a priori mais limité à liens 
    * mais il faut intégrer les autres couleurs dans le dyn_css
-
+- [ ] Customize: personnalisation des couleurs : pb si on selectionne un schéma puis on revient à l'initial, couleur de texte non remise à l'état d'origine ??? Comment cela fonctionne t-il réellement §, voir pertinence des schéma de base ?? ?? 
+- [ ] Customize: Personnalisation Identité du site : OK
+- [ ] Customize: Personnalisation Image d’en-tête : c'est un bandeau affiché sur toutes les pages: il manque explications et recadrer ne fonctionne pas !!
+- [ ] Customize: Personnalisation Image d’arrière-plan : ne s'affiche pas !!
+- [ ] Customize: Menus OK
+  * TODO on utilisera le customizer
+  * il faut tester si on peut sur modif des paramètres, modifier le dyncss et le compiler avec WP-sCSS
+  * il faudra basculer la valeur de $maincolor dans ce nouveau réglage, et supprimer l'ancien des pods
+  * il faudra intégrer dans le dynscss toutes les couleurs
+  * il faudra y intégrer justifcation, taille des textes.
+  * voir:
+    * modification scss: https://stackoverflow.com/questions/14802251/hook-into-the-wordpress-theme-customizer-save-action 
+    * compilation:  https://seothemes.com/how-to-compile-wordpress-theme-customizer-values-into-main-stylesheet/
+    * fichiers dscss partiel + import https://www.alsacreations.com/article/lire/1717-les-preprocesseurs-css-c-est-sensass.html
 
 ### Liste des futures améliorations à apporter
 - [ ] page contact thumbcontainer à mettre floatant pour que la description s'étende sur toute la largeur 

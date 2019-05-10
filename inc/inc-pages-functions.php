@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @subpackage CNRS_Web_Kit
  * @since CNRS Web Kit 1.0
  */
-
+    
 require get_template_directory() . '/inc/cnrs-ajax.php';
 
 add_action('init', 'cnrs_session_start', 1);
@@ -1171,7 +1171,7 @@ function update_evenement($pieces, $is_new_item) {
 }
 
 // TODO only used in admin?? 
-add_action('pods_api_post_save_pod_item_reglage_du_theme', 'update_site_params', 10, 3);
+// TODOTODO Unactivated for test add_action('pods_api_post_save_pod_item_reglage_du_theme', 'update_site_params', 10, 3);
 
 function update_site_params($pieces, $is_new_item, $id) {
     
