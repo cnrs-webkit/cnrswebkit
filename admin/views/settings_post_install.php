@@ -60,8 +60,11 @@ function cnrswebkit_set_cnrs_template_settings_to_default(form) {
     <div class="flex_container">
 
        <div class ="half_width">
+
         	<b><?php _e('Import default cnrswebkit content (pages, news, events, contacts...)','cnrswebkit'); ?></b><br/><br/>
         	<?php
+        	// Compile dnamix css 
+        	cnrswebkit_compile_custom_css();
         	$cnrswebkit_default_content_load = get_transient( 'cnrswebkit_default_content_load');
 
     	    global $wp_filesystem;

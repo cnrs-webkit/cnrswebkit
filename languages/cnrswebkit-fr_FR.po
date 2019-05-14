@@ -323,7 +323,7 @@ msgstr "Schéma colorimétrique"
 
 #: inc/customizer.php:143
 msgid "Page Background Color"
-msgstr "Couleur de fond"
+msgstr "Couleur de fond de page"
 
 #: inc/customizer.php:158
 msgid "Link Color"

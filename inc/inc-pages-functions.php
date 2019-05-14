@@ -48,9 +48,9 @@ function cnrs_session_start() {
 function cnrsenqueue() {
     // cnrsenqueue() is run when using parent or child theme
    
+    // always load parent style.css if active child theme Note: style.css is loaded before cnrs_dyn.css
+    wp_enqueue_style('cnrswebkit-parent-styles', get_template_directory_uri() .'/style.css', false);
     if (is_child_theme()) {
-        // always load parent style.css if active child theme Note: style.css is loaded before cnrs_dyn.css
-        wp_enqueue_style('cnrswebkit-parent-styles', get_template_directory_uri() .'/style.css', false);
         // Load child theme style.css
         $deps = array('cnrswebkit-parent-styles');
         wp_enqueue_style('cnrswebkit-child-styles', get_stylesheet_uri(), $deps);
@@ -61,7 +61,12 @@ function cnrsenqueue() {
     wp_enqueue_style('icomoon', get_template_directory_uri() . '/css/icomoon.css', array(), '1.0');
     
     // enqueue cnrs_dyn-style in case it is not enqueud by wp-scss (wp-scss not installed or not activated)
-    wp_enqueue_style('cnrs_dyn-style', get_template_directory_uri() . '/library/css/cnrs_dyn.css', array(), '1.0');
+    wp_enqueue_style('cnrs_dyn-style', get_template_directory_uri() . '/library/css/cnrs_dyn.css', array('cnrswebkit-parent-styles'), '1.0');
+    
+    // Enqueue cnrswebkit-style-inline-style (for customizer preview) 
+    wp_register_style( 'cnrswebkit-style', false );
+    // Define cnrswebkit-style-inline-style dependancy
+    wp_enqueue_style( 'cnrswebkit-style', array('cnrs_dyn-style'));
     
     wp_enqueue_script('cnrswebkit-init', get_template_directory_uri() . '/js/cnrs-init.js', array('jquery'), '1.0' . '-' . time(), true);
     wp_enqueue_script('cnrswebkit-masonrypkgd', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array('jquery', 'cnrswebkit-init'), '3.3.2' . '-' . time(), true);

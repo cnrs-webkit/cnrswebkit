@@ -19,28 +19,30 @@
 - [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
 - [ ] Définir programatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
 - [ ] CSS: importer le "css personnalisé" indispensable (menu...)
-- [ ] customize Couleur des liens pas utilisée
-- [ ] conflit couleur liens : customizer qui ajoute du CSS avec le réglage du theme (lien) dyn.css qui est chargé après
-   * laquelle choisir ??? 
-   * dyncss plus intéressant a priori mais limité à liens 
-   * mais il faut intégrer les autres couleurs dans le dyn_css
-- [ ] Customize: personnalisation des couleurs : pb si on selectionne un schéma puis on revient à l'initial, couleur de texte non remise à l'état d'origine ??? Comment cela fonctionne t-il réellement §, voir pertinence des schéma de base ?? ?? 
-- [ ] Customize: Personnalisation Identité du site : OK
 - [ ] Customize: Personnalisation Image d’en-tête : c'est un bandeau affiché sur toutes les pages: il manque explications et recadrer ne fonctionne pas !!
-- [ ] Customize: Personnalisation Image d’arrière-plan : ne s'affiche pas !!
-- [ ] Customize: Menus OK
-  * TODO on utilisera le customizer
-  * il faut tester si on peut sur modif des paramètres, modifier le dyncss et le compiler avec WP-sCSS
-  * il faudra basculer la valeur de $maincolor dans ce nouveau réglage, et supprimer l'ancien des pods
-  * il faudra intégrer dans le dynscss toutes les couleurs
-  * il faudra y intégrer justifcation, taille des textes.
-  * voir:
-    * modification scss: https://stackoverflow.com/questions/14802251/hook-into-the-wordpress-theme-customizer-save-action 
-    * compilation:  https://seothemes.com/how-to-compile-wordpress-theme-customizer-values-into-main-stylesheet/
-    * fichiers dscss partiel + import https://www.alsacreations.com/article/lire/1717-les-preprocesseurs-css-c-est-sensass.html
+- [ ] suite mise à niveau customizer: supprimer $maincolor et le champ du pods correspondant
+- [ ] Customize: mettre la solution explicité dans aide développeurs :
+    * solution : 
+    * on recompile on save preview seulement (assez long donc pas faire à chaque changement de couleur ET il ne faut pas modifier le css si on teste la personnalisation sans sauvegarder) 
+    * preview : wp_add_inline_style (pas en normal)
+    * et ajout des contenus dans le scss dynamique (avec @import )
+    * preview fonctionnera si wp_add_inline_style exécuté après cnrs_dyn.css enqueue
+    * et il faudra supprimer les redondances dans cnrs_dyn.css final (et simplifier)
+    * OK pour toutes couleurs, 
+    * mais pour maincolor, il faut créé un css à importer !!!!
+    * à tester avec background-color, PAS tous mettre dans un seul import
+  1- créer le fichier _xxx.scss
+  2- modifier {$colors['page_background_color']} en {$page_background_color}
+  2-bis ajouter $page_background_color dans la compilation scss
+  3- ajouter @import _xxx.scss
+  4- supprimer ce css dans la function cnrswebkit_get_color_scheme_css de customizer.php
+  4-bis et la remplacer en chargeant le _xxx.scss
+  5- supprimer function cnrswebkit_page_background_color_css pour charger le _xxx.scss
+  6- et supprimer add_action( 'wp_enqueue_scripts', 'cnrswebkit_page_background_color_css', 11 ); 
+  
 
 ### Liste des futures améliorations à apporter
-- [ ] page contact thumbcontainer à mettre floatant pour que la description s'étende sur toute la largeur 
+- [ ] page contact thumbcontainer à mettre flottant pour que la description s'étende sur toute la largeur 
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] put code in classes AND separate admin from frontend 
 - [ ] revoir css mobile
@@ -57,7 +59,7 @@
 – parfois il y a un bouton « en savoir plus » et le titre est non cliquable https://kit-demo.cnrs.fr/les-publications/
 – parfois le titre et le texte resume sont cliquable, sans « en savoir plus » https://kit-demo.cnrs.fr/les-actualites/.
 
-- [ ] 
+- [ ] AMP ???
 - [ ] 
 
 ### TODO site de démo /package

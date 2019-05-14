@@ -349,7 +349,7 @@ function cnrswebkit_scripts() {
     wp_enqueue_style('genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1');
 
     // Theme stylesheet.
-    wp_enqueue_style('cnrswebkit-style', get_stylesheet_uri());
+    // wp_enqueue_style('cnrswebkit-style', get_stylesheet_uri());
 
     // Load the Internet Explorer specific stylesheet.
     wp_enqueue_style('cnrswebkit-ie', get_template_directory_uri() . '/css/ie.css', array('cnrswebkit-style'), '20160816');
@@ -363,6 +363,7 @@ function cnrswebkit_scripts() {
     wp_enqueue_style('cnrswebkit-ie7', get_template_directory_uri() . '/css/ie7.css', array('cnrswebkit-style'), '20160816');
     wp_style_add_data('cnrswebkit-ie7', 'conditional', 'lt IE 8');
 
+   
     // Load the html5 shiv.
     wp_enqueue_script('cnrswebkit-html5', get_template_directory_uri() . '/js/html5.js', array(), '3.7.3');
     wp_script_add_data('cnrswebkit-html5', 'conditional', 'lt IE 9');
@@ -377,6 +378,7 @@ function cnrswebkit_scripts() {
         wp_enqueue_script('cnrswebkit-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array('jquery'), '20160816');
     }
 
+    
     wp_enqueue_script('cnrswebkit-script', get_template_directory_uri() . '/js/functions.js', array('jquery'), '20160816', true);
 
     wp_localize_script('cnrswebkit-script', 'screenReaderText', array(

@@ -18,6 +18,7 @@
  * new : "date de fin de publication" alias "date d'expiration" au dela de laquelle les actualités et emplois ne sont plus listés sur le site web.  
  - new : Tous les pods définis pour les contact (annuaire) s'affichent désormais sur la page annuaire
  - new : le nombre d'items des listes actualités, contact, événement peut être illimité en choississant 0 comme limite
+ - new : Wordpress customizer is now functional
  
 ##### Fixed bugs, errors 
  * Notice: Undefined variable: post_id ../template-parts/home-top.php on line 10
@@ -71,7 +72,7 @@
  * New : Prepare theme for versioning, upgrade
  * New : Upgrade will automatically add new settings (pods: réglage du thème)
  * New : All template with or whitout sidebar  (parameter in template settings)
- * Pages emploi () l’email du contact est à présent au formar des autres Uliens
+ * Pages emploi () l’email du contact est à présent au format des autres liens
  * Notice: Undefined variable: liste_evenement_url in template-parts/bottom-emploi.php on line 15
  * Warning: filesize()sur téléchargement: erreur due à guid des documents incorrects (modifiés dans base de données)
  * Ajout du réglale page tutelles et partenaires
@@ -131,7 +132,10 @@
  * suppression de quelques champs 'à la une' inutiles (emploi, mediatheque, publication)
  * Emplois: il existe un champ "type de poste" (supprimé) et une typologie d'emploi aussi redondant
  * Menu permettant d'ajouter aux pods les nouvelles traductions du theme CNRSWebkit 
- * affichage du champ "publication end date" actualités et emplois dans l'administration (pour faciliter la gestion des contenus) 
+ * affichage du champ "publication end date" actualités et emplois dans l'administration (pour faciliter la gestion des contenus)
+  * Modification de la gestion de la personnalisation (Wordpress customizer) , à présent fonctionnelle
+  * image de fond (background-image) est à présent fonctionnelle
+  * Couleur des leins à présent fonctionnelle (sauf en preview)
 
  	     
 ##### CSS changes  
