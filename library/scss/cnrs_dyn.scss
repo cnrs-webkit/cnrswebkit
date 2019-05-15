@@ -1,14 +1,14 @@
 
 /* dynamic-area-start */
 
-$background_color:ffd1d1; // not used since it is defined by wordpress as in-line style
+$background_color:cccccc; // not used since it is defined by wordpress as in-line style
 $page_background_color:#ffffff;
-$link_color:#16dd20;
+$link_color:#e016dd;
 $main_text_color:#000000;
 $secondary_text_color:#402b30;
 $border_color:rgba( 64, 43, 48, 0.2);
 
-$text_justify:1; //$text_justify default:left;
+$text_align:justify; //$text_align default:left;
 
 /* dynamic-area-end */
 
@@ -289,6 +289,12 @@ textarea:focus,
 	border-color: $link_color;
 }
 
+body.page-template-homepage .homeLabo .laboInfo .umi,
+#site-header-menu #searchContainer form #searchIconContainer {
+background-color: $link_color;
+}
+
+body.page-template-template-rubrique article .entry-content a.basePage:hover,
 header.site-header #site-header-menu nav#secondary-navigation .menu-menu-secondaire-container li > a, 
 header.site-header #site-header-menu nav#secondary-navigation .menu-menu-secondaire-container li > a:visited,
 #breadcrumbs span a:hover 
@@ -458,6 +464,11 @@ code {
 	background-color: $border_color;
 }
 
+/* Text Alignment */
+body, span, div, p , .sidebar{
+    text-align: $text_align;
+}
+
 @media screen and (min-width: 56.875em) {
 	.main-navigation li:hover > a,
 	.main-navigation li.focus > a {
@@ -499,9 +510,6 @@ a{
 
 
 /* General */
-body, span, div, p {
-    text-align: $text_justify;
-}
 
 body{
     background:$white;
@@ -986,8 +994,8 @@ header.site-header{
 /* Tutelles */
 
 .tutellesContainer{
-    border-left: 1px solid lightgrey;
-	border-right: 1px solid lightgrey;
+    display: inline-block;
+    border-right: 1px solid $light_grey;
     margin-top:10px;
     font-family: 'Roboto', sans-serif;
     width: 100%;
@@ -996,13 +1004,24 @@ header.site-header{
         display:flex;
         flex-direction: column;
     }
+    .partKnowMore {
+		  float: right;
+		  height: auto;
+		  margin-bottom: 10px;
+		  margin-top: 10px;
+		  a {
+			  padding-bottom: inherit;
+		  }
+	}
+
     .partTitle{
         /* @include genTitles;*/
         font-weight:700;
         letter-spacing: 0.1px;
         float:left;
         width:60%;
-        margin-bottom:5px;
+        height: auto;
+        margin-bottom:10px;
         margin-left: 10px;
         @media screen and (max-width: 910px) {font-size:30px; height:auto; width:100%;}
     }
@@ -1017,17 +1036,18 @@ header.site-header{
             padding: 0 20px 0 20px;
             line-height: 15px;
             text-align:center;
+            margin-top: 10px;
+	    border: 1px solid transparent;
+            &:hover { border:1px solid $link_color;}
             @media screen and (max-width: 910px) {width:50%;}
             .thumbPart{ // image partenaire
                         
                         display:flex;
                         align-items: center;
+                        border: none;
                         justify-content: space-evenly;
-                        //height:400px;
-                        //img{margin:0 auto;}
                         &:hover{
-                            border:1px solid $link_color;
-                            & ~ div a{color:$link_color;}
+                             & ~ div a{color:$link_color;}
                         }
                         a{
                             box-shadow:none;
@@ -1040,7 +1060,7 @@ header.site-header{
                         }
             }
             .titlePart{ // texte partenaire
-                        margin:10px 0 0 10px;
+                        margin:0 0 0 0;
                         @media screen and (max-width: 910px) {display:none;}
                         a{
                             color:$black;
@@ -1192,7 +1212,6 @@ body.page-template-homepage{
             //width:100%;
             @media screen and (max-width: 910px) {margin-left:0;}
             .umi{
-                background-color:$link_color;
                 color:$white;
                 text-transform: uppercase;
                 font-size:13px;
@@ -1276,7 +1295,6 @@ body.page-template-templateactualite, body.page-template-templateactualiteno-sid
                 .entry-content{
                     margin:0;
                     padding:0 60px 0 5px;
-                    // text-align:left;
                     float:none;
                     width: 100%;
                     line-height:25px;
@@ -1350,7 +1368,7 @@ body.single-actualite:not(.search-results), body.single-evenement:not(.search-re
             margin:20px 0;
             padding:50px 10px 0 10px;
             border-top:1px solid $lighter_grey;
-            text-align:left;
+            text-align:$text_align;
             float:none;
             width:100%;
             font-family: 'Roboto', sans-serif;
@@ -1568,7 +1586,7 @@ body.page-template-templateagenda{
                 }
                 .entry-content{
                     margin:0;
-                    text-align:left;
+                    text-align:$text_align;
                     float:none;
                     width:100%;
                 }
@@ -1797,9 +1815,6 @@ body.page-template-template-rubrique{
                     font-weight:400;
                     width:calc(70% - 50px);
                     @media screen and (max-width: 910px) {width:100%;}
-                }
-                &:hover{
-                    color:$link_color;
                 }
             }
         }
@@ -2222,7 +2237,7 @@ body.page-template-templatepublication:not(.search-results){
                     .entry-content{
                         margin:0;
                         padding:0;
-                        text-align:left;
+                        text-align:$text_align;
                         float:none;
                         width: 100%;
                         line-height: 20px;
@@ -2523,7 +2538,7 @@ $containerSearchSize:500px;
                         @media screen and (max-width: 910px) {width:75vw;}
                         //width:calc(#{$containerSearchSize} - 60px);
                         padding:0 10px;
-                        border:1px solid lightgrey;
+                        border:1px solid $light_grey;
                     }
                 }
             }
@@ -2541,7 +2556,6 @@ $containerSearchSize:500px;
                 transition:all .2s ease-Out;
             }
             #searchIconContainer{
-                background-color:$link_color;
                 color:white;
                 margin:0;
                 width:30px;

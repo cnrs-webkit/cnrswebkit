@@ -235,7 +235,6 @@ Thème wordpress simple et personnalisable qui permet de donner une visibilité 
         'pagetutelles_et_partenaires' => 'a:0:{}',
         'tutelles_du_laboratoire' => 'a:0:{}',
         'logo_partenaires_header' => 'a:0:{}',
-        'text_justify' => 'justify',
         
     );
     //TODO replace 'a:0:{}', in pods('reglage_du_theme'); by searching equivalent page, after pages have been imported
@@ -311,6 +310,9 @@ function cnrswebkit_upgrade ($previous_version, $new_version) {
         array('pod' => 'emploi', 'name'=> 'a_la_une'),
         array('pod' => 'mediatheque', 'name'=> 'a_la_une'),
         array('pod' => 'publication', 'name'=> 'a_la_une'),
+        array('pod' => 'reglage_du_theme ', 'name'=> 'text_justify'),
+        array('pod' => 'reglage_du_theme ', 'name'=> 'couleur_principale'),
+        
     );
     foreach($fields_to_remove as $field_to_remove) {
         if ($field = $pods_api->load_field ( $field_to_remove ) ){
@@ -1180,23 +1182,8 @@ function update_evenement($pieces, $is_new_item) {
 
 function update_site_params($pieces, $is_new_item, $id) {
     
-    $content = file_get_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss');
-    
-    $term = $pieces['fields']['couleur_principale']['value'];
-    if (empty($term)) {
-        $term = '#ea514a';
-    }
-
-    $content = preg_replace('/\$mainColor:#[A-Za-z0-9]{6};/', '$mainColor:' . $term . ';', $content);
-    
-    $term = $pieces['fields']['text_justify']['value'];
-    if (empty($term)) {
-        $term = 'left';
-    }
-    
-    $content = preg_replace('/\$text_justify:[A-Za-z]{0,15};/', '$text_justify:' . $term . ';', $content);
-    
-    file_put_contents(TEMPLATEPATH . '/library/scss/cnrs_dyn.scss', $content);
+    // compile the new dynamic scss 
+    cnrswebkit_compile_custom_css();
 }
 
 function get_file_size_from_url($url) {

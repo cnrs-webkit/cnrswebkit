@@ -1410,6 +1410,10 @@ blockquote:after,
 	overflow: hidden;
 }
 
+.headerThumbPart img {
+	height:50px;
+}
+
 .custom-logo-link {
 	display: block;
 }

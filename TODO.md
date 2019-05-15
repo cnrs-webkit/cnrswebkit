@@ -6,42 +6,24 @@
 - [x] constituer un ensemble de paramètres par défaut (pods...) installable (pour utiliser le kit)
 - [x] Constituer un contenu (page média...) téléchargeable pour tester le kit sans disposer de contenu initial
 - [ ] Rendre le thème upgradable à partir de GitHub
-- [ ] Proposer un thème enfant par défaut
-- [ ] apply Worpdress coding standard
 - [x] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
 - [ ] ET ajouter traductions en français (.po)
 - [x] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement (utiliser date publication)
 - [x] Ajouter un ordre aux partenaires aussi
+
 - [ ] toiletter les styles (redondance, inutilisés..) voir https://www.cssportal.com/css-validator/
+- [ ] Proposer un thème enfant par défaut
+- [ ] apply Worpdress coding standard
 
 ### Liste des bugs et améliorations à apporter avant publication 1ère version
 
 - [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
-- [ ] Définir programatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
-- [ ] CSS: importer le "css personnalisé" indispensable (menu...)
-- [ ] Customize: Personnalisation Image d’en-tête : c'est un bandeau affiché sur toutes les pages: il manque explications et recadrer ne fonctionne pas !!
-- [ ] suite mise à niveau customizer: supprimer $maincolor et le champ du pods correspondant
-- [ ] Customize: mettre la solution explicité dans aide développeurs :
-    * solution : 
-    * on recompile on save preview seulement (assez long donc pas faire à chaque changement de couleur ET il ne faut pas modifier le css si on teste la personnalisation sans sauvegarder) 
-    * preview : wp_add_inline_style (pas en normal)
-    * et ajout des contenus dans le scss dynamique (avec @import )
-    * preview fonctionnera si wp_add_inline_style exécuté après cnrs_dyn.css enqueue
-    * et il faudra supprimer les redondances dans cnrs_dyn.css final (et simplifier)
-    * OK pour toutes couleurs, 
-    * mais pour maincolor, il faut créé un css à importer !!!!
-    * à tester avec background-color, PAS tous mettre dans un seul import
-  1- créer le fichier _xxx.scss
-  2- modifier {$colors['page_background_color']} en {$page_background_color}
-  2-bis ajouter $page_background_color dans la compilation scss
-  3- ajouter @import _xxx.scss
-  4- supprimer ce css dans la function cnrswebkit_get_color_scheme_css de customizer.php
-  4-bis et la remplacer en chargeant le _xxx.scss
-  5- supprimer function cnrswebkit_page_background_color_css pour charger le _xxx.scss
-  6- et supprimer add_action( 'wp_enqueue_scripts', 'cnrswebkit_page_background_color_css', 11 ); 
   
 
 ### Liste des futures améliorations à apporter
+- [ ] CSS: importer le "css personnalisé" indispensable (menu...)
+- [ ] Définir programatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
+- [ ] détecter la biliothèque php-gd (pb recadrage images) 
 - [ ] page contact thumbcontainer à mettre flottant pour que la description s'étende sur toute la largeur 
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] put code in classes AND separate admin from frontend 
@@ -102,6 +84,8 @@
    * disparition actualités.. Il faut rafraichir tous les  permaliens 
 - [ ] NON a faire dans Pods ...reste inutile car traduction dans pods / partenaires On peut ajouter la traduction de "du laboratoire" qui donne "du" "de l'" ... selon les cas 
 - [ ] favicon ?  sur page sur /wp-admin/customize.php?return=%2Fwp-admin%2F           
+- [ ] Customize: Personnalisation Image d’en-tête :  recadrer ne fonctionne pas
+   * si la bibliothèque php-gd est absente
 
 - [ ] PODS Comment mettre à jour les pods qui peuvent être modifiés par le webmaster??
 on distingue: 
@@ -161,6 +145,24 @@ Failed to import language Français
 https://www.google.com/search?client=firefox-b&q=wordpress+modify+secret+key
 https://fr.wordpress.org/plugins/change-table-prefix/
 + ajouter procédure pour imposer modification login/password    
+
+### liste des infos à publier dans la doc des développeurs
+
+- [ ] Customizer: 
+   * le fonctionnement initial du kit-web est basé sur un fichier css dynamique cnrs_dyn.scss comportnat des paramètres, des fichiers de styles dispersés, et du style en ligne. Le fichier dynamique est recompilé à chaque modification par le plugin wp-scss
+   * la personalisation du kit s'appuie sur l'API customizer de Wordpress, notamment sur l'ajout de style 'in-line' pour faire fonctionner la prévisualisation. 
+   * Incompatibilités et problèmes: 
+     * le paramètre couleur principale ($maincolor) définissait la couleur principale à modifier dans les 'réglages du thème', alors que dans la personnalisation c'est un aure paramètre qui remplissait cette fonction.
+     * l'utilisation de paramètres pour les couleurs nécessitait de recompiler le css dynamique à chaque changement dans la prévisualisation du thème. (compter 4 secondes) . Mais, ainsi on appliquerait les changements avant que les modification dans la prévisualisation soient enregistrés (à éviter absolument)
+     * l'utilisation de morceaux de code @mixin paramétrés est incompatible avec la prévisualisation des modifications du thème. 
+     * les fichiers css sont concurrents et redondants, beaucoup de styles doivent être supprimés (inutiles) , il faut absolument simplifier cela
+     * l'implémentation de l'API customizer génré sur chaque page en frontend un style en ligne qui ne peut  pas être mis en cache. 
+   * solution implémentée: 
+     * on utilise un fichier cnrs-dyn.scss qui contient tous les css dynamiques 
+     * on crée un fichier underscore _cnrs_dyn_custom.scss qui contient la partie de scss qu'il faut modifier pour afficher les modifications dans la prévisualisation
+     * ce fichier scss est mis à jour et injecté dans la prévisualisation à chaque changement de paramètre (couleur..)
+     * TODO : il faudrait remonter dans  _cnrs_dyn_custom.scss toutes les règles qui utilisent un paramètre. C'est impossible à cause des morceaux de code @mixin eux mêmes paramétrés
+     * conclusion: la prévisualisation du thème n'est que partiellement fonctionelle
 
 ### Liste des bugs et améliorations à apporter sur theme cnrswebkit
 - [ ] Slogan et titre du site :/wp-admin/options-general.php ajouter un message explicatif dans l’admin (du thème ? Ou de WP ? )  

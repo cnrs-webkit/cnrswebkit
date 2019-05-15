@@ -56,15 +56,16 @@ function cnrswebkit_set_cnrs_template_settings_to_default(form) {
 </script>
 
 <form method="post" action = "admin.php?page=CNRS-Webkit&import">
-	<h2><?php _e('CNRS Webkit Post-install/Upgrade Settings :','cnrswebkit'); ?></h2>
+	<h2><?php  
+	printf( __( 'CNRS Webkit version %s : Post-install/Upgrade Settings', 'cnrswebkit' ), constant ('CNRS_WEBKIT_VERSION') );
+        ?>
+    </h2>
     <div class="flex_container">
 
        <div class ="half_width">
 
         	<b><?php _e('Import default cnrswebkit content (pages, news, events, contacts...)','cnrswebkit'); ?></b><br/><br/>
         	<?php
-        	// Compile dnamix css 
-        	cnrswebkit_compile_custom_css();
         	$cnrswebkit_default_content_load = get_transient( 'cnrswebkit_default_content_load');
 
     	    global $wp_filesystem;
@@ -118,6 +119,20 @@ function cnrswebkit_set_cnrs_template_settings_to_default(form) {
         	?>
  
         </div>
+
+       <div class ="half_width">
+
+        	<b><?php _e('Depandancies','cnrswebkit'); ?></b><br/><br/>
+        	<?php
+        	if (! function_exists('gd-info')) {
+        	    echo '<p>attention php-gd n\'est pas installé, le recadrage des photos sera impossible!</p>';
+        	}
+        	echo '<br> compilation du css dynamique' ;
+        	cnrswebkit_compile_custom_css() ;
+        	?>
+ 
+        </div>
+
             
         </div>
 		<div class ="half_width">

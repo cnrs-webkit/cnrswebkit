@@ -26,13 +26,6 @@ $partenaires_data = new CnrswebkitPageItemsList('partenaire', $custom_params);
 
 if ($partenaires_data->has_items()) {
     ?>
-<!-- TODO move style to css -->
-<style>
-.headerThumbPart img {
-height:50px;
-}
-
-</style>
     <div class="headerTutellesContainer">
         <div class="partContainer">
             <?php

@@ -14,7 +14,7 @@
  * Partenaires du laboratoire : déplacé dans le footer pour s'adapter aux page avec/sans sidebar
  * New : Tutelles du laboratoire à renseigner dans le réglage du thème (en plus des partenaires du labo)
  * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
- * new : text-align can be set (left or justify) in template settings  
+ * new : text-align can be set (left or justify) in template customization
  * new : "date de fin de publication" alias "date d'expiration" au dela de laquelle les actualités et emplois ne sont plus listés sur le site web.  
  - new : Tous les pods définis pour les contact (annuaire) s'affichent désormais sur la page annuaire
  - new : le nombre d'items des listes actualités, contact, événement peut être illimité en choississant 0 comme limite
@@ -95,7 +95,7 @@
  * New : Tutelles du laboratoire à renseigner dans le réglage du thème (en plus des partenaires du labo)
  * New : Mini Logos des partenaires dans le header à renseigner dans le réglage du thème (affichage sous le logo du laboratoire)
 
- * new : text-align can be set (left or justify) in template settings
+ * new : text-align can be set (left or justify) in template c
  * new : parent style.css is loaded even when a child theme is used  
  * Add missing templates: page whitout sidebar,  page with sidebar
  * Affichage conditionnel du titre et du slogan du laboratoire seulement s'ils existent
@@ -135,7 +135,8 @@
  * affichage du champ "publication end date" actualités et emplois dans l'administration (pour faciliter la gestion des contenus)
   * Modification de la gestion de la personnalisation (Wordpress customizer) , à présent fonctionnelle
   * image de fond (background-image) est à présent fonctionnelle
-  * Couleur des leins à présent fonctionnelle (sauf en preview)
+  * Couleur des liens à présent fonctionnelle (sauf en preview)
+  * Ajout du paramétrage de l'alignement des textes dans la personalisation
 
  	     
 ##### CSS changes  

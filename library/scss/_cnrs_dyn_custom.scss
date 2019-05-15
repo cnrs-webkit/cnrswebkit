@@ -123,6 +123,12 @@ textarea:focus,
 	border-color: $link_color;
 }
 
+body.page-template-homepage .homeLabo .laboInfo .umi,
+#site-header-menu #searchContainer form #searchIconContainer {
+background-color: $link_color;
+}
+
+body.page-template-template-rubrique article .entry-content a.basePage:hover,
 header.site-header #site-header-menu nav#secondary-navigation .menu-menu-secondaire-container li > a, 
 header.site-header #site-header-menu nav#secondary-navigation .menu-menu-secondaire-container li > a:visited,
 #breadcrumbs span a:hover
@@ -292,6 +298,11 @@ code {
 	background-color: $border_color;
 }
 
+/* Text Alignment */
+body, span, div, p , .sidebar{
+    text-align: $text_align;
+}
+
 @media screen and (min-width: 56.875em) {
 	.main-navigation li:hover > a,
 	.main-navigation li.focus > a {
@@ -317,5 +328,7 @@ code {
 		border-bottom-color: $page_background_color;
 	}
 }
+
+
 
 /* End Color Scheme */

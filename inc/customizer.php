@@ -105,7 +105,7 @@ function cnrswebkit_customize_register( $wp_customize ) {
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-
+	$wp_customize->get_control( 'background_color' )->description = __( 'Autour de la page', 'cnrswebkit' );
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
 			'selector' => '.site-title a',
@@ -187,9 +187,72 @@ function cnrswebkit_customize_register( $wp_customize ) {
 		'label'       => __( 'Secondary Text Color', 'cnrswebkit' ),
 		'section'     => 'colors',
 	) ) );
+	
+	// Section Typography
+	$wp_customize->add_section( 'typography' , array(
+	'title'      => __( 'Typography', 'cnrswebkit' ),
+	'priority'   => 30,
+	) );
+	
+	// Add text justification setting and control.
+	$wp_customize->add_setting( 'text_align', array(
+	'default'           => 'left',
+	'sanitize_callback' => 'cnrswebkit_sanitize_text_align',
+	'transport'         => 'postMessage',
+	) );
+	$text_styles=array( 
+	    'left' => 
+    	    /* Translators: this is one text-align property */
+    	    __( 'Left', 'cnrswebkit' ) ,
+	    'right' => 
+	        /* Translators: this is one text-align property */
+	        __( 'Right', 'cnrswebkit' ) ,
+	    'center' => 
+	        /* Translators: this is one text-align property */
+            __( 'Center', 'cnrswebkit' ) ,
+	    'justify' => 
+	        /* Translators: this is one text-align property */
+	        __( 'Justify', 'cnrswebkit' ) ,
+	    
+	);
+	
+	$wp_customize->add_control( 'text_align', array(
+	    'label'       => __( 'Text alignement', 'cnrswebkit' ),
+	    'section'     => 'typography',
+	    'type'     => 'select',
+	    'choices'  => cnrswebkit_get_text_aligns(),
+	) ) ;
+	
 }
 add_action( 'customize_register', 'cnrswebkit_customize_register', 11 );
 
+function cnrswebkit_get_text_aligns() {
+    return 
+    array(
+        'left' =>
+        /* Translators: this is one text-align property */
+        __( 'Left', 'cnrswebkit' ) ,
+        'right' =>
+        /* Translators: this is one text-align property */
+        __( 'Right', 'cnrswebkit' ) ,
+        'center' =>
+        /* Translators: this is one text-align property */
+        __( 'Center', 'cnrswebkit' ) ,
+        'justify' =>
+        /* Translators: this is one text-align property */
+        __( 'Justify', 'cnrswebkit' ) ,
+        
+    );
+    
+}
+
+function cnrswebkit_sanitize_text_align( $input, $setting ) {
+    // Ensure input is a slug.
+    $input = sanitize_key( $input );
+    
+    // If the input is a valid key, return it; otherwise, return the default.
+    return ( array_key_exists( $input, cnrswebkit_get_text_aligns() ) ? $input : $setting->default );
+}
 /**
  * Render the site title for the selective refresh partial.
  *
@@ -419,6 +482,7 @@ function cnrswebkit_get_color_scheme_css( $colors ) {
 		'main_text_color'       => '',
 		'secondary_text_color'  => '',
 		'border_color'          => '',
+	    'text_align'            => '',
 	) );
 	$css = file_get_contents(TEMPLATEPATH . '/library/scss/_cnrs_dyn_custom.scss');
 	foreach($colors as $key => $value) {
@@ -445,7 +509,8 @@ function cnrswebkit_color_scheme_css_template() {
 		'link_color'            => '{{ data.link_color }}',
 		'main_text_color'       => '{{ data.main_text_color }}',
 		'secondary_text_color'  => '{{ data.secondary_text_color }}',
-		'border_color'          => '{{ data.border_color }}',
+	    'border_color'          => '{{ data.border_color }}',
+	    'text_align'            => '{{ data.text_align }}',
 	);
 	?>
 	<script type="text/html" id="tmpl-cnrswebkit-color-scheme">
@@ -476,14 +541,12 @@ function cnrswebkit_compile_custom_css() {
         define( 'WP_SCSS_ALWAYS_RECOMPILE', true );
     }
     // Get the default colors.
-    //TODO replace maincolor by link_color
-    
     $color_scheme = cnrswebkit_get_color_scheme();
     
     // Convert main text hex color to rgba.
     $color_textcolor_rgb = cnrswebkit_hex2rgb( $color_scheme[3] );
     
-    // If we get this far, we have a custom color scheme.
+    // If we get this far, we have a custom color scheme with $colors default values
     $colors = array(
     'background_color'      => $color_scheme[0],
     'page_background_color' => $color_scheme[1],
@@ -491,6 +554,7 @@ function cnrswebkit_compile_custom_css() {
     'main_text_color'       => $color_scheme[3],
     'secondary_text_color'  => $color_scheme[4],
     'border_color'          => vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.2)', $color_textcolor_rgb ),
+    'text_align'            => 'left',
     
     );
     
@@ -502,10 +566,9 @@ function cnrswebkit_compile_custom_css() {
     
     // Loop through each variable and get theme_mod.
     foreach ( $colors as $key => $value ) {
-        //TODO replace maincolor by link_color
         $color = get_theme_mod( $key, $value );
-        $regexp = '/\$' . $key . ':#[A-Za-z0-9]{0,10};/';
-        var_dump($regexp);
+        $regexp = '/\$' . $key . ':[#A-Za-z0-9 (),.]{0,30};/';
+        var_dump($regexp); 
         $content = preg_replace($regexp, '$' .$key . ':' . $color . ';', $content); 
     }
     
