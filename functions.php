@@ -28,7 +28,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  */
 
  // Constante de Version.
-define( 'CNRS_WEBKIT_VERSION', '0.4.1' );
+define( 'CNRS_WEBKIT_VERSION', '0.4.2' );
 
 // .../wp-content/plugins/lab-directory
 define( 'CNRS_WEBKIT_DIR', dirname( __FILE__ ) );
