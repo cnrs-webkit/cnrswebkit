@@ -7,6 +7,8 @@
  * this is inserted in cnrs_dyn.scss  to regenerate dynamic css
  * These two pieces of files must be identical in both places
  */
+/* TODO déplacer tous les paramètres $xxx situé dans cnrs_dyn.scss vers cnrs_custom.scss
+ On pourrait ainsi limiter le temps de compilation en ne recompilant cnrs_custom.scss en preview  */
 /* Background Color */
 body {
   background-color: cccccc;
@@ -2350,7 +2352,6 @@ body.page-template-templatepublication:not(.search-results) article.type-page .e
   height: 40px;
 }
 body.page-template-templatepublication:not(.search-results) article.type-page .entry-content article.publication > div:nth-of-type(2) .entry-content .knowMorePub {
-  color: #e016dd;
   margin-top: 30px;
   display: none;
 }

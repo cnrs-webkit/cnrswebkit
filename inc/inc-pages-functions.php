@@ -1190,7 +1190,7 @@ function get_file_size_from_url($url) {
     return round(filesize($_SERVER['DOCUMENT_ROOT'] . parse_url($url, PHP_URL_PATH)) / 1048576, 2);
 }
 
-// Make cnrs_breadcrumb pluggable for possible override it in child theme
+// Make cnrs_breadcrumb pluggable for possible overriding in child theme
 
 if ( ! function_exists ( 'cnrs_breadcrumb' ) ) {
     function cnrs_breadcrumb() {

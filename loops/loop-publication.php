@@ -14,7 +14,7 @@
     <div>
         <header class="entry-header">
             <div class="authorsPub"><?php echo $current_item->value('auteur'); ?></div>
-            <h1 class="entry-title"><?php echo $current_item->value('post_title'); ?></h1>
+            <h1 class="entry-title"><a href="<?php echo get_permalink($current_item->value('ID')); ?>"><?php echo $current_item->value('post_title'); ?></a></h1>
         </header><!-- .entry-header -->
         <div class="entry-content">
             <p><?php echo $current_item->value('chapo'); ?></p>
@@ -29,7 +29,7 @@
                     $pub_link = [];
                     if ($current_item->value('lien') != '') {
                         ?>
-                        <?php _e('Export this reference', 'cnrswebkit') ?> : 
+                        <?php _e('Other link', 'cnrswebkit') ?> : 
                         <?php
                         $ext_link = '<a href="' . $current_item->value('lien') . '">';
                         if (trim($current_item->value('intitule_du_lien')) != '') {
@@ -42,11 +42,12 @@
                     }
                     if (is_array($current_item->value('fichier_telechargeables'))) {
                         foreach ($current_item->value('fichier_telechargeables') as $one_dnld) {
-                            $ext_link = '<a href="' . $one_dnld['guid'] . '">';
+                            $url = wp_get_attachment_url($one_dnld['ID']);
+                            $ext_link = '<a href="' . $url . '">';
                             if ($one_dnld['post_title'] != '') {
                                 $ext_link .= $one_dnld['post_title'];
                             } else {
-                                $ext_link .= $one_dnld['guid'];
+                                $ext_link .= $url;
                             }
                             $ext_link .= ' </a>';
                             $pub_link[] = $ext_link;

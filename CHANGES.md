@@ -1,7 +1,16 @@
 #### [To appear in next release]
 
-#### Version 0.4.x
+#### Version 0.4.3
 
+ * Fix : template-parts/content-publication.php ajouté, et corrigé (c'était une copie de content-evenement.php !)
+ * Fix : lien sur les publications manquant
+ * Fix : tutellescontainer: ajout border left 
+ * Fix : remplacement de guid par wp_get_attachment_url($one_dnld['ID']) bug affichage des tailles des fichiers à télécharger
+ * Fix : Downloadable documents s'affiche même si pas de documents
+
+#### Version 0.4.2
+ * Depuis la version 0.4.2, le theme CNRS WebKit Propose les mises à jour disponibles dans l'administration de Wordpress. 
+ 
 ##### Added feature, template, functionalities
  * New : le kit propose à présent un widget actualité (News's list) affichant les dernières actualités 
  * New : le kit propose à présent un widget événements (event's list) affichant les dernièrs évéements 
@@ -137,21 +146,13 @@
   * image de fond (background-image) est à présent fonctionnelle
   * Couleur des liens à présent fonctionnelle (sauf en preview)
   * Ajout du paramétrage de l'alignement des textes dans la personalisation
-
- 	     
-##### CSS changes  
+ * commented unusefull code in /template-parts/home-top.php
  * page rubriques (par exemple /le-laboratoire/
   * "vignette" ajustée (taille dépassait l'écran), 
  * CSS : cleaning and removing unused style : post-thumbnail 
  * ajout id et classes au menu principal 'menu_id' => 'menu-menu-principal','container_class' => 'menu-menu-principal-container' pour styler en css
  * ajout id et classes au menu secondaire 'menu_id' => 'menu-menu-secondaire', 'container_class' => 'menu-menu-secondaire-container',   
- 
 
-                       
-  
-##### removed from theme
- * commented unusefull code in /template-parts/home-top.php
- 
 
-#### Version 0.3 (2018 Nov. 1)
+#### Version 0.3 (2018 Nov, package v1.02 and v1.03)
 * This was the original cnrswebkit developped by  ATOS 

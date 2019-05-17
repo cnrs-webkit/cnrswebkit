@@ -5,7 +5,7 @@
 
 global $cnrs_global_params;
 
-if ( empty($cnrs_global_params->field('partenaires_du_laboratoire') ) ){
+if ( empty($cnrs_global_params->field('logo_partenaires_header') ) ){
     return; 
 }
 

@@ -123,12 +123,13 @@ function cnrswebkit_set_cnrs_template_settings_to_default(form) {
        <div class ="half_width">
 
         	<b><?php _e('Depandancies','cnrswebkit'); ?></b><br/><br/>
-        	<?php
+        	<?php /* TODO 
         	if (! function_exists('gd-info')) {
         	    echo '<p>attention php-gd n\'est pas installé, le recadrage des photos sera impossible!</p>';
         	}
         	echo '<br> compilation du css dynamique' ;
         	cnrswebkit_compile_custom_css() ;
+        	*/ 
         	?>
  
         </div>

@@ -1,29 +1,32 @@
 ## cnrswebkit TODO list
 
+* Style de menu dans réglage du thème: quid ??
+* Agenda sur la page d'accueil devient événements de l'Agenda sur la page d'accueil
+* /wp-admin/admin.php?page=CNRS-Webkit : Merci de faire de WordPress votre outil de création mal placé!
+* Red buttons correspond to content that have already been imported
+* Depandancies :typo
+* détecter origine pb recadrage images ?? 
+* modifier les couleurs par défaut utilisées après la mise à jour de 1.0.3 vers 0.4.2
+
+ 
 #### Other tasks
 - [x] corriger tous les bugs de la version 0.3
 - [x] Apporter quelques améliorations indispensables
 - [x] constituer un ensemble de paramètres par défaut (pods...) installable (pour utiliser le kit)
 - [x] Constituer un contenu (page média...) téléchargeable pour tester le kit sans disposer de contenu initial
-- [ ] Rendre le thème upgradable à partir de GitHub
+- [x] Rendre le thème upgradable à partir de GitHub
 - [x] Langue remettre toutes les chaines en anglais (actuellement moitié français moitié anglais !!) 
 - [ ] ET ajouter traductions en français (.po)
 - [x] Ajouter un ordre à toutes les catégories/taxonomies pour éventuel classement (utiliser date publication)
 - [x] Ajouter un ordre aux partenaires aussi
-
-- [ ] toiletter les styles (redondance, inutilisés..) voir https://www.cssportal.com/css-validator/
 - [ ] Proposer un thème enfant par défaut
 - [ ] apply Worpdress coding standard
 
-### Liste des bugs et améliorations à apporter avant publication 1ère version
-
-- [ ] GitHub Plugin URI: https://github.com/cnrs-webkit/cnrswebkit
-  
 
 ### Liste des futures améliorations à apporter
 - [ ] CSS: importer le "css personnalisé" indispensable (menu...)
-- [ ] Définir programatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
-- [ ] détecter la biliothèque php-gd (pb recadrage images) 
+- [ ] Définir programmatiquement H1 H2  H6 (dyn css), supprimer les déclarations multiples dans .css
+- [ ] toiletter les styles (redondance, inutilisés..) voir https://www.cssportal.com/css-validator/
 - [ ] page contact thumbcontainer à mettre flottant pour que la description s'étende sur toute la largeur 
 - [ ] ? désactiver les vignettes sur format mobile ?
 - [ ] put code in classes AND separate admin from frontend 
@@ -42,16 +45,25 @@
 – parfois le titre et le texte resume sont cliquable, sans « en savoir plus » https://kit-demo.cnrs.fr/les-actualites/.
 
 - [ ] AMP ???
-- [ ] 
+- [ ] Ligne crédits du bas de page/footer: utiliser un contenu site origin ?? 
 
 ### TODO site de démo /package
-- [ ] http://Dircomnas ?? à modifier sur site démo
+- [ ] Voir liste dans Upgrading from 0.3 to 0.4 ### paramétrage à modifier
 - [ ] modifier les liens bas de page non fonctionnels non paramétrables -> site origin ??
 - [ ] supprimer les brouillons inutiles
 - [ ] supprimer les médias inutilisés
 - [ ] proposer pages en anglais / site bilingue pour montrer comment ça marche et proposer traduction des pods par défaut
+- [ ] Newsletter inscription !! Widget non fonctionnel a priori, à déplacer de barre latérale à contenu bas ?? 
+- [ ] Ajouter un theme de Wordpress (Twenty Nineteen?) en cas de pb avec pods (on bascule sur le thème par défaut de Wordpress)
 - [ ] 
 - [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+
 
 
 #### liste des fichiers de style et tailles en V0.3

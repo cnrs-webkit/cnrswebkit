@@ -603,7 +603,7 @@ msgid "Download recruitment offer"
 msgstr ""
 
 #: loops/loop-publication.php:32
-msgid "Export this reference"
+msgid "Other link"
 msgstr ""
 
 #: loops/loop-publication.php:58

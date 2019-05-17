@@ -57,27 +57,29 @@ get_header();
                 }
                 // Affichage des téléchargements
                 if ($cnrs_global_params->field('telechargements_sur_la_page_daccueil')) {
-                    ?> 
+                    if ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') ) {
+                        ?> 
                     <div class="so-widget-sow-editor so-widget-sow-editor-base">
                         <h3 class="widget-title titleDL"><?php _e('Downloadable documents', 'cnrswebkit')?></h3>
                     </div>
                     <div class="home-downloads">
                         <?php
-                        if ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') ) {
                             foreach ($cnrs_global_params->field('fichiers_telechargements_page_daccueil') as $one_dnld) {
+                                $url = wp_get_attachment_url($one_dnld['ID']);
                             ?>
                             <div class="itemDL">
                                 <span class="icon-folder"></span>
                                 <span><?php echo $one_dnld['post_title']; ?></span>
-                                <strong><?php echo get_file_size_from_url($one_dnld['guid']); ?>Mo</strong>
-                                <a href="<?php echo $one_dnld['guid']; ?>"><?php _e('Download', 'cnrswebkit') ?></a>
+                                <strong><?php echo get_file_size_from_url($url); ?>Mo</strong>
+                                <a href="<?php echo $url; ?>"><?php _e('Download', 'cnrswebkit') ?></a>
                             </div>
                             <?php
                             }
-                        }
+
                         ?>
                     </div>
                     <?php
+                    }
                 }
 
                 ?>
