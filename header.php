@@ -6,7 +6,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 ?><!DOCTYPE html>
@@ -106,7 +106,7 @@
                         /**
                          * Filter the default cnrswebkit custom header sizes attribute.
                          *
-                         * @since CNRS Web Kit 1.0
+                         * @since CNRS Web Kit 0.3
                          *
                          * @param string $custom_header_sizes sizes attribute
                          * for Custom Header. Default '(max-width: 709px) 85vw,

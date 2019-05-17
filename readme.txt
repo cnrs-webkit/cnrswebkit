@@ -1,14 +1,24 @@
 === CNRS Web Kit ===
-Contributors: the Atos team
+Contributors: the Atos team,Christophe Seguinot
 Requires at least: WordPress 4.4
-Tested up to: WordPress 4.8
-Version: 1.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: WordPress 5.2
+Version: 0.5.0
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Theme URI: https://github.com/cnrs-webkit/cnrswebkit
 Tags: one-column, two-columns, right-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready, blog
 
+== Developper Note ==
+This file content appears in wordpress Admin "Theme details"
+
+== Changelog ==
+https://github.com/cnrs-webkit/cnrswebkit/blob/master/CHANGES.md
+
+* 0.5.0 Released May 17, 2019 by C. Seguinot: First in-line upgradable version
+* 0.3.0 Released November 2017 by Atos :CNRS-WEbKit packages v1.02 & 1.03)
+
 == Description ==
-CNRS Web Kit is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. CNRS Web Kit will make your WordPress look beautiful everywhere.
+CNRS Web Kit 
 
 * Mobile-first, Responsive Layout
 * Custom Colors
@@ -17,14 +27,14 @@ CNRS Web Kit is a modernized take on an ever-popular WordPress layout — the ho
 * Post Formats
 * The GPL v2.0 or later license. :) Use it to make something cool.
 
-For more information about CNRS Web Kit please go to https://codex.wordpress.org/Twenty_Sixteen.
+For more information about CNRS Web Kit please go to https://github.com/cnrs-webkit/cnrswebkit.
 
 == Installation ==
 
 1. In your admin panel, go to Appearance -> Themes and click the 'Add New' button.
 2. Type in CNRS Web Kit in the search form and press the 'Enter' key on your keyboard.
 3. Click on the 'Activate' button to use your new theme right away.
-4. Go to https://codex.wordpress.org/Twenty_Sixteen for a guide on how to customize this theme.
+4. Go to https://github.com/cnrs-webkit/cnrswebkit for a guide on how to customize this theme.
 5. Navigate to Appearance > Customize in your admin panel and customize to taste.
 
 == Copyright ==
@@ -52,30 +62,4 @@ Genericons icon font, Copyright 2013-2015 Automattic.com
 License: GNU GPL, Version 2 (or later)
 Source: http://www.genericons.com
 
-Image used in screenshot.png: A photo by Austin Schmid (https://unsplash.com/schmidy/), licensed under Creative Commons Zero(http://creativecommons.org/publicdomain/zero/1.0/)
 
-== Changelog ==
-
-= 1.3 =
-* Released: August 16, 2016
-
-https://codex.wordpress.org/Twenty_Sixteen_Theme_Changelog#Version_1.3
-
-= 1.2 =
-* Released: April 12, 2016
-
-https://codex.wordpress.org/Twenty_Sixteen_Theme_Changelog#Version_1.2
-
-= 1.1 =
-* Released: January 6, 2016
-
-https://codex.wordpress.org/Twenty_Sixteen_Theme_Changelog#Version_1.1
-
-= 1.0 =
-* Released: December 8, 2015
-
-Initial release
-
-== Notes ==
-
-Only the default and dark color schemes are accessibility ready.

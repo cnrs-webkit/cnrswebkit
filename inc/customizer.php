@@ -6,13 +6,13 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 /**
  * Sets up the WordPress core custom header and custom background features.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @see cnrswebkit_header_style()
  */
@@ -24,7 +24,7 @@ function cnrswebkit_custom_header_and_background() {
 	/**
 	 * Filter the arguments used when adding 'custom-background' support in CNRS Web Kit.
 	 *
-	 * @since CNRS Web Kit 1.0
+	 * @since CNRS Web Kit 0.3
 	 *
 	 * @param array $args {
 	 *     An array of custom-background support arguments.
@@ -39,7 +39,7 @@ function cnrswebkit_custom_header_and_background() {
 	/**
 	 * Filter the arguments used when adding 'custom-header' support in CNRS Web Kit.
 	 *
-	 * @since CNRS Web Kit 1.0
+	 * @since CNRS Web Kit 0.3
 	 *
 	 * @param array $args {
 	 *     An array of custom-header support arguments.
@@ -68,7 +68,7 @@ if ( ! function_exists( 'cnrswebkit_header_style' ) ) :
  *
  * Create your own cnrswebkit_header_style() function to override in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @see cnrswebkit_custom_header_and_background().
  */
@@ -96,7 +96,7 @@ endif; // cnrswebkit_header_style
 /**
  * Adds postMessage support for site title and description for the Customizer.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param WP_Customize_Manager $wp_customize The Customizer object.
  */
@@ -289,7 +289,7 @@ function cnrswebkit_customize_partial_blogdescription() {
  * 4. Main Text Color.
  * 5. Secondary Text Color.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @return array An associative array of color scheme options.
  */
@@ -299,7 +299,7 @@ function cnrswebkit_get_color_schemes() {
 	 *
 	 * The default schemes include 'default', 'dark', 'gray', 'red', and 'yellow'.
 	 *
-	 * @since CNRS Web Kit 1.0
+	 * @since CNRS Web Kit 0.3
 	 *
 	 * @param array $schemes {
 	 *     Associative array of color schemes data.
@@ -379,7 +379,7 @@ if ( ! function_exists( 'cnrswebkit_get_color_scheme' ) ) :
  *
  * Create your own cnrswebkit_get_color_scheme() function to override in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @return array An associative array of either the current or default color scheme HEX values.
  */
@@ -402,7 +402,7 @@ if ( ! function_exists( 'cnrswebkit_get_color_scheme_choices' ) ) :
  * Create your own cnrswebkit_get_color_scheme_choices() function to override
  * in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @return array Array of color schemes.
  */
@@ -426,7 +426,7 @@ if ( ! function_exists( 'cnrswebkit_sanitize_color_scheme' ) ) :
  * Create your own cnrswebkit_sanitize_color_scheme() function to override
  * in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param string $value Color scheme name value.
  * @return string Color scheme name.
@@ -448,7 +448,7 @@ endif; // cnrswebkit_sanitize_color_scheme
  *
  * Passes color scheme data as colorScheme global.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_customize_control_js() {
 	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20160816', true );
@@ -459,7 +459,7 @@ add_action( 'customize_controls_enqueue_scripts', 'cnrswebkit_customize_control_
 /**
  * Binds JS handlers to make the Customizer preview reload changes asynchronously.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_customize_preview_js() {
 	wp_enqueue_script( 'cnrswebkit-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20160816', true );
@@ -469,7 +469,7 @@ add_action( 'customize_preview_init', 'cnrswebkit_customize_preview_js' );
 /**
  * Returns CSS for the color schemes.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param array $colors Color scheme colors.
  * @return string Color scheme CSS.
@@ -500,7 +500,7 @@ function cnrswebkit_get_color_scheme_css( $colors ) {
  * The template generates the css dynamically for instant display in the
  * Customizer preview.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_color_scheme_css_template() {
 	$colors = array(

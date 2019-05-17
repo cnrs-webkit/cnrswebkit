@@ -4,7 +4,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 if (!is_active_sidebar('sidebar-2') && !is_active_sidebar('sidebar-3')) {
     return;

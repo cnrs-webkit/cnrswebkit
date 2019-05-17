@@ -4,7 +4,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 get_header(); ?>
@@ -37,7 +37,7 @@ get_header(); ?>
 								/**
 								 * Filter the default cnrswebkit image attachment size.
 								 *
-								 * @since CNRS Web Kit 1.0
+								 * @since CNRS Web Kit 0.3
 								 *
 								 * @param string $image_size Image size. Default 'large'.
 								 */

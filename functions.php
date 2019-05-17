@@ -24,7 +24,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
  // Constante de Version.
@@ -157,7 +157,7 @@ if (!function_exists('cnrswebkit_setup')) :
      *
      * Create your own cnrswebkit_setup() function to override in a child theme.
      *
-     * @since CNRS Web Kit 1.0
+     * @since CNRS Web Kit 0.3
      */
     function cnrswebkit_setup() {
         /*
@@ -251,7 +251,7 @@ if (!function_exists('cnrswebkit_credits')) :
      *
      * Create your own cnrswebkit_credits() function to override in a child theme.
      *
-     * @since CNRS Web Kit 1.0
+     * @since CNRS Web Kit 0.3
      */
     function cnrswebkit_credits() {
         // TODO  remplacer ça par un menu (pour traduction et car liens codés en dur!!) 
@@ -276,7 +276,7 @@ add_action( 'cnrswebkit_credits', 'cnrswebkit_credits', 10, 0 );
  *
  * @global int $content_width
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_content_width() {
     $GLOBALS['content_width'] = apply_filters('cnrswebkit_content_width', 840);
@@ -289,7 +289,7 @@ add_action('after_setup_theme', 'cnrswebkit_content_width', 0);
  *
  * @link https://developer.wordpress.org/reference/functions/register_sidebar/
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_widgets_init() {
     register_sidebar(array(
@@ -331,7 +331,7 @@ add_action('widgets_init', 'cnrswebkit_widgets_init');
  *
  * Adds a `js` class to the root `<html>` element when JavaScript is detected.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_javascript_detection() {
     echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
@@ -342,7 +342,7 @@ add_action('wp_head', 'cnrswebkit_javascript_detection', 0);
 /**
  * Enqueues scripts and styles.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_scripts() {
     // Add Genericons, used in the main stylesheet.
@@ -392,7 +392,7 @@ add_action('wp_enqueue_scripts', 'cnrswebkit_scripts');
 /**
  * Adds custom classes to the array of body classes.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param array $classes Classes for the body element.
  * @return array (May be) filtered body classes.
@@ -426,7 +426,7 @@ add_filter('body_class', 'cnrswebkit_body_classes');
 /**
  * Adds no-sidebar to the array of body classes.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param array $classes Classes for the body element.
  * @return array of modified body classes.
@@ -439,7 +439,7 @@ function add_no_sidebar_class( $classes ) {
 /**
  * Converts a HEX value to RGB.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param string $color The original color, in 3- or 6-digit hexadecimal form.
  * @return array Array containing RGB (red, green, and blue) values for the given
@@ -478,7 +478,7 @@ require get_template_directory() . '/inc/customizer.php';
  * Add custom image sizes attribute to enhance responsive image functionality
  * for content images
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param string $sizes A source size value for use in a 'sizes' attribute.
  * @param array  $size  Image size. Accepts an array of width and height
@@ -506,7 +506,7 @@ add_filter('wp_calculate_image_sizes', 'cnrswebkit_content_image_sizes_attr', 10
  * Add custom image sizes attribute to enhance responsive image functionality
  * for post thumbnails
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @param array $attr Attributes for the image markup.
  * @param int   $attachment Image attachment ID.

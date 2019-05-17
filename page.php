@@ -8,7 +8,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */ 
 
 global $cnrs_global_params;

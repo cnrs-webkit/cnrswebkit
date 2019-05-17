@@ -7,6 +7,9 @@
 * Depandancies :typo
 * détecter origine pb recadrage images ?? 
 * modifier les couleurs par défaut utilisées après la mise à jour de 1.0.3 vers 0.4.2
+* utilité de html5.js, shiv ?? update ??
+* icomoon: update ??
+* jquery ???
 
  
 #### Other tasks

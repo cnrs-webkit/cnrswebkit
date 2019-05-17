@@ -6,7 +6,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 ?>
 
@@ -46,7 +46,7 @@
         /**
          * Fires before the cnrswebkit footer text for footer customization.
          *
-         * @since CNRS Web Kit 1.0
+         * @since CNRS Web Kit 0.3
          */
         do_action('cnrswebkit_credits');
         ?>

@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 /**
@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * Switches to the default theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_switch_theme() {
 	switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
@@ -35,7 +35,7 @@ add_action( 'after_switch_theme', 'cnrswebkit_switch_theme' );
  * Prints an update nag after an unsuccessful attempt to switch to
  * CNRS Web Kit on WordPress versions prior to 4.4.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @global string $wp_version WordPress version.
  */
@@ -48,7 +48,7 @@ function cnrswebkit_upgrade_notice() {
 /**
  * Prevents the Customizer from being loaded on WordPress versions prior to 4.4.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @global string $wp_version WordPress version.
  */
@@ -62,7 +62,7 @@ add_action( 'load-customize.php', 'cnrswebkit_customize' );
 /**
  * Prevents the Theme Preview from being loaded on WordPress versions prior to 4.4.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  *
  * @global string $wp_version WordPress version.
  */

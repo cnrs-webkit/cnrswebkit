@@ -4,7 +4,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 $current_item = new CnrswebkitRichData(get_the_ID());
 ?>

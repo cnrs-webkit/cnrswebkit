@@ -7,7 +7,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 add_filter( 'body_class', 'add_no_sidebar_class' );

@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @package CNRS_Web_Kit
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 /**
@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * Switches to the default theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_dependancy_check(){
     global $messages;

@@ -4,7 +4,7 @@
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 ?>
 
@@ -14,7 +14,7 @@
 		/**
 		 * Filter the CNRS Web Kit author bio avatar size.
 		 *
-		 * @since CNRS Web Kit 1.0
+		 * @since CNRS Web Kit 0.3
 		 *
 		 * @param int $size The avatar height and width size in pixels.
 		 */

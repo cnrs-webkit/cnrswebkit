@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @package Atos
  * @subpackage CNRS_Web_Kit
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 
 if ( ! function_exists( 'cnrswebkit_entry_meta' ) ) :
@@ -17,7 +17,7 @@ if ( ! function_exists( 'cnrswebkit_entry_meta' ) ) :
  *
  * Create your own cnrswebkit_entry_meta() function to override in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_entry_meta() {
 	if ( 'post' === get_post_type() ) {
@@ -62,7 +62,7 @@ if ( ! function_exists( 'cnrswebkit_entry_date' ) ) :
  *
  * Create your own cnrswebkit_entry_date() function to override in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_entry_date() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
@@ -92,7 +92,7 @@ if ( ! function_exists( 'cnrswebkit_entry_taxonomies' ) ) :
  *
  * Create your own cnrswebkit_entry_taxonomies() function to override in a child theme.
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_entry_taxonomies() {
 	$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'cnrswebkit' ) );
@@ -122,7 +122,7 @@ if ( ! function_exists( 'cnrswebkit_post_thumbnail' ) ) :
      *
      * Create your own cnrswebkit_post_thumbnail() function to override in a child theme.
      *
-     * @since CNRS Web Kit 1.0
+     * @since CNRS Web Kit 0.3
      */
     function cnrswebkit_post_thumbnail() {
     	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
@@ -154,7 +154,7 @@ if ( ! function_exists( 'cnrswebkit_excerpt' ) ) :
 	 *
 	 * Create your own cnrswebkit_excerpt() function to override in a child theme.
 	 *
-	 * @since CNRS Web Kit 1.0
+	 * @since CNRS Web Kit 0.3
 	 *
 	 * @param string $class Optional. Class string of the div element. Defaults to 'entry-summary'.
 	 */
@@ -176,7 +176,7 @@ if ( ! function_exists( 'cnrswebkit_excerpt_more' ) && ! is_admin() ) :
      *
      * Create your own cnrswebkit_excerpt_more() function to override in a child theme.
      *
-     * @since CNRS Web Kit 1.0
+     * @since CNRS Web Kit 0.3
      *
      * @return string 'Continue reading' link prepended with an ellipsis.
      */
@@ -198,7 +198,7 @@ if ( ! function_exists( 'cnrswebkit_categorized_blog' ) ) :
      *
      * Create your own cnrswebkit_categorized_blog() function to override in a child theme.
      *
-     * @since CNRS Web Kit 1.0
+     * @since CNRS Web Kit 0.3
      *
      * @return bool True if there is more than one category, false otherwise.
      */
@@ -230,7 +230,7 @@ endif;
 /**
  * Flushes out the transients used in cnrswebkit_categorized_blog().
  *
- * @since CNRS Web Kit 1.0
+ * @since CNRS Web Kit 0.3
  */
 function cnrswebkit_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
