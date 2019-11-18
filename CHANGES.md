@@ -1,5 +1,6 @@
 #### [To appear in next release]
-
+ * Fix : PHP v7.2 bug 
+ 
 #### Version 0.4.3
 
  * Fix : template-parts/content-publication.php ajouté, et corrigé (c'était une copie de content-evenement.php !)
