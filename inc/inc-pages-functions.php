@@ -647,7 +647,7 @@ class CnrswebkitPageItemsList {
     }
 
     public function has_filters() {
-        if (count($this->post_list_params->selectors) > 0) {
+        if ($this->post_list_params->selectors) {
             return true;
         }
         return false;
@@ -669,7 +669,7 @@ class CnrswebkitPageItemsList {
     }
 
     public function get_filters() {
-        if (count($this->post_list_params->selectors) > 0) {
+        if ($this->post_list_params->selectors) {
             return $this->post_list_params->selectors;
         }
         return false;
@@ -677,7 +677,7 @@ class CnrswebkitPageItemsList {
 
     public function get_html_filters($area = false) {
         global $cnrs_webkit_list_filtered; 
-        if (count($this->post_list_params->selectors) > 0) {
+        if ($this->post_list_params->selectors) {
             $filters = [];
             foreach ($this->post_list_params->selectors as $k => &$v) {
                 $filters[] = '<div>' . $v . '</div>';

@@ -1,5 +1,6 @@
 ## cnrswebkit TODO list
 
+* neutraliser upgrade si version>0.5.0.... 
 * Style de menu dans réglage du thème: quid ??
 * Agenda sur la page d'accueil devient événements de l'Agenda sur la page d'accueil
 * /wp-admin/admin.php?page=CNRS-Webkit : Merci de faire de WordPress votre outil de création mal placé!
