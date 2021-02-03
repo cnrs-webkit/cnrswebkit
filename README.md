@@ -1,8 +1,4 @@
-# cnrswebkit
-Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. Le site web officiel du *CNRSwebkit* est https://kit-web.cnrs.fr/
-
-# Statut de ce projet : 
-**Attention ce projet n'est plus maintenu** 
+# Attention ce projet n'est plus maintenu 
 
 Le kit web fourni par le CNRS s'est avéré être un outil non abouti comportant trop de bugs et par ailleurs peu adapté aux laboratoires sur certains aspects (annuaire, publications). 
 
@@ -19,6 +15,9 @@ Les raisons en sont simples:
 - je serait en retraite en 2022.
 
 On me pose la question de savoir s'il existe des alternatives à ce kit. Je n'en connais pas, et c'est la raison de notre migration vers un outil interne. Il est regrettable que le communauté universitaire ne mutualise pas ce genre d'expérience, comme cela se faisait au sein de l'AMUE. A l'heure des fusions pour des soit disant économies d'échelle, comment ne pas voir que mutualiser des outils entre labos et Universités constitue une économie substantielle ! 
+
+# cnrswebkit
+Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. Le site web officiel du *CNRSwebkit* est https://kit-web.cnrs.fr/
 
 ## Branche Master
 Seule la branche master contient (contiendra) une version installable du kit après [correction](https://github.com/cnrs-webkit/cnrswebkit/blob/develop/CHANGES.md) des [bugs initiaux](https://github.com/cnrs-webkit/cnrswebkit/blob/develop/TODO.md). Le developpement du thème se fait sur les autres branches, notamment [develop](https://github.com/cnrs-webkit/cnrswebkit/tree/develop) 
