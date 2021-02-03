@@ -3,6 +3,7 @@ Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. Le site web
 
 # Statut de ce projet : 
 **Attention ce projet n'est plus maintenu** 
+
 Le kit web fourni par le CNRS s'est avéré être un outil non abouti comportant trop de bugs et par ailleurs peu adapté aux laboratoires sur certains aspects (annuaire, publications). 
 
 J'ai mis cette version corrigée sur Github en 2019. Le kit web avait été mis en place pour le site web de notre laboratoire (IRCICA). La présente version corrige de nombreux bugs; elle enrichit le kit initial.
