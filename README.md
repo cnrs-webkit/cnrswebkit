@@ -15,6 +15,10 @@ Les raisons en sont simples:
 - je serait en retraite en 2022.
 
 On me pose la question de savoir s'il existe des alternatives à ce kit. Je n'en connais pas, et c'est la raison de notre migration vers un outil interne. Il est regrettable que le communauté universitaire ne mutualise pas ce genre d'expérience, comme cela se faisait au sein de l'AMUE. A l'heure des fusions pour des soit disant économies d'échelle, comment ne pas voir que mutualiser des outils entre labos et Universités constitue une économie substantielle ! 
+# Attention 
+la présente version fonctionait sous Wordpress 5.1.3. Elle n'a pas été testée avec les dernières versions de Wordpress !
+
+Utiliser une version ancienne de Wordpress expose votre site web à des failles de sécurité et ne doit pas être envisagé !
 
 # cnrswebkit
 Le dépôt *CNRSwebkit* héberge le Theme Wordpress du kit web CNRS. Le site web officiel du *CNRSwebkit* est https://kit-web.cnrs.fr/
